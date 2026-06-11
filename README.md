@@ -28,7 +28,7 @@ talks-on-project-agent-center/
 │   ├── talks/                    # 491 JSON files containing conversation data
 │   │   └── channel-*.json        # Individual channel export (messages, metadata, etc.)
 │   └── talks_副本/               # Backup copies of channel data
-├── mockup.html                   # Interactive visualization dashboard
+├── docs/                         # GitHub Pages static site
 ├── LICENSE                       # MIT License
 ├── README.md                     # English documentation
 └── README.zh.md                  # Chinese documentation
@@ -68,10 +68,7 @@ Each channel JSON file contains structured conversation data:
 ### Viewing the Data
 
 1. **Interactive Visualization**:
-   ```bash
-   # Open the mockup.html in your browser
-   open mockup.html
-   ```
+   Visit the online dashboard at: https://oopslink.github.io/talks-on-project-agent-center/
 
 2. **Direct Access**:
    Browse the JSON files in the `data/talks/` directory directly
@@ -122,7 +119,7 @@ This dataset is valuable for:
 
 ## Visualization Features
 
-The `mockup.html` provides:
+The interactive dashboard at https://oopslink.github.io/talks-on-project-agent-center/ provides:
 
 - **Channel Overview**: Statistics on total channels and message counts
 - **Graph View**: Visualization of conversation relationships
