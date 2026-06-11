@@ -25,10 +25,22 @@ This repository contains:
 ```
 talks-on-project-agent-center/
 ├── data/
-│   ├── talks/                    # 491 JSON files containing conversation data
-│   │   └── channel-*.json        # Individual channel export (messages, metadata, etc.)
-│   └── talks_副本/               # Backup copies of channel data
+│   └── talks/                    # 491 JSON files containing conversation data
+│       └── channel-*.json        # Individual channel export (messages, metadata, etc.)
 ├── docs/                         # GitHub Pages static site
+│   ├── .nojekyll                 # Jekyll bypass marker
+│   ├── index.html                # Main visualization dashboard
+│   ├── data/
+│   │   ├── index.json            # Channel index
+│   │   ├── search.json           # Search index
+│   │   ├── semantic_links.json   # Relationship data
+│   │   └── channels/             # Channel metadata
+│   └── superpowers/
+│       └── plans/                # Project plans
+├── scripts/                      # Build and processing scripts
+│   ├── build_data.py
+│   └── build_semantic_links.py
+├── .gitignore
 ├── LICENSE                       # MIT License
 ├── README.md                     # English documentation
 └── README.zh.md                  # Chinese documentation
