@@ -1,0 +1,41 @@
+{
+  "channelId": "9390c9d1-48d4-478f-8f05-b8e274b316cc",
+  "exportedAt": "2026-06-11T03:35:04.372Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "94b14895-a71c-4c8a-8290-0f7f2b9ceabb",
+      "seq": 5976101,
+      "channelId": "9390c9d1-48d4-478f-8f05-b8e274b316cc",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@oopslink elaborated #190 设计要求（v2.8 实现）：\n\n不是简单的 `#<id>` 正则 linkify，而是**完整的结构化引用系统**（类似 Slack channel picker）：\n\n1. **Typeahead picker UI**：用户输入 `#` 触发下拉，列出 channel/entity 候选（名字 + 描述）\n2. **结构化 ref token**：选中后存为 `{kind, id, displayText}` 结构，不是纯文本\n3. **富文本消息格式**：消息内容支持 embedded refs（schema 从纯 string→rich content）\n4. **渲染层**：显示 displayText（用户看 \"all\"），底层有 id（用于跳转/关联）\n5. **多 entity 类型**：channel/task/issue/project/agent/worker/DM 均可引用，picker 按 kind 分组\n\n**v2.7 前置**：\n- #187 ID 格式（`<entity>-<hash>`）已落\n- #195 channel name org-unique 已落\n\n**v2.8 工作**：\n- 富文本消息编辑器\n- 消息 schema 改造（content: string → content: rich block array with refs）\n- Picker UI 组件\n- Ref token 解析+渲染\n- 历史消息兼容（旧 string content 仍渲染）\n\n这是 feature-level 大工作，v2.8 主要功能之一。task 描述已涵盖，v2.8 计划时再细化拆分。\n",
+      "actionMetadata": null,
+      "searchText": "oopslink elaborated 190 设计 要求 v2.8 实现 不是 简单 的 id 正则 linkify 而是 完整 的 结构化 引用 系统 类似 slack channel picker 1 typeahead picker ui 用户 输入 触发 下 拉 列出 channel entity 候选 名字 描述 2 结构化 ref token 选中 后存 为 kind id displaytext 结构 不是 纯 文本 3 富 文本 消息 格式 消息 内容 支持 embedded refs schema 从纯 string rich content 4 渲染 层 显示 displaytext 用户 看 all 底层 有 id 用于 跳转 关联 5 多 entity 类型 channel task issue project agent worker dm 均 可 引用 picker 按 kind 分组 v2.7 前置 187 id 格式 entity hash 已落 195 channel name org unique 已落 v2.8 工作 富 文本 消息 编辑器 消息 schema 改造 content string content rich block array with refs picker ui 组件 ref token 解析 渲染 历史 消息 兼容 旧 string content 仍 渲染 这是 feature level 大 工作 v2.8 主要 功能 之一 task 描述 已 涵盖 v2.8 计划 时 再 细化 拆分",
+      "searchVector": "'1':24 '187':102 '190':3 '195':108 '2':39 '3':53 '4':68 '5':82 'agent':90 'all':75 'array':128 'block':127 'channel':22,34,86,109 'content':67,123,125,143 'displaytext':48,72 'dm':92 'elaborated':2 'embedded':61 'entity':35,84,105 'feature':147 'hash':106 'id':11,47,78,103 'issue':88 'kind':46,98 'level':148 'linkify':13 'name':110 'oopslink':1 'org':111 'picker':23,26,96,131 'project':89 'ref':41,134 'refs':62,130 'rich':66,126 'schema':63,121 'slack':21 'string':65,124,142 'task':87,155 'token':42,135 'typeahead':25 'ui':27,132 'unique':112 'v2.7':100 'v2.8':6,114,151,159 'with':129 'worker':91 '下':31 '不是':8,50 '为':45 '主要':152 '之一':154 '仍':144 '从纯':64 '候选':36 '关联':81 '兼容':140 '内容':59 '再':162 '分组':99 '列出':33 '前置':101 '功能':153 '历史':138 '可':94 '名字':37 '后存':44 '均':93 '多':83 '大':149 '完整':15 '实现':7 '富':54,116 '层':70 '工作':115,150 '已':157 '已落':107,113 '底层':76 '引用':18,95 '拆分':164 '拉':32 '按':97 '描述':38,156 '支持':60 '改造':122 '文本':52,55,117 '旧':141 '时':161 '显示':71 '有':77 '格式':57,104 '正则':12 '消息':56,58,118,120,139 '涵盖':158 '渲染':69,137,145 '用于':79 '用户':28,73 '的':10,16 '看':74 '简单':9 '类似':20 '类型':85 '系统':19 '纯':51 '组件':133 '细化':163 '结构':49 '结构化':17,40 '编辑器':119 '而是':14 '要求':5 '解析':136 '触发':30 '计划':160 '设计':4 '跳转':80 '输入':29 '这是':146 '选中':43",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-03T08:57:44.580Z",
+      "updatedAt": "2026-06-03T08:57:44.580Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

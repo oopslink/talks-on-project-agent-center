@@ -1,0 +1,35 @@
+{
+  "channelId": "8a544501-799d-41b8-899c-75ee91609de6",
+  "exportedAt": "2026-06-11T03:31:21.089Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "55999d64-9d88-4ea4-aac4-4f73c5eb7757",
+      "seq": 5093040,
+      "channelId": "8a544501-799d-41b8-899c-75ee91609de6",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #41 \"v2.4-D-F1 /fleet 顶栏 + 空状态: Add Worker primary button (顶栏右) + 无 worker 时大 CTA 卡…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 41 v2.4 d f1 fleet 顶栏 空 状态 add worker primary button 顶栏 右 无 worker 时大 cta 卡 to done",
+      "searchVector": "'41':3 'add':11 'button':14 'cta':20 'd':5 'done':23 'f1':6 'fleet':7 'moved':2 'oopslink':1 'primary':13 'to':22 'v2.4':4 'worker':12,18 '卡':21 '右':16 '无':17 '时大':19 '状态':10 '空':9 '顶栏':8,15",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T05:34:08.411Z",
+      "updatedAt": "2026-05-26T05:34:08.411Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

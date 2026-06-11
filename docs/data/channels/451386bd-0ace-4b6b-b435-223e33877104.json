@@ -1,0 +1,35 @@
+{
+  "channelId": "451386bd-0ace-4b6b-b435-223e33877104",
+  "exportedAt": "2026-06-11T03:20:40.995Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "196d7f3e-1c9a-4010-9ef1-372f257aa7e2",
+      "seq": 5282113,
+      "channelId": "451386bd-0ace-4b6b-b435-223e33877104",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #2 \"@AgentCenterPD 3:25am 提醒 AgentCenterDev 继续开发\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 2 agentcenterpd 3 25am 提醒 agentcenterdev 继续 开发 to done",
+      "searchVector": "'2':3 '25am':6 '3':5 'agentcenterdev':8 'agentcenterpd':4 'done':12 'moved':2 'oopslink':1 'to':11 '开发':10 '提醒':7 '继续':9",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-27T15:12:08.004Z",
+      "updatedAt": "2026-05-27T15:12:08.004Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "channelId": "7edff929-bf89-4d0f-b27f-21733f0011bc",
+  "exportedAt": "2026-06-11T03:23:37.125Z",
+  "total": 2,
+  "messages": [
+    {
+      "id": "2bad68f0-ed71-43f9-bf26-e4945eca8a31",
+      "seq": 6555720,
+      "channelId": "7edff929-bf89-4d0f-b27f-21733f0011bc",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "还差最后一小步，不是 100% 完。状态：\n\n**开发面**：今天你加的两个追加项——\n- ① Issue 侧栏对齐 Task = **已合入** ✓\n- ② @头像/消息@提及 点击弹侧栏 = **刚出 PR(#258)、我在审 + Tester2 在验，马上合**（看着干净：复用现有侧栏、无 XSS、both-mode AA）\n\n**剩下**：#258 合完 → Tester2 把两个追加项的新截图补进验收报告 → 我定稿报告(§1/§6) + 重新生成 PDF/PPT(这次含内嵌截图) → **请你 approve** → 合 main + 打 v2.8.1 标签。\n\n= 开发基本收尾（#2 在最后审验），剩验收报告补图 + 你 approve + tag。很快。一个小提示：消息里的 @提及，用 @唯一名(如 @AgentCenterPD/@bot-1)能点弹侧栏；带空格的多词显示名(如「@Bot One」)Dev2 保守起见没解析(避免误捕)。@唯一名是正常提及格式、够用；要多词名也能点我可让加(算 v2.9 小增强)。你说够用我就这样收。\n",
+      "actionMetadata": null,
+      "searchText": "还 差 最后 一 小步 不是 100% 完 状态 开发 面 今天 你加 的 两个 追加 项 ① issue 侧栏 对齐 task 已合入 ② 头像 消息 提及 点击 弹侧 栏 刚出 pr 258 我 在 审 tester2 在验 马上 合 看着 干净 复用 现有 侧栏 无 xss both mode aa 剩下 258 合完 tester2 把 两个 追加 项 的 新 截图 补进 验收报告 我 定稿 报告 1 6 重新 生成 pdf ppt 这次 含 内嵌 截图 请 你 approve 合 main 打 v2.8 1 标签 开发 基本 收尾 2 在 最后 审验 剩 验收报告 补图 你 approve tag 很快 一个 小提示 消息 里 的 提及 用 唯一 名 如 agentcenterpd bot-1 能点 弹侧 栏 带 空格 的 多 词 显示 名 如 bot one dev2 保守 起见 没 解析 避免 误捕 唯一 名是 正常 提及 格式 够用 要 多 词名 也 能点 我 可 让 加 算 v2.9 小 增强 你 说 够用 我 就 这样 收",
+      "searchVector": "'-1':110 '1':65,82 '100':7 '2':87 '258':31,50 '6':66 'aa':48 'agentcenterpd':108 'approve':77,95 'bot':109,122 'both':46 'dev2':124 'issue':18 'main':79 'mode':47 'one':123 'pdf':69 'ppt':70 'pr':30 'tag':96 'task':21 'tester2':35,52 'v2.8':81 'v2.9':147 'xss':45 '一':4 '一个':98 '不是':6 '两个':15,54 '也':140 '今天':12 '你':76,94,150 '你加':13 '侧栏':19,43 '保守':125 '内嵌':73 '刚出':29 '剩':91 '剩下':49 '加':145 '可':143 '合':38,78 '合完':51 '名':106,120 '名是':132 '含':72 '唯一':105,131 '在':33,88 '在验':36 '基本':85 '增强':149 '复用':41 '多':117,138 '够用':136,152 '头像':23 '如':107,121 '完':8 '定稿':63 '审':34 '审验':90 '对齐':20 '小':148 '小提示':99 '小步':5 '就':154 '差':2 '已合入':22 '带':114 '干净':40 '开发':10,84 '弹侧':27,112 '很快':97 '我':32,62,142,153 '截图':59,74 '打':80 '把':53 '报告':64 '提及':25,103,134 '收':156 '收尾':86 '新':58 '无':44 '显示':119 '最后':3,89 '标签':83 '栏':28,113 '格式':135 '正常':133 '没':127 '消息':24,100 '点击':26 '状态':9 '现有':42 '生成':68 '用':104 '的':14,57,102,116 '看着':39 '空格':115 '算':146 '能点':111,141 '补图':93 '补进':60 '要':137 '解析':128 '让':144 '词':118 '词名':139 '误捕':130 '说':151 '请':75 '起见':126 '还':1 '这样':155 '这次':71 '追加':16,55 '避免':129 '里':101 '重新':67 '面':11 '项':17,56 '马上':37 '验收报告':61,92",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-10T07:30:31.739Z",
+      "updatedAt": "2026-06-10T07:30:31.739Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+          "name": "AgentCenterPD"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "id": "61646000-e870-421a-b5b4-9420eee2a31b",
+      "seq": 6556339,
+      "channelId": "7edff929-bf89-4d0f-b27f-21733f0011bc",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "够用",
+      "actionMetadata": null,
+      "searchText": "够用",
+      "searchVector": "'够用':1",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-10T07:36:33.178Z",
+      "updatedAt": "2026-06-10T07:36:33.178Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [
+        {
+          "emoji": "👍",
+          "count": 1,
+          "reactorIds": [
+            "d4e6b33e-cb7a-409e-92ee-f6c2be09d171"
+          ],
+          "reactorNames": [
+            "AgentCenterPD"
+          ]
+        }
+      ],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

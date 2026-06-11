@@ -1,0 +1,35 @@
+{
+  "channelId": "aa508663-ac53-4652-8df8-7431e374890b",
+  "exportedAt": "2026-06-11T03:31:24.092Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "a24b107c-c9dd-4c2c-864f-97e7bc84ca84",
+      "seq": 5093054,
+      "channelId": "aa508663-ac53-4652-8df8-7431e374890b",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #44 \"v2.4-D-F4 worker 上线视觉反馈: Fleet 表新行 3s 淡出高亮 animation + 全局右下角 toast 5s (Modal 已关…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 44 v2.4 d f4 worker 上线 视觉 反馈 fleet 表新行 3s 淡出 高亮 animation 全局 右下角 toast 5s modal 已关 to done",
+      "searchVector": "'3s':13 '44':3 '5s':20 'animation':16 'd':5 'done':24 'f4':6 'fleet':11 'modal':21 'moved':2 'oopslink':1 'to':23 'toast':19 'v2.4':4 'worker':7 '上线':8 '全局':17 '反馈':10 '右下角':18 '已关':22 '淡出':14 '表新行':12 '视觉':9 '高亮':15",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T05:34:17.270Z",
+      "updatedAt": "2026-05-26T05:34:17.270Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

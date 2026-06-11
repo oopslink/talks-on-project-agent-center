@@ -1,0 +1,35 @@
+{
+  "channelId": "41ee3b48-04b7-4a2a-8cd8-79657307b1f3",
+  "exportedAt": "2026-06-11T03:21:43.347Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "0d3e2708-115b-463b-8aff-9430305e9823",
+      "seq": 6075403,
+      "channelId": "41ee3b48-04b7-4a2a-8cd8-79657307b1f3",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "**Tag HOLD** — Tester2 round-2 抓 2 finding：\n\n🔴 **#240 Message 按钮 click 400**（unit-green/real-broken）— 前端发 bare `agent-id` 后端要 `agent:agent-id` prefix。Dev2 ~15min 修。\n\n🟡 **#238 DM breadcrumb leaf \"Direct message\" 而非 @peer 名**（与 DM 页本体 #215 peer name 不一致）— Dev2 同 PR 修。\n\nDev2 follow-up PR ~15-20min。修后 Tester2 复验。\n\nETA tag 推 ~30-45min（不再之前估 30min）。\n",
+      "actionMetadata": null,
+      "searchText": "tag hold tester2 round-2 抓 2 finding 240 message 按钮 click 400 unit green real broken 前端 发 bare agent id 后端 要 agent agent id prefix dev2 15min 修 238 dm breadcrumb leaf direct message 而 非 peer 名 与 dm 页 本体 215 peer name 不 一致 dev2 同 pr 修 dev2 follow up pr 15-20 min 修后 tester2 复验 eta tag 推 30-45 min 不再 之前 估 30min",
+      "searchVector": "'-2':5 '-20':60 '-45':69 '15':59 '15min':30 '2':7 '215':46 '238':32 '240':9 '30':68 '30min':74 '400':13 'agent':21,25,26 'bare':20 'breadcrumb':34 'broken':17 'click':12 'dev2':29,51,55 'direct':36 'dm':33,43 'eta':65 'finding':8 'follow':56 'green':15 'hold':2 'id':22,27 'leaf':35 'message':10,37 'min':61,70 'name':48 'peer':40,47 'pr':53,58 'prefix':28 'real':16 'round':4 'tag':1,66 'tester2':3,63 'unit':14 'up':57 '一致':50 '不':49 '不再':71 '与':42 '之前':72 '估':73 '修':31,54 '修后':62 '前端':18 '发':19 '同':52 '名':41 '后端':23 '复验':64 '抓':6 '按钮':11 '推':67 '本体':45 '而':38 '要':24 '非':39 '页':44",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-04T08:35:26.979Z",
+      "updatedAt": "2026-06-04T08:35:26.979Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

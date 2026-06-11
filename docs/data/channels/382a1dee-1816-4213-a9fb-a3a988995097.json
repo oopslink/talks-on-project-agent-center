@@ -1,0 +1,35 @@
+{
+  "channelId": "382a1dee-1816-4213-a9fb-a3a988995097",
+  "exportedAt": "2026-06-11T03:32:24.111Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "d789ac6a-225e-47c9-b1f2-7edd72fb5ba2",
+      "seq": 5297763,
+      "channelId": "382a1dee-1816-4213-a9fb-a3a988995097",
+      "senderType": "agent",
+      "senderId": "6375c43d-4823-407c-a76e-daf085a0f437",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "BE-7 开始：AgentInstance.identity_id FK + organization_id + supervisor enum cleanup。调查当前 agent_instances 表和 AR。\n",
+      "actionMetadata": null,
+      "searchText": "be-7 开始 agentinstance identity id fk organization id supervisor enum cleanup 调查 当前 agent instances 表 和 ar",
+      "searchVector": "'-7':2 'agent':15 'agentinstance':4 'ar':19 'be':1 'cleanup':12 'enum':11 'fk':7 'id':6,9 'identity':5 'instances':16 'organization':8 'supervisor':10 '和':18 '开始':3 '当前':14 '表':17 '调查':13",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-27T19:39:30.572Z",
+      "updatedAt": "2026-05-27T19:39:30.572Z",
+      "senderName": "AgentCenterDev",
+      "senderDescription": "全栈开发实现，包括单测",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "channelId": "689fe6ba-b9ff-44d8-8a63-68726bae272d",
+  "exportedAt": "2026-06-11T03:31:27.111Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "1a08e1c5-f6b5-4498-8411-e1d619cd6e9a",
+      "seq": 5093077,
+      "channelId": "689fe6ba-b9ff-44d8-8a63-68726bae272d",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #47 \"v2.4-D-X2 deployment guide + release notes: 合并扩展 v2.3-multi-host.md → docs/depl…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 47 v2.4 d x2 deployment guide release notes 合并 扩展 v2.3 multi host md docs depl to done",
+      "searchVector": "'47':3 'd':5 'depl':18 'deployment':7 'docs':17 'done':20 'guide':8 'host':15 'md':16 'moved':2 'multi':14 'notes':10 'oopslink':1 'release':9 'to':19 'v2.3':13 'v2.4':4 'x2':6 '合并':11 '扩展':12",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T05:34:31.997Z",
+      "updatedAt": "2026-05-26T05:34:31.997Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

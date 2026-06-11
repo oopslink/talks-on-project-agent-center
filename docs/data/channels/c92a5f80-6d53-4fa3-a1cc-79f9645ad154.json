@@ -1,0 +1,69 @@
+{
+  "channelId": "c92a5f80-6d53-4fa3-a1cc-79f9645ad154",
+  "exportedAt": "2026-06-11T03:31:36.144Z",
+  "total": 2,
+  "messages": [
+    {
+      "id": "617d5c1b-0077-42b0-a18f-c56a78edf322",
+      "seq": 5143758,
+      "channelId": "c92a5f80-6d53-4fa3-a1cc-79f9645ad154",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "这个任务完成了吗",
+      "actionMetadata": null,
+      "searchText": "这个 任务 完成 了 吗",
+      "searchVector": "'了':4 '任务':2 '吗':5 '完成':3 '这个':1",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T11:32:55.426Z",
+      "updatedAt": "2026-05-26T11:32:55.426Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    },
+    {
+      "id": "aaeb4eb3-44a3-4241-ba47-765088970d0d",
+      "seq": 5143802,
+      "channelId": "c92a5f80-6d53-4fa3-a1cc-79f9645ad154",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@oopslink #55 v2.5-F3 状态 **in_review**（dev 完成，待你 close 到 done）。\n\n实施 commit `53fbe40`，已被 #56 X1 acceptance 端到端验证（Remove action + confirm dialog + SSE worker.removed → Fleet 行抽掉 + worker daemon 立即 401，见 acceptance 报告 `#agent-center:3f970c5d`）。\n\n同 v2.5 其余 in_review：#54 #55 #56 #57 都待 close。master_key 自动化 patch 完工 + 我 re-smoke 后给 ship 信号即可。\n",
+      "actionMetadata": null,
+      "searchText": "oopslink 55 v2.5 f3 状态 in review dev 完成 待 你 close 到 done 实施 commit 53fbe40 已 被 56 x1 acceptance 端到 端 验证 remove action confirm dialog sse worker removed fleet 行 抽掉 worker daemon 立即 401 见 acceptance 报告 agent center 3f970c5d 同 v2.5 其余 in review 54 55 56 57 都 待 close master key 自动化 patch 完工 我 re smoke 后 给 ship 信号 即可",
+      "searchVector": "'3f970c5d':45 '401':39 '53fbe40':17 '54':51 '55':2,52 '56':20,53 '57':54 'acceptance':22,41 'action':27 'agent':43 'center':44 'close':12,57 'commit':16 'confirm':28 'daemon':37 'dev':8 'dialog':29 'done':14 'f3':4 'fleet':33 'in':6,49 'key':59 'master':58 'oopslink':1 'patch':61 're':64 'remove':26 'removed':32 'review':7,50 'ship':68 'smoke':65 'sse':30 'v2.5':3,47 'worker':31,36 'x1':21 '你':11 '信号':69 '其余':48 '到':13 '即可':70 '同':46 '后':66 '完工':62 '完成':9 '实施':15 '已':18 '待':10,56 '我':63 '报告':42 '抽掉':35 '状态':5 '立即':38 '端':24 '端到':23 '给':67 '自动化':60 '行':34 '被':19 '见':40 '都':55 '验证':25",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T11:33:17.924Z",
+      "updatedAt": "2026-05-26T11:33:17.924Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

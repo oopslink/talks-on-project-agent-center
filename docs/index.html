@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>AgentCenter Talks</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<style>
+:root {
+  --bg:       #0F1117;
+  --surface:  #171B26;
+  --surface2: #1E2333;
+  --border:   rgba(45,52,72,0.9);
+  --accent:   #1ABFBF;
+  --accent2:  #38BDF8;
+  --red:      #EF4444;
+  --purple:   #3B82F6;
+  --green:    #4ADE80;
+  --orange:   #F97316;
+  --text:     #E2E8F0;
+  --muted:    #94A3B8;
+  --dim:      #64748B;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+       color: var(--text); font-size: 14px; height: 100vh; overflow: hidden;
+       background: var(--bg); }
+
+/* ── Header ── */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 50px; display: flex; align-items: center; padding: 0 20px; gap: 12px;
+  background: rgba(17,21,32,0.7); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.header.solid { background: #141826; }
+.header-logo { display: flex; align-items: center; gap: 9px; }
+.header-logo .dot { width: 26px; height: 26px; border-radius: 7px;
+  background: linear-gradient(135deg, var(--accent), #0D8888);
+  display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.header-logo h1 { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -.01em; }
+.header-logo h1 span { color: var(--accent); }
+.header-badge { font-size: 11px; background: rgba(0,170,255,0.08); color: var(--muted);
+  padding: 2px 8px; border-radius: 8px; border: 1px solid rgba(0,170,255,0.14); }
+.header-search { flex: 1; display: flex; justify-content: center; }
+.header-search-btn { display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 8px; padding: 5px 14px; cursor: pointer; min-width: 220px;
+  transition: border-color .15s; }
+.header-search-btn:hover { border-color: rgba(0,170,255,0.3); }
+.header-search-btn span { font-size: 12px; color: var(--muted); flex: 1; }
+.header-search-btn .kbd-hint { font-size: 10px; color: var(--dim);
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; }
+.header-nav { display: flex; align-items: center; gap: 4px; }
+.nav-btn { padding: 5px 14px; border-radius: 7px; cursor: pointer; font-size: 12px;
+  color: var(--muted); border: 1px solid transparent; transition: all .15s; user-select: none; }
+.nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+.nav-btn.active { background: rgba(0,170,255,0.12); border-color: rgba(0,170,255,0.25); color: var(--accent); }
+
+/* ── Graph view ── */
+#graph-view { position: fixed; inset: 0; z-index: 1; background: var(--bg); }
+#graph-svg  { width: 100%; height: 100%; position: relative; z-index: 2; }
+
+/* ── Graph controls ── */
+.graph-controls {
+  position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+  z-index: 50; display: flex; align-items: center; gap: 6px;
+  background: rgba(20,24,38,0.88); backdrop-filter: blur(16px);
+  border: 1px solid var(--border); border-radius: 12px; padding: 7px 12px;
+}
+.ctrl-btn { width: 30px; height: 30px; background: transparent;
+  border: 1px solid var(--border); color: var(--muted); border-radius: 7px;
+  cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center;
+  transition: all .15s; user-select: none; }
+.ctrl-btn:hover { background: rgba(0,170,255,0.1); color: var(--text); border-color: rgba(0,170,255,0.25); }
+.ctrl-sep { width: 1px; height: 18px; background: var(--border); }
+.layout-toggle { display: flex; align-items: center; gap: 2px;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 7px; padding: 3px; }
+.layout-opt { padding: 3px 11px; border-radius: 5px; font-size: 11px; color: var(--muted);
+  cursor: pointer; transition: all .15s; user-select: none; }
+.layout-opt.active { background: rgba(0,170,255,0.18); color: var(--accent); }
+
+/* ── Dashboard overlay: stat cards ── */
+.stat-cards-row {
+  position: fixed; top: 60px; left: 50%; transform: translateX(-50%);
+  z-index: 20; display: flex; gap: 8px;
+}
+.ds-stat {
+  background: rgba(17,21,32,0.85); backdrop-filter: blur(16px);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 9px 16px; min-width: 108px; text-align: center; cursor: default;
+  transition: border-color .2s;
+}
+.ds-stat:hover { border-color: rgba(0,170,255,0.25); }
+.ds-stat .ds-val { font-size: 20px; font-weight: 800; color: var(--text); line-height: 1.2;
+  font-variant-numeric: tabular-nums; }
+.ds-stat .ds-val.blue   { color: var(--accent); }
+.ds-stat .ds-val.teal   { color: var(--accent2); }
+.ds-stat .ds-val.purple { color: var(--purple); }
+.ds-stat .ds-label { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.ds-stat .ds-sub   { font-size: 9px;  color: var(--dim);   margin-top: 1px; }
+
+/* ── Dashboard overlay: bottom 3 panels ── */
+.dash-bottom {
+  position: fixed; bottom: 62px; left: 0; right: 0; z-index: 20;
+  display: flex; gap: 8px; padding: 0 12px; pointer-events: none;
+}
+.dash-bottom > * { pointer-events: all; }
+.dash-panel {
+  background: rgba(17,21,32,0.88); backdrop-filter: blur(18px);
+  border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px;
+}
+.dash-panel-left  { flex: 1.05; }
+.dash-panel-mid   { flex: 1.5; }
+.dash-panel-right { flex: 1.05; }
+.dp-title { font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--dim); margin-bottom: 9px; }
+
+/* Mini bar chart */
+.mini-bars { display: flex; align-items: flex-end; gap: 2px; height: 46px; }
+.mb-wrap { display: flex; flex-direction: column; align-items: center; flex: 1; gap: 2px; }
+.mb-bar { width: 100%; background: rgba(0,170,255,0.5); border-radius: 2px 2px 0 0;
+  min-height: 3px; transition: background .15s; }
+.mb-wrap:hover .mb-bar { background: var(--accent); }
+.mb-lbl { font-size: 7px; color: var(--dim); }
+
+/* Task mini */
+.task-mini { margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 4px; }
+.tm-row { display: flex; align-items: center; gap: 6px; }
+.tm-lbl  { font-size: 10px; color: var(--muted); width: 56px; }
+.tm-bg   { flex: 1; height: 5px; background: rgba(255,255,255,0.05); border-radius: 3px; }
+.tm-fill { height: 5px; border-radius: 3px; }
+.tm-fill.done     { background: var(--accent2); }
+.tm-fill.review   { background: var(--purple); }
+.tm-fill.progress { background: #f59e0b; }
+.tm-fill.closed   { background: rgba(100,116,139,0.5); }
+.tm-n { font-size: 9px; color: var(--dim); width: 22px; text-align: right; }
+
+/* Heatmap */
+.hm-hours { display: flex; gap: 2px; padding-left: 26px; margin-bottom: 3px; }
+.hm-hours span { font-size: 8px; color: var(--dim); width: 12px; text-align: center; }
+.hm-row { display: flex; align-items: center; gap: 2px; margin-bottom: 2px; }
+.hm-lbl  { font-size: 9px; color: var(--muted); width: 24px; text-align: right; }
+.hm-cell { width: 12px; height: 12px; border-radius: 2px; background: rgba(255,255,255,0.03); }
+.hm-cell.l1 { background: rgba(0,170,255,0.18); }
+.hm-cell.l2 { background: rgba(0,170,255,0.42); }
+.hm-cell.l3 { background: rgba(0,170,255,0.68); }
+.hm-cell.l4 { background: rgba(0,170,255,0.92); }
+
+/* Donut + senders */
+.ds-donut-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.ds-donut { width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0;
+  background: conic-gradient(var(--accent) 0% 62%, var(--purple) 62% 100%); }
+.ds-legend { display: flex; flex-direction: column; gap: 4px; }
+.ds-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+.ds-legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+.sender-list { padding-top: 8px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 5px; }
+.sr-row { display: flex; align-items: center; gap: 6px; }
+.sr-name { font-size: 10px; color: var(--muted); width: 94px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sr-badge { font-size: 9px; padding: 1px 4px; border-radius: 3px; }
+.sr-badge.agent { background: rgba(167,139,250,0.15); color: var(--purple); }
+.sr-badge.user  { background: rgba(0,170,255,0.12); color: #60c8ff; }
+.sr-bg   { flex: 1; height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; }
+.sr-fill { height: 4px; border-radius: 2px; }
+.sr-fill.agent { background: rgba(167,139,250,0.7); }
+.sr-fill.user  { background: rgba(0,170,255,0.65); }
+.sr-count { font-size: 9px; color: var(--dim); width: 32px; text-align: right; }
+
+/* ── Detail card ── */
+.detail-card {
+  position: fixed; right: -310px; top: 60px; bottom: 62px; width: 290px; z-index: 100;
+  background: rgba(17,21,32,0.93); backdrop-filter: blur(20px);
+  border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: right .3s cubic-bezier(.34,1.2,.64,1); overflow: hidden;
+}
+.detail-card.open { right: 12px; }
+.detail-card-close { position: absolute; top: 12px; right: 12px;
+  width: 22px; height: 22px; border-radius: 5px; cursor: pointer;
+  background: rgba(255,255,255,0.05); color: var(--muted);
+  display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .15s; }
+.detail-card-close:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+.detail-type-badge { display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  padding: 3px 8px; border-radius: 5px; }
+.detail-type-badge.root     { background: rgba(26,191,191,0.12); color: var(--accent); }
+.detail-type-badge.thread-a { background: rgba(56,189,248,0.1);  color: var(--accent2); }
+.detail-type-badge.thread-b { background: rgba(74,222,128,0.1);  color: var(--green); }
+.detail-title { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.4; }
+.detail-stats { display: flex; gap: 14px; }
+.detail-stat-val { font-size: 20px; font-weight: 800; color: var(--text); }
+.detail-stat-lbl { font-size: 10px; color: var(--muted); }
+.detail-divider  { height: 1px; background: var(--border); }
+.detail-preview-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--dim); }
+.detail-preview { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 7px; }
+.preview-msg { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 7px; padding: 7px 9px; }
+.pm-meta { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+.pm-av { width: 16px; height: 16px; border-radius: 3px; font-size: 8px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; }
+.pm-av.user  { background: rgba(0,170,255,0.2); color: var(--accent); }
+.pm-av.agent { background: rgba(167,139,250,0.18); color: var(--purple); }
+.pm-name { font-size: 10px; font-weight: 600; color: var(--muted); }
+.pm-time { font-size: 9px; color: var(--dim); margin-left: auto; }
+.pm-content { font-size: 11px; color: var(--muted); line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.detail-open-btn { padding: 9px 0; background: var(--accent); border: none;
+  border-radius: 8px; color: #fff; font-size: 12px; font-weight: 600; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 5px; transition: opacity .15s; }
+.detail-open-btn:hover { opacity: 0.85; }
+
+/* ── Pulse animation ── */
+@keyframes pulse-ring { 0% { r: 32; opacity: .5; } 100% { r: 54; opacity: 0; } }
+.pulse-ring { animation: pulse-ring 2.6s ease-out infinite; }
+.pulse-ring-2 { animation: pulse-ring 2.6s ease-out .85s infinite; }
+
+/* ── Node label tip ── */
+.node-label-tip {
+  position: fixed; pointer-events: none; z-index: 150;
+  background: rgba(17,21,32,0.92); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 5px 10px; font-size: 11px; color: var(--text); white-space: nowrap; display: none;
+}
+
+/* ── Reader page ── */
+.page-view { position: fixed; inset: 0; z-index: 50; display: none; flex-direction: row; padding-top: 50px; }
+.page-view.show { display: flex; }
+.resize-handle { width: 4px; background: transparent; cursor: col-resize; flex-shrink: 0; z-index: 10; transition: background .15s; }
+.resize-handle:hover, .resize-handle.dragging { background: var(--accent); }
+.sidebar { width: 220px; min-width: 100px; max-width: 75vw; background: #141826;
+  color: #8a94a8; display: flex; flex-direction: column; flex-shrink: 0; padding: 10px 0; overflow-y: auto; }
+.sidebar-section { padding: 5px 14px 4px; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--dim); }
+.channel-item { padding: 6px 14px; cursor: pointer; display: flex; align-items: center;
+  gap: 8px; transition: background .1s; }
+.channel-item:hover { background: rgba(0,170,255,0.07); }
+.channel-item.active { background: rgba(0,170,255,0.1); color: var(--text); border-right: 2px solid var(--accent); }
+.channel-item .ch-name { font-size: 12px; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.channel-item .ch-count { font-size: 10px; background: rgba(255,255,255,0.06);
+  padding: 1px 6px; border-radius: 7px; color: var(--dim); }
+.sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
+.reader { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #f4f5f7; }
+.reader-toolbar { padding: 9px 16px; background: #fff; border-bottom: 1px solid #e4e6ea;
+  display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
+.reader-toolbar .ch-title { font-size: 14px; font-weight: 600; color: #172b4d; }
+.filter-btn { padding: 4px 10px; border: 1px solid #dde0e6; border-radius: 6px; background: #fff; font-size: 11px; cursor: pointer; color: #445; }
+.filter-btn.on { background: #e8f3ff; border-color: var(--accent); color: #005fb8; }
+.search-input-r { margin-left: auto; padding: 5px 10px; border: 1px solid #dde0e6; border-radius: 6px; font-size: 12px; width: 190px; outline: none; }
+.messages-area { display: flex; flex: 1; overflow: hidden; }
+.message-list { flex: 1; overflow-y: auto; padding: 10px 14px; display: flex; flex-direction: column; gap: 1px; background: #fff; }
+.msg { display: flex; gap: 9px; padding: 6px 7px; border-radius: 6px; cursor: pointer; transition: background .1s; }
+.msg:hover { background: #f4f5f7; }
+.msg.selected { background: #e8f3ff; }
+.msg.has-thread { border-left: 2px solid var(--accent); padding-left: 6px; }
+.avatar { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center;
+  justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.avatar.user  { background: #dbeafe; color: #1d4ed8; }
+.avatar.agent { background: #ede9fe; color: #6b21a8; }
+.msg-body { flex: 1; min-width: 0; }
+.msg-meta { display: flex; align-items: center; gap: 7px; margin-bottom: 2px; }
+.msg-meta .sender { font-weight: 600; font-size: 12px; color: #172b4d; }
+.sender-type { font-size: 10px; padding: 1px 5px; border-radius: 3px; }
+.sender-type.agent { background: #ede9fe; color: #6b21a8; }
+.sender-type.user  { background: #dbeafe; color: #1d4ed8; }
+.msg-meta .time { font-size: 10px; color: #9aa3b2; margin-left: auto; }
+.msg-content { font-size: 12px; color: #374151; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.msg-footer { display: flex; gap: 5px; margin-top: 3px; flex-wrap: wrap; }
+.tag { font-size: 10px; padding: 1px 6px; border-radius: 4px; }
+.tag.thread   { background: #e8f3ff; color: #005fb8; }
+.tag.task-done    { background: #d1fae5; color: #065f46; }
+.tag.task-progress{ background: #fef3c7; color: #92400e; }
+.tag.task-review  { background: #ede9fe; color: #6b21a8; }
+.tag.attach   { background: #f0f0f0; color: #555; }
+.tag.reaction { background: #f9f9f9; border: 1px solid #eee; color: #555; }
+.thread-panel { width: 330px; min-width: 150px; max-width: 75vw; background: #fafbfc;
+  display: flex; flex-direction: column; flex-shrink: 0; border-left: 1px solid #e4e6ea; }
+.thread-header { padding: 10px 13px; border-bottom: 1px solid #e4e6ea; display: flex; align-items: center; gap: 7px; }
+.thread-header h3 { font-size: 12px; font-weight: 600; flex: 1; color: #172b4d; }
+.thread-header .close { cursor: pointer; color: #9aa3b2; font-size: 17px; }
+.thread-messages { flex: 1; overflow-y: auto; padding: 9px 11px; display: flex; flex-direction: column; gap: 7px; }
+.thread-msg { background: #fff; border-radius: 7px; padding: 7px 9px; border: 1px solid #eee; }
+.thread-msg .tmeta { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+.thread-msg .tsender { font-size: 11px; font-weight: 600; color: #172b4d; }
+.thread-msg .tcontent { font-size: 11px; color: #374151; line-height: 1.5; }
+.thread-msg .ttime { font-size: 9px; color: #9aa3b2; margin-left: auto; }
+
+/* ── Global search modal ── */
+.search-backdrop { position: fixed; inset: 0; z-index: 500;
+  background: rgba(5,8,16,0.78); backdrop-filter: blur(6px);
+  display: none; align-items: flex-start; justify-content: center; padding-top: 80px; }
+.search-backdrop.open { display: flex; }
+.search-modal { width: 620px; max-width: 90vw; background: #161b28;
+  border: 1px solid rgba(0,170,255,0.2); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0,170,255,0.06), 0 32px 80px rgba(0,0,0,0.7);
+  display: flex; flex-direction: column; max-height: 68vh; }
+.search-input-row { display: flex; align-items: center; gap: 10px; padding: 13px 16px;
+  border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.search-input-row .si-icon { font-size: 15px; color: var(--muted); }
+.search-input-row input { flex: 1; background: transparent; border: none; outline: none;
+  font-size: 15px; color: var(--text); }
+.search-input-row input::placeholder { color: var(--dim); }
+.search-input-row .si-hint { font-size: 10px; color: var(--dim);
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; }
+.search-results { overflow-y: auto; flex: 1; }
+.search-empty { padding: 36px 20px; text-align: center; font-size: 13px; color: var(--dim); }
+.search-section-label { padding: 9px 16px 5px; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--dim);
+  position: sticky; top: 0; background: #161b28; z-index: 1; }
+.search-result-item { padding: 9px 16px; cursor: pointer; transition: background .1s;
+  border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; flex-direction: column; gap: 4px; }
+.search-result-item:hover, .search-result-item.focused { background: rgba(0,170,255,0.06); }
+.sri-meta { display: flex; align-items: center; gap: 7px; }
+.sri-channel { font-size: 10px; background: rgba(0,170,255,0.08); color: rgba(0,170,255,0.7);
+  padding: 1px 6px; border-radius: 4px; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sri-channel.root { background: rgba(0,170,255,0.15); color: var(--accent); }
+.sri-sender { font-size: 10px; font-weight: 600; color: var(--muted); }
+.sri-sbadge { font-size: 9px; padding: 1px 4px; border-radius: 3px; }
+.sri-sbadge.agent { background: rgba(167,139,250,0.15); color: var(--purple); }
+.sri-sbadge.user  { background: rgba(0,170,255,0.12); color: #60c8ff; }
+.sri-time { font-size: 10px; color: var(--dim); margin-left: auto; }
+.sri-content { font-size: 12px; color: #6a7590; line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sri-content mark { background: rgba(0,170,255,0.2); color: #80d4ff; border-radius: 2px; padding: 0 1px; }
+.sri-ch-item { display: flex; align-items: center; gap: 9px; }
+.sri-ch-icon { width: 30px; height: 30px; border-radius: 7px; background: rgba(0,170,255,0.12);
+  display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; color: var(--accent); }
+.ci-name { font-size: 12px; font-weight: 600; color: var(--text); }
+.ci-sub  { font-size: 10px; color: var(--muted); margin-top: 1px; }
+.search-footer { padding: 7px 16px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px; font-size: 10px; color: var(--dim); flex-shrink: 0; }
+.search-footer span { display: flex; align-items: center; gap: 4px; }
+.kbd { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; font-size: 9px; }
+</style>
+</head>
+<body>
+
+<div class="node-label-tip" id="node-label-tip"></div>
+
+<!-- ── Header ── -->
+<div class="header" id="header">
+  <div class="header-logo">
+    <div class="dot">💬</div>
+    <h1>AgentCenter <span>Talks</span></h1>
+  </div>
+  <span class="header-badge">491 channels · 9,501 msgs</span>
+  <div class="header-search">
+    <div class="header-search-btn" onclick="openSearch()">
+      <span style="font-size:12px;color:var(--dim)">🔍</span>
+      <span>全文搜索消息...</span>
+      <span class="kbd-hint">⌘K</span>
+    </div>
+  </div>
+  <div class="header-nav">
+    <div class="nav-btn active" id="nav-graph" onclick="showGraph(this)">大屏</div>
+    <div class="nav-btn" id="nav-reader" onclick="showReader(this)">阅读器</div>
+  </div>
+</div>
+
+<!-- ── Graph / Big screen ── -->
+<div id="graph-view">
+  <svg id="graph-svg"></svg>
+
+  <!-- Stat cards top -->
+  <div class="stat-cards-row" id="dash-stats">
+    <div class="ds-stat"><div class="ds-val blue" id="stat-total-msgs">—</div><div class="ds-label">总消息数</div><div class="ds-sub" id="stat-total-sub">—</div></div>
+    <div class="ds-stat"><div class="ds-val teal" id="stat-senders">—</div><div class="ds-label">参与者</div><div class="ds-sub" id="stat-senders-sub">—</div></div>
+    <div class="ds-stat"><div class="ds-val purple" id="stat-tasks">—</div><div class="ds-label">任务</div><div class="ds-sub" id="stat-tasks-sub">—</div></div>
+    <div class="ds-stat"><div class="ds-val" id="stat-threads">—</div><div class="ds-label">Threads</div><div class="ds-sub" id="stat-threads-sub">—</div></div>
+  </div>
+
+  <!-- Bottom 3 panels -->
+  <div class="dash-bottom" id="dash-bottom">
+    <!-- Left: daily msgs + task distribution -->
+    <div class="dash-panel dash-panel-left">
+      <div class="dp-title">每日消息量</div>
+      <div class="mini-bars" id="bar-container"></div>
+      <div class="task-mini" id="task-dist-container"></div>
+    </div>
+
+    <!-- Mid: heatmap -->
+    <div class="dash-panel dash-panel-mid">
+      <div class="dp-title">活跃时间热力图</div>
+      <div id="hm-container"></div>
+    </div>
+
+    <!-- Right: donut + senders -->
+    <div class="dash-panel dash-panel-right">
+      <div class="dp-title">消息构成</div>
+      <div id="donut-container" class="ds-donut-row"></div>
+      <div class="dp-title">发送者排行</div>
+      <div class="sender-list" id="sender-list-container"></div>
+    </div>
+  </div>
+
+  <!-- Bottom controls -->
+  <div class="graph-controls">
+    <button class="ctrl-btn" onclick="graphZoom(1.3)">+</button>
+    <button class="ctrl-btn" onclick="graphZoom(0.77)">−</button>
+    <button class="ctrl-btn" onclick="graphReset()" style="font-size:12px">⌂</button>
+    <div class="ctrl-sep"></div>
+    <div class="layout-toggle">
+      <div class="layout-opt active" id="opt-force" onclick="setLayout('force',this)">⚡ force</div>
+      <div class="layout-opt" id="opt-radial" onclick="setLayout('radial',this)">⊙ radial</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Detail card ── -->
+<div class="detail-card" id="detail-card">
+  <div class="detail-card-close" onclick="closeDetail()">✕</div>
+  <div id="dc-badge"></div>
+  <div class="detail-title" id="dc-title"></div>
+  <div class="detail-stats">
+    <div><div class="detail-stat-val" id="dc-msgs">—</div><div class="detail-stat-lbl">消息数</div></div>
+    <div><div class="detail-stat-val" id="dc-sub-val">—</div><div class="detail-stat-lbl" id="dc-sub-lbl">—</div></div>
+  </div>
+  <div class="detail-divider"></div>
+  <div class="detail-preview-lbl">最近消息</div>
+  <div class="detail-preview" id="dc-preview"></div>
+  <button class="detail-open-btn" onclick="openInReader()">在阅读器中打开 →</button>
+</div>
+
+<!-- ── Reader ── -->
+<div class="page-view" id="reader-view">
+  <div class="sidebar" id="sidebar">
+    <div id="sidebar-channels"></div>
+  </div>
+  <div class="resize-handle" id="sidebar-handle"></div>
+  <div class="reader">
+    <div class="reader-toolbar">
+      <span class="ch-title" id="reader-ch-title"># —</span>
+      <button class="filter-btn on">全部</button>
+      <button class="filter-btn">User</button>
+      <button class="filter-btn">Agent</button>
+      <button class="filter-btn">Tasks</button>
+      <input class="search-input-r" placeholder="搜索消息...">
+    </div>
+    <div class="messages-area">
+      <div class="message-list" id="message-list">
+        <div style="padding:40px 20px;text-align:center;color:var(--muted);font-size:13px;">从左侧选择频道查看消息</div>
+      </div>
+      <div class="resize-handle" id="thread-handle"></div>
+      <div class="thread-panel" id="thread-panel" style="display:none">
+        <div class="thread-header">
+          <span style="color:var(--accent)">↳</span>
+          <h3 id="thread-title">Thread</h3>
+          <span class="close" onclick="closeThread()">×</span>
+        </div>
+        <div class="thread-messages" id="thread-messages"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Search modal ── -->
+<div class="search-backdrop" id="search-backdrop" onclick="handleBackdropClick(event)">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <span class="si-icon">🔍</span>
+      <input id="search-input-main" placeholder="搜索消息内容、发送者、频道..." oninput="performSearch(this.value).catch(console.error)" autocomplete="off">
+      <span class="si-hint">ESC 关闭</span>
+    </div>
+    <div class="search-results" id="search-results"><div class="search-empty">输入关键词搜索全部消息</div></div>
+    <div class="search-footer">
+      <span><span class="kbd">↑↓</span> 导航</span>
+      <span><span class="kbd">↵</span> 打开</span>
+      <span><span class="kbd">ESC</span> 关闭</span>
+      <span style="margin-left:auto" id="search-count"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Resize handles ─────────────────────────────────────
+function makeResizable(handle, target, direction) {
+  handle.addEventListener('mousedown', e => {
+    e.preventDefault();
+    handle.classList.add('dragging');
+    document.body.style.cssText = 'cursor:col-resize;user-select:none';
+    const startX = e.clientX, startW = target.getBoundingClientRect().width;
+    const onMove = e => {
+      const dx = e.clientX - startX;
+      const newW = direction === 'right' ? startW + dx : startW - dx;
+      target.style.width = Math.min(window.innerWidth * .75, Math.max(100, newW)) + 'px';
+    };
+    const onUp = () => {
+      handle.classList.remove('dragging');
+      document.body.style.cssText = '';
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+}
+makeResizable(document.getElementById('sidebar-handle'), document.getElementById('sidebar'), 'right');
+makeResizable(document.getElementById('thread-handle'), document.getElementById('thread-panel'), 'left');
+
+// ── Navigation ─────────────────────────────────────────
+function showGraph(btn) {
+  setNav(btn);
+  document.getElementById('reader-view').classList.remove('show');
+  document.getElementById('header').classList.remove('solid');
+  document.getElementById('dash-stats').style.display = 'flex';
+  document.getElementById('dash-bottom').style.display = 'flex';
+}
+function showReader(btn) {
+  setNav(btn);
+  closeDetail();
+  document.getElementById('reader-view').classList.add('show');
+  document.getElementById('header').classList.add('solid');
+  document.getElementById('dash-stats').style.display = 'none';
+  document.getElementById('dash-bottom').style.display = 'none';
+}
+function setNav(btn) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ── Detail card ────────────────────────────────────────
+let selectedNode = null, graphNode = null, graphSim, graphSvgEl, graphZoomBehavior;
+
+function openDetail(d) {
+  selectedNode = d;
+  const isRoot = !d.parent;
+  document.getElementById('dc-badge').innerHTML = isRoot
+    ? '<span class="detail-type-badge root">Root Channel</span>'
+    : `<span class="detail-type-badge ${d.rootIdx===0?'thread-a':'thread-b'}">${d.rootIdx===0?'Thread · A':'Thread · B'}</span>`;
+  document.getElementById('dc-title').textContent = d.label;
+  document.getElementById('dc-msgs').textContent = d.msgs.toLocaleString();
+  document.getElementById('dc-sub-val').textContent = isRoot ? d.threads : (d.msgs > 10 ? 'Active' : 'Short');
+  document.getElementById('dc-sub-lbl').textContent = isRoot ? 'threads' : '活跃度';
+  // Load preview messages async
+  const previewEl = document.getElementById('dc-preview');
+  previewEl.innerHTML = '<div style="color:var(--muted);font-size:11px">加载中...</div>';
+  loadChannel(d.id).then(data => {
+    const msgs = data.messages.slice(0, 5);
+    previewEl.innerHTML = msgs.map(m => {
+      const type = m.senderType || 'user';
+      const time = m.createdAt ? m.createdAt.slice(11, 16) : '';
+      const content = (m.content || '').slice(0, 80).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return `<div class="preview-msg">
+        <div class="pm-meta"><div class="pm-av ${type}">${(m.senderName||'?')[0]}</div>
+          <span class="pm-name">${m.senderName||'—'}</span><span class="pm-time">${time}</span></div>
+        <div class="pm-content">${content}</div>
+      </div>`;
+    }).join('');
+  }).catch(() => {
+    previewEl.innerHTML = '<div style="color:var(--muted)">无法加载预览</div>';
+  });
+  document.getElementById('detail-card').classList.add('open');
+}
+function closeDetail() {
+  document.getElementById('detail-card').classList.remove('open');
+  selectedNode = null;
+  if (graphNode) resetNodeHighlight();
+}
+function resetNodeHighlight() {
+  graphNode.selectAll('.node-main')
+    .attr('stroke-width', d => d.parent ? 1.5 : 3)
+    .attr('stroke', d => nodeStroke(d));
+}
+function nodeStroke(d) {
+  if (!d.parent) return '#1ABFBF';
+  return d.rootIdx === 0 ? '#38BDF8' : '#4ADE80';
+}
+function openInReader() {
+  const id = selectedNode ? selectedNode.id : null;
+  closeDetail();
+  showReader(document.getElementById('nav-reader'));
+  if (id) selectChannel(id);
+}
+
+// ── Graph ──────────────────────────────────────────────
+function buildGraphDataFromIndex(channels) {
+  const rootChannels = channels.filter(c => c.type === 'root');
+  const threadMap = {};
+  channels.forEach(c => { if (c.type === 'thread') threadMap[c.channelId] = c; });
+
+  const roots = rootChannels.map((c, i) => ({
+    id: c.channelId,
+    label: c.label || c.channelId.slice(0, 8),
+    msgs: c.total,
+    threads: (c.threadIds || []).length,
+    parent: null,
+    rootIdx: i,
+  }));
+
+  const nodes = [...roots], links = [];
+  roots.forEach((root, ri) => {
+    const rootCh = rootChannels[ri];
+    (rootCh.threadIds || []).forEach(tid => {
+      const tc = threadMap[tid];
+      if (!tc) return;
+      nodes.push({
+        id: tid,
+        label: tc.label || tid.slice(0, 8),
+        msgs: tc.total,
+        parent: root.id,
+        rootIdx: ri,
+      });
+      links.push({ source: root.id, target: tid });
+    });
+  });
+  return { nodes, links };
+}
+
+function initGraph(channels) {
+  const { nodes, links } = buildGraphDataFromIndex(channels);
+  const svg = d3.select('#graph-svg');
+  graphSvgEl = svg;
+  const W = window.innerWidth, H = window.innerHeight;
+
+  const defs = svg.append('defs');
+  // Glow filter
+  ['glow','glow-sm'].forEach((id, i) => {
+    const f = defs.append('filter').attr('id', id).attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
+    f.append('feGaussianBlur').attr('stdDeviation', i===0 ? 7 : 3).attr('result','blur');
+    const m = f.append('feMerge');
+    m.append('feMergeNode').attr('in','blur');
+    m.append('feMergeNode').attr('in','SourceGraphic');
+  });
+
+  const g = svg.append('g').attr('class','graph-g');
+  graphZoomBehavior = d3.zoom().scaleExtent([0.03,5])
+    .on('zoom', e => g.attr('transform', e.transform));
+  svg.call(graphZoomBehavior);
+
+  const maxM = d3.max(nodes.filter(d=>d.parent), d=>d.msgs);
+  const rScale = d3.scaleSqrt().domain([1, maxM]).range([4, 16]);
+
+  const linkSel = g.append('g').selectAll('line').data(links).join('line')
+    .attr('stroke', d => {
+      const tId = d.target.id || d.target;
+      const t = nodes.find(n => n.id === tId);
+      return t?.rootIdx === 0 ? 'rgba(56,189,248,0.18)' : 'rgba(74,222,128,0.15)';
+    })
+    .attr('stroke-width', 1);
+
+  const nodeG = g.append('g').selectAll('g').data(nodes).join('g')
+    .style('cursor','pointer')
+    .call(d3.drag()
+      .on('start',(e,d)=>{ if(!e.active) graphSim.alphaTarget(.2).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('drag', (e,d)=>{ d.fx=e.x; d.fy=e.y; })
+      .on('end',  (e,d)=>{ if(!e.active) graphSim.alphaTarget(0); d.fx=null; d.fy=null; }));
+  graphNode = nodeG;
+
+  // Pulse rings for roots
+  nodeG.filter(d=>!d.parent).append('circle').attr('class','pulse-ring')
+    .attr('r',34).attr('fill','none').attr('stroke','rgba(26,191,191,0.35)').attr('stroke-width',1.5);
+  nodeG.filter(d=>!d.parent).append('circle').attr('class','pulse-ring-2')
+    .attr('r',34).attr('fill','none').attr('stroke','rgba(26,191,191,0.15)').attr('stroke-width',1);
+
+  // Outer glow ring
+  nodeG.filter(d=>!d.parent).append('circle')
+    .attr('r',38).attr('fill','none')
+    .attr('stroke','rgba(26,191,191,0.12)').attr('stroke-width',2)
+    .attr('filter','url(#glow)');
+
+  // Main circle
+  nodeG.append('circle').attr('class','node-main')
+    .attr('r', d => d.parent ? rScale(d.msgs) : 26)
+    .attr('fill', d => {
+      if (!d.parent) return '#1ABFBF';
+      return d.rootIdx === 0 ? '#38BDF8' : '#4ADE80';
+    })
+    .attr('fill-opacity', d => d.parent ? 0.65 : 1)
+    .attr('stroke', d => nodeStroke(d))
+    .attr('stroke-width', d => d.parent ? 1.5 : 3)
+    .attr('filter', d => d.parent ? 'url(#glow-sm)' : 'url(#glow)');
+
+  // Root label
+  nodeG.filter(d=>!d.parent).append('text')
+    .attr('text-anchor','middle').attr('dy','0.35em')
+    .attr('fill','#fff').attr('font-size',9).attr('font-weight',700)
+    .attr('pointer-events','none')
+    .text(d => d.label.length>14 ? d.label.slice(0,13)+'…' : d.label);
+
+  // Hover
+  nodeG.on('mouseover',(e,d)=>{
+    if (!d.parent) return;
+    const tip = document.getElementById('node-label-tip');
+    tip.textContent = `${d.label}  ·  ${d.msgs} msgs`;
+    tip.style.display = 'block';
+    tip.style.left = (e.clientX+12)+'px'; tip.style.top = (e.clientY-10)+'px';
+    d3.select(e.currentTarget).select('.node-main')
+      .transition().duration(100).attr('r', rScale(d.msgs)*1.5).attr('fill-opacity',1);
+  })
+  .on('mousemove',e=>{
+    const tip = document.getElementById('node-label-tip');
+    tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-10)+'px';
+  })
+  .on('mouseout',(e,d)=>{
+    document.getElementById('node-label-tip').style.display='none';
+    if (!d.parent) return;
+    d3.select(e.currentTarget).select('.node-main')
+      .transition().duration(100).attr('r',rScale(d.msgs)).attr('fill-opacity',.65);
+  })
+  .on('click',(e,d)=>{
+    e.stopPropagation();
+    nodeG.selectAll('.node-main')
+      .attr('stroke-width', n => n===d ? 3 : (n.parent ? 1.5 : 3))
+      .attr('stroke', n => n===d ? '#fff' : nodeStroke(n));
+    openDetail(d);
+  })
+  .on('dblclick',(e,d)=>{ e.stopPropagation(); openInReader(); });
+
+  svg.on('click',()=>closeDetail());
+
+  graphSim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(d=>d.id).distance(65).strength(.85))
+    .force('charge', d3.forceManyBody().strength(d=>d.parent?-22:-380))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collision', d3.forceCollide(d=>(d.parent?rScale(d.msgs):28)+4))
+    .on('tick',()=>{
+      linkSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y)
+              .attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+      nodeG.attr('transform',d=>`translate(${d.x},${d.y})`);
+    });
+
+  svg._nodes = nodes;
+  svg._rScale = rScale;
+
+  // Pulse animation via JS
+  let pt = 0;
+  setInterval(()=>{
+    pt=(pt+1)%80;
+    nodeG.filter(d=>!d.parent).select('.pulse-ring')
+      .attr('stroke-opacity', .25+.25*Math.sin(pt/12))
+      .attr('r', 34+8*Math.sin(pt/12));
+    nodeG.filter(d=>!d.parent).select('.pulse-ring-2')
+      .attr('stroke-opacity', .1+.1*Math.sin(pt/12+2))
+      .attr('r', 40+10*Math.sin(pt/12+2));
+  }, 50);
+}
+
+function graphZoom(f) { graphSvgEl.transition().duration(280).call(graphZoomBehavior.scaleBy,f); }
+function graphReset() {
+  const W=window.innerWidth, H=window.innerHeight;
+  graphSvgEl.transition().duration(450).call(graphZoomBehavior.transform,
+    d3.zoomIdentity.translate(W/2,H/2).scale(.85).translate(-W/2,-H/2));
+}
+function setLayout(mode,btn) {
+  document.querySelectorAll('.layout-opt').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const nodes = graphSvgEl._nodes;
+  if (!nodes) return;
+  const W=window.innerWidth, H=window.innerHeight;
+  const roots = nodes.filter(d=>!d.parent);
+  if (mode==='radial') {
+    roots[0].fx=W*.3; roots[0].fy=H*.5;
+    roots[1].fx=W*.7; roots[1].fy=H*.5;
+    nodes.forEach(d=>{
+      if (!d.parent) return;
+      const root=roots[d.rootIdx];
+      const sibs=nodes.filter(n=>n.parent===d.parent);
+      const idx=sibs.indexOf(d);
+      const angle=(idx/sibs.length)*2*Math.PI-Math.PI/2;
+      const r=Math.min(W,H)*.27;
+      d.fx=root.fx+r*Math.cos(angle); d.fy=root.fy+r*Math.sin(angle);
+    });
+    graphSim.alpha(.5).restart();
+    setTimeout(()=>nodes.forEach(d=>{d.fx=null;d.fy=null;}),1800);
+  } else {
+    nodes.forEach(d=>{d.fx=null;d.fy=null;});
+    graphSim.alpha(.6).restart();
+  }
+}
+
+// ── Sci-fi background ──────────────────────────────────
+function initBg() {
+  const cv = document.createElement('canvas');
+  cv.style.cssText = 'position:absolute;inset:0;z-index:1;pointer-events:none;';
+  document.getElementById('graph-view').prepend(cv);
+  const ctx = cv.getContext('2d');
+  let W, H, stars=[], t=0;
+  const resize=()=>{
+    W=cv.width=window.innerWidth; H=cv.height=window.innerHeight;
+    stars=Array.from({length:180},()=>({x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*1.2+.3, o:Math.random()*.5+.1, s:Math.random()*.012+.004}));
+  };
+  resize(); window.addEventListener('resize',resize);
+  const draw=()=>{
+    ctx.clearRect(0,0,W,H);
+    // Base
+    ctx.fillStyle='#0F1117'; ctx.fillRect(0,0,W,H);
+    // Subtle center glow (TURIX teal)
+    const cg=ctx.createRadialGradient(W*.5,H*.5,0,W*.5,H*.5,W*.5);
+    cg.addColorStop(0,'rgba(26,191,191,0.05)');
+    cg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=cg; ctx.fillRect(0,0,W,H);
+    // Subtle grid
+    ctx.strokeStyle='rgba(26,191,191,0.04)'; ctx.lineWidth=.5;
+    const gs=80;
+    for(let x=0;x<=W;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<=H;y+=gs){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    // Stars
+    stars.forEach(s=>{
+      s.o+=s.s*(Math.random()>.5?1:-1); s.o=Math.max(.05,Math.min(.7,s.o));
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(180,210,255,${s.o})`; ctx.fill();
+    });
+    // Scan line
+    const sy=H*.25+(t*.35)%(H*.7);
+    const sg=ctx.createLinearGradient(0,sy-2,0,sy+2);
+    sg.addColorStop(0,'rgba(26,191,191,0)');
+    sg.addColorStop(.5,'rgba(26,191,191,0.04)');
+    sg.addColorStop(1,'rgba(26,191,191,0)');
+    ctx.fillStyle=sg; ctx.fillRect(0,sy-2,W,4);
+    t++; requestAnimationFrame(draw);
+  };
+  draw();
+}
+
+// ── Search ─────────────────────────────────────────────
+let searchIndex = null;
+async function ensureSearchIndex() {
+  if (searchIndex) return searchIndex;
+  searchIndex = await fetch('data/search.json').then(r => r.json());
+  return searchIndex;
+}
+let sfIdx=-1, sfResults=[];
+function openSearch(){
+  document.getElementById('search-backdrop').classList.add('open');
+  setTimeout(()=>document.getElementById('search-input-main').focus(),40);
+}
+function closeSearch(){
+  document.getElementById('search-backdrop').classList.remove('open');
+  document.getElementById('search-input-main').value='';
+  document.getElementById('search-results').innerHTML='<div class="search-empty">输入关键词搜索全部消息</div>';
+  document.getElementById('search-count').textContent='';
+  sfResults=[]; sfIdx=-1;
+  filterTopology(new Set());
+}
+function handleBackdropClick(e){ if(e.target===document.getElementById('search-backdrop')) closeSearch(); }
+function hl(text,q){
+  if(!q) return text;
+  return text.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>`<mark>${m}</mark>`);
+}
+function filterTopology(matchedIds){
+  if(!graphNode) return;
+  const has=matchedIds.size>0;
+  graphNode.transition().duration(220)
+    .style('opacity',d=>{
+      if(!has) return 1;
+      if(!d.parent) return matchedIds.has(d.id)?1:0;
+      return matchedIds.has(d.parent)?1:0;
+    })
+    .style('pointer-events',d=>{
+      if(!has) return null;
+      if(!d.parent) return matchedIds.has(d.id)?null:'none';
+      return matchedIds.has(d.parent)?null:'none';
+    });
+  graphSvgEl.selectAll('line').transition().duration(220)
+    .style('opacity',d=>{
+      if(!has) return 1;
+      const s=d.source.id||d.source, t=d.target.id||d.target;
+      return (matchedIds.has(s)||matchedIds.has(t))?1:0;
+    });
+}
+async function performSearch(q) {
+  q = q.trim();
+  const cont = document.getElementById('search-results');
+  const ce   = document.getElementById('search-count');
+  if (!q) {
+    cont.innerHTML = '<div class="search-empty">输入关键词搜索全部消息</div>';
+    ce.textContent = '';
+    filterTopology(new Set());
+    return;
+  }
+  cont.innerHTML = '<div class="search-empty">搜索中...</div>';
+  const corpus = await ensureSearchIndex();
+  const lq = q.toLowerCase();
+  const msgs = corpus.filter(m =>
+    (m.content || '').toLowerCase().includes(lq) ||
+    (m.senderName || '').toLowerCase().includes(lq)
+  );
+  sfResults = msgs; sfIdx = -1;
+  ce.textContent = `${msgs.length} 条结果`;
+  const matchIds = new Set(msgs.map(m => m.channelId));
+  filterTopology(matchIds);
+  const channels = (APP_DATA ? APP_DATA.channels : []).filter(c =>
+    (c.label || '').toLowerCase().includes(lq) || matchIds.has(c.channelId)
+  );
+  let html = '';
+  if (channels.length) {
+    html += `<div class="search-section-label">频道 (${channels.length})</div>`;
+    channels.forEach(c => {
+      html += `<div class="search-result-item" onclick="openChannelResult('${c.channelId}')">
+        <div class="sri-ch-item"><div class="sri-ch-icon">#</div>
+          <div><div class="ci-name">${hl(c.label, q)}</div>
+          <div class="ci-sub">${c.total.toLocaleString()} 条</div></div>
+        </div></div>`;
+    });
+  }
+  if (msgs.length) {
+    html += `<div class="search-section-label">消息 (${msgs.length})</div>`;
+    msgs.slice(0, 100).forEach((m, i) => {
+      const ch = APP_DATA ? APP_DATA.channels.find(c => c.channelId === m.channelId) : null;
+      const chLabel = ch ? ch.label : m.channelId.slice(0, 8);
+      const time = m.createdAt ? m.createdAt.slice(5, 16).replace('T', ' ') : '';
+      html += `<div class="search-result-item" data-idx="${i}" onclick="openMsgResult(${i})">
+        <div class="sri-meta">
+          <span class="sri-channel">${chLabel}</span>
+          <span class="sri-sender">${m.senderName}</span>
+          <span class="sri-sbadge ${m.senderType}">${m.senderType}</span>
+          <span class="sri-time">${time}</span>
+        </div>
+        <div class="sri-content">${hl(m.content, q)}</div>
+      </div>`;
+    });
+  }
+  if (!html) html = `<div class="search-empty">没有找到 "${q}" 的相关内容</div>`;
+  cont.innerHTML = html;
+}
+function openChannelResult(id) {
+  closeSearch();
+  showReader(document.getElementById('nav-reader'));
+  selectChannel(id);
+}
+function openMsgResult(i) {
+  const m = sfResults[i];
+  if (!m) return;
+  closeSearch();
+  showReader(document.getElementById('nav-reader'));
+  selectChannel(m.channelId);
+}
+document.addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key==='k'){ e.preventDefault(); openSearch(); return; }
+  if(!document.getElementById('search-backdrop').classList.contains('open')) return;
+  if(e.key==='Escape'){ closeSearch(); return; }
+  const items=document.querySelectorAll('.search-result-item');
+  if(!items.length) return;
+  if(e.key==='ArrowDown'){ e.preventDefault(); sfIdx=Math.min(sfIdx+1,items.length-1); }
+  else if(e.key==='ArrowUp'){ e.preventDefault(); sfIdx=Math.max(sfIdx-1,0); }
+  else if(e.key==='Enter'&&sfIdx>=0){ items[sfIdx].click(); return; }
+  else return;
+  items.forEach((el,i)=>el.classList.toggle('focused',i===sfIdx));
+  items[sfIdx].scrollIntoView({block:'nearest'});
+});
+
+// ── Data loading ───────────────────────────────────────
+let APP_DATA = null;
+let channelCache = {};
+let currentChannelId = null;
+
+async function loadData() {
+  try {
+    const data = await fetch('data/index.json').then(r => r.json());
+    APP_DATA = data;
+    initGraph(data.channels);
+    renderStats(data.stats);
+    renderSidebar(data.channels);
+  } catch(e) {
+    console.error('Failed to load index.json:', e);
+  }
+  initBg();
+}
+
+async function loadChannel(id) {
+  if (channelCache[id]) return channelCache[id];
+  const data = await fetch(`data/channels/${id}.json`).then(r => r.json());
+  channelCache[id] = data;
+  return data;
+}
+
+// ── Stats rendering ────────────────────────────────────
+function renderStats(stats) {
+  const tc = stats.taskCounts || {};
+  const taskTotal = Object.values(tc).reduce((a, b) => a + b, 0);
+  const users  = stats.topSenders.filter(s => s.type === 'user').length;
+  const agents = stats.topSenders.filter(s => s.type === 'agent').length;
+  const doneCount   = tc.done || 0;
+  const reviewCount = tc.in_review || 0;
+  const avgMsgs = stats.totalChannels > 0 ? Math.round(stats.totalMessages / stats.totalChannels) : 0;
+
+  document.getElementById('stat-total-msgs').textContent = stats.totalMessages.toLocaleString();
+  document.getElementById('stat-total-sub').textContent  = `${stats.rootChannels} root · ${stats.threadChannels} threads`;
+  document.getElementById('stat-senders').textContent    = stats.uniqueSenders;
+  document.getElementById('stat-senders-sub').textContent = `${users} users · ${agents} agents`;
+  document.getElementById('stat-tasks').textContent     = taskTotal.toLocaleString();
+  document.getElementById('stat-tasks-sub').textContent = `done ${doneCount} · review ${reviewCount}`;
+  document.getElementById('stat-threads').textContent     = stats.threadChannels;
+  document.getElementById('stat-threads-sub').textContent = `avg ${avgMsgs} msgs/channel`;
+
+  renderBarChart(stats.dailyActivity || []);
+  renderTaskDist(stats.taskCounts || {});
+  renderHeatmap(stats.heatmap || []);
+  renderSenders(stats.topSenders || []);
+}
+
+function renderBarChart(daily) {
+  const el = document.getElementById('bar-container');
+  if (!daily.length) { el.innerHTML = ''; return; }
+  const show = daily.slice(-14);
+  const max = Math.max(...show.map(d => d.count), 1);
+  el.innerHTML = show.map(d => {
+    const pct = Math.max(4, Math.round(d.count / max * 100));
+    const lbl = d.date.slice(5).replace('-', '/');
+    return `<div class="mb-wrap"><div class="mb-bar" style="height:${pct}%" title="${d.date}: ${d.count}"></div><div class="mb-lbl">${lbl}</div></div>`;
+  }).join('');
+}
+
+function renderTaskDist(tc) {
+  const el = document.getElementById('task-dist-container');
+  const rows = [
+    { key: 'done',        label: 'done',        cls: 'done' },
+    { key: 'in_review',   label: 'in_review',   cls: 'review' },
+    { key: 'in_progress', label: 'in_progress', cls: 'progress' },
+    { key: 'closed',      label: 'closed',      cls: 'closed' },
+  ];
+  const total = Object.values(tc).reduce((a, b) => a + b, 0) || 1;
+  el.innerHTML = `<div class="dp-title" style="margin-bottom:5px;">任务状态</div>` +
+    rows.filter(r => tc[r.key]).map(r => {
+      const pct = Math.round(tc[r.key] / total * 100);
+      return `<div class="tm-row"><span class="tm-lbl">${r.label}</span>` +
+        `<div class="tm-bg"><div class="tm-fill ${r.cls}" style="width:${pct}%"></div></div>` +
+        `<span class="tm-n">${tc[r.key]}</span></div>`;
+    }).join('');
+}
+
+function renderHeatmap(hm) {
+  const el = document.getElementById('hm-container');
+  if (!hm.length) { el.innerHTML = ''; return; }
+  const flat = hm.flat();
+  const max = Math.max(...flat, 1);
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const hourLabels = Array.from({length: 24}, (_, i) => i % 3 === 0 ? String(i) : '');
+  let html = `<div class="hm-hours"><span></span>${hourLabels.map(l => `<span>${l}</span>`).join('')}</div>`;
+  hm.forEach((row, di) => {
+    html += `<div class="hm-row"><span class="hm-lbl">${days[di]}</span>`;
+    row.forEach(v => {
+      const ratio = v / max;
+      const cls = ratio === 0 ? '' : ratio < 0.25 ? 'l1' : ratio < 0.5 ? 'l2' : ratio < 0.75 ? 'l3' : 'l4';
+      html += `<div class="hm-cell ${cls}" title="${v}"></div>`;
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+
+function renderSenders(senders) {
+  const donutEl = document.getElementById('donut-container');
+  const listEl  = document.getElementById('sender-list-container');
+  const userTotal  = senders.filter(s => s.type === 'user').reduce((a, s) => a + s.count, 0);
+  const agentTotal = senders.filter(s => s.type === 'agent').reduce((a, s) => a + s.count, 0);
+  const total = userTotal + agentTotal || 1;
+  const userPct  = Math.round(userTotal / total * 100);
+  const agentPct = 100 - userPct;
+
+  donutEl.innerHTML =
+    `<div class="ds-donut" style="background:conic-gradient(var(--accent) 0% ${userPct}%, var(--purple) ${userPct}% 100%)"></div>` +
+    `<div class="ds-legend">` +
+    `<div class="ds-legend-item"><div class="ds-legend-dot" style="background:var(--accent)"></div>User ${userPct}%</div>` +
+    `<div class="ds-legend-item"><div class="ds-legend-dot" style="background:var(--purple)"></div>Agent ${agentPct}%</div>` +
+    `</div>`;
+
+  const top = senders.slice(0, 6);
+  const maxCount = top[0]?.count || 1;
+  listEl.innerHTML = top.map(s => {
+    const pct = Math.round(s.count / maxCount * 100);
+    return `<div class="sr-row">` +
+      `<span class="sr-name">${s.name}</span>` +
+      `<span class="sr-badge ${s.type}">${s.type}</span>` +
+      `<div class="sr-bg"><div class="sr-fill ${s.type}" style="width:${pct}%"></div></div>` +
+      `<span class="sr-count">${s.count.toLocaleString()}</span></div>`;
+  }).join('');
+}
+
+// ── Reader ─────────────────────────────────────────────
+function renderSidebar(channels) {
+  const el = document.getElementById('sidebar-channels');
+  const roots   = channels.filter(c => c.type === 'root');
+  const threads = channels.filter(c => c.type === 'thread');
+
+  let html = '<div class="sidebar-section">主频道</div>';
+  roots.forEach(c => {
+    html += `<div class="channel-item" data-id="${c.channelId}" onclick="selectChannel('${c.channelId}')">` +
+      `<span style="color:var(--accent)">#</span>` +
+      `<span class="ch-name">${c.label}</span>` +
+      `<span class="ch-count">${c.total.toLocaleString()}</span></div>`;
+  });
+  html += `<div class="sidebar-divider"></div>`;
+  html += `<div class="sidebar-section">Threads (${threads.length})</div>`;
+  threads.slice(0, 200).forEach(c => {
+    html += `<div class="channel-item" data-id="${c.channelId}" onclick="selectChannel('${c.channelId}')">` +
+      `<span style="font-size:10px;color:var(--dim)">↳</span>` +
+      `<span class="ch-name">${c.label}</span>` +
+      `<span class="ch-count">${c.total}</span></div>`;
+  });
+  if (threads.length > 200) {
+    html += `<div class="channel-item" style="color:var(--dim);font-size:11px;padding:6px 14px">+ ${threads.length - 200} more...</div>`;
+  }
+  el.innerHTML = html;
+}
+
+async function selectChannel(id) {
+  currentChannelId = id;
+  document.querySelectorAll('.channel-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.id === id);
+  });
+  const ch = APP_DATA ? APP_DATA.channels.find(c => c.channelId === id) : null;
+  document.getElementById('reader-ch-title').textContent = `# ${ch ? ch.label : id.slice(0, 8)}`;
+  const msgEl = document.getElementById('message-list');
+  msgEl.innerHTML = '<div style="padding:30px;text-align:center;color:var(--muted)">加载中...</div>';
+  closeThread();
+  try {
+    const data = await loadChannel(id);
+    renderMessages(data.messages);
+  } catch(e) {
+    msgEl.innerHTML = `<div style="padding:30px;color:var(--red)">加载失败: ${e.message}</div>`;
+  }
+}
+
+function renderMessages(messages) {
+  const el = document.getElementById('message-list');
+  if (!messages.length) {
+    el.innerHTML = '<div style="padding:30px;text-align:center;color:var(--muted)">暂无消息</div>';
+    return;
+  }
+  const taskBadge = s => {
+    if (!s) return '';
+    const map    = { done:'task-done', in_review:'task-review', in_progress:'task-progress', closed:'task-progress' };
+    const labels = { done:'✓ done', in_review:'👁 in_review', in_progress:'⏳ in_progress', closed:'✗ closed' };
+    return `<span class="tag ${map[s]||''}">${labels[s]||s}</span>`;
+  };
+  el.innerHTML = messages.map(m => {
+    const type = m.senderType || 'user';
+    const av = (m.senderName || '?')[0].toUpperCase();
+    const time = m.createdAt ? m.createdAt.slice(5, 16).replace('T', ' ') : '';
+    const content = (m.content || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const hasThread = !!m.threadId;
+    return `<div class="msg${hasThread ? ' has-thread' : ''}" data-thread="${m.threadId || ''}">` +
+      `<div class="avatar ${type}">${av}</div>` +
+      `<div class="msg-body">` +
+      `<div class="msg-meta"><span class="sender">${m.senderName || '—'}</span>` +
+      `<span class="sender-type ${type}">${type}</span><span class="time">${time}</span></div>` +
+      `<div class="msg-content">${content}</div>` +
+      `<div class="msg-footer">` +
+      (hasThread ? `<span class="tag thread" style="cursor:pointer" onclick="openThread('${m.threadId}')">↳ replies</span>` : '') +
+      taskBadge(m.taskStatus) +
+      (m.reactions||[]).map(r=>`<span class="tag reaction">${r.emoji} ${r.count}</span>`).join('') +
+      (m.attachments||[]).map(a=>`<span class="tag attach">📎 ${a.filename||'file'}</span>`).join('') +
+      `</div></div></div>`;
+  }).join('');
+}
+
+function closeThread() {
+  document.getElementById('thread-panel').style.display = 'none';
+}
+
+async function openThread(threadId) {
+  const panel = document.getElementById('thread-panel');
+  panel.style.display = 'flex';
+  const ch = APP_DATA ? APP_DATA.channels.find(c => c.channelId === threadId) : null;
+  document.getElementById('thread-title').textContent = ch ? ch.label : threadId.slice(0, 12);
+  const msgEl = document.getElementById('thread-messages');
+  msgEl.innerHTML = '<div style="padding:20px;color:var(--muted)">加载中...</div>';
+  try {
+    const data = await loadChannel(threadId);
+    msgEl.innerHTML = data.messages.map(m => {
+      const type = m.senderType || 'user';
+      const av = (m.senderName || '?')[0].toUpperCase();
+      const time = m.createdAt ? m.createdAt.slice(11, 16) : '';
+      const content = (m.content || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return `<div class="thread-msg">` +
+        `<div class="tmeta">` +
+        `<div class="avatar ${type}" style="width:22px;height:22px;font-size:9px;border-radius:4px;">${av}</div>` +
+        `<span class="tsender">${m.senderName || '—'}</span><span class="ttime">${time}</span></div>` +
+        `<div class="tcontent">${content}</div></div>`;
+    }).join('');
+  } catch(e) {
+    msgEl.innerHTML = `<div style="color:var(--red)">加载失败</div>`;
+  }
+}
+
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>

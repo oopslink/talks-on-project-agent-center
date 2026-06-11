@@ -1,0 +1,35 @@
+{
+  "channelId": "97ebb841-19c2-4a55-8781-f0eaa26cd9a8",
+  "exportedAt": "2026-06-11T03:22:38.620Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "84341d65-425f-4a04-8df0-48097f7b0e95",
+      "seq": 6302777,
+      "channelId": "97ebb841-19c2-4a55-8781-f0eaa26cd9a8",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "Worker 上可以同时有多个 CLI 配置",
+      "actionMetadata": null,
+      "searchText": "worker 上 可以 同时 有 多个 cli 配置",
+      "searchVector": "'cli':7 'worker':1 '上':2 '可以':3 '同时':4 '多个':6 '有':5 '配置':8",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-07T06:21:34.924Z",
+      "updatedAt": "2026-06-07T06:21:34.924Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

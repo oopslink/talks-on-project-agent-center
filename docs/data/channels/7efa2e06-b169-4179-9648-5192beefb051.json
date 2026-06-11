@@ -1,0 +1,35 @@
+{
+  "channelId": "7efa2e06-b169-4179-9648-5192beefb051",
+  "exportedAt": "2026-06-11T03:32:10.095Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "ecf7a250-1ab1-43bf-a5fa-82d1c76727be",
+      "seq": 5188721,
+      "channelId": "7efa2e06-b169-4179-9648-5192beefb051",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #70 \"v2.5.x #B4 Tasks 页 ALL filter 结果为空 bug — 同 #B2 但作用于 /tasks 页。点 status tab 'All'…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 70 v2.5 x b4 tasks 页 all filter 结果 为空 bug 同 b2 但 作用 于 tasks 页 点 status tab all to done",
+      "searchVector": "'70':3 'all':9,24 'b2':15 'b4':6 'bug':13 'done':26 'filter':10 'moved':2 'oopslink':1 'status':22 'tab':23 'tasks':7,19 'to':25 'v2.5':4 'x':5 '为空':12 '于':18 '但':16 '作用':17 '同':14 '点':21 '结果':11 '页':8,20",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-27T00:32:35.020Z",
+      "updatedAt": "2026-05-27T00:32:35.020Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

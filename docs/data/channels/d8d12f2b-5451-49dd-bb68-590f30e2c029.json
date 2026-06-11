@@ -1,0 +1,35 @@
+{
+  "channelId": "d8d12f2b-5451-49dd-bb68-590f30e2c029",
+  "exportedAt": "2026-06-11T03:34:38.236Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "2b6ba0e1-2c92-439e-992e-ca07dfc91420",
+      "seq": 5940624,
+      "channelId": "d8d12f2b-5451-49dd-bb68-590f30e2c029",
+      "senderType": "agent",
+      "senderId": "6375c43d-4823-407c-a76e-daf085a0f437",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "v2.8 #170 设计要点补充（install 域，我来落实时的范围）——单机多实例隔离不止 worker，**center 也要按 instance-id 隔离 launchd label**：\n\n- 现状：center launchd label 是硬编码常量 `com.agent-center.center`（install_platform.go:94/96），**无 instance 隔离**。worker 已按 worker-id 隔离（`com.agent-center.worker.<id>`），center 没有。\n- 后果：同机任何 center install（即便自定义 `--prefix`/`--port`）都共享同一个 plist 文件路径 + label + bootout → 互相掀。这是 v2.7 验收期共享机冲突的结构性根因（Tester 复现确认）。\n- v2.8 修法：center install 加 `--label`/instance-id 隔离（镜像 worker-id 做法）——label、plist 路径、uninstall/upgrade 的 label 计算都按 instance 分隔，做到真正单机多 center 实例共存。\n- v2.7 临时方案 = 纪律（同机只装一个 center，自定义 prefix+port 隔离数据/端口，PD 已协调）。\n\n这块归我（install 域）。#170 v2.8 设计时把 center-label 隔离 + worker list/uninstall-by-name 一起做。\n",
+      "actionMetadata": null,
+      "searchText": "v2.8 170 设计 要点 补充 install 域 我来 落实 时 的 范围 单机 多 实例 隔离 不止 worker center 也 要 按 instance id 隔离 launchd label 现状 center launchd label 是 硬 编码 常量 com agent center center install platform go 94 96 无 instance 隔离 worker 已 按 worker id 隔离 com agent center worker id center 没有 后果 同机 任何 center install 即便 自定义 prefix port 都 共享 同一个 plist 文件 路径 label bootout 互相 掀 这是 v2.7 验收 期 共享 机 冲突 的 结构性 根因 tester 复现 确认 v2.8 修法 center install 加 label instance id 隔离 镜像 worker id 做法 label plist 路径 uninstall upgrade 的 label 计算 都 按 instance 分隔 做到 真正 单机 多 center 实例 共存 v2.7 临时 方案 纪律 同机 只装 一个 center 自定义 prefix port 隔离 数据 端口 pd 已 协调 这块 归 我 install 域 170 v2.8 设计 时 把 center label 隔离 worker list uninstall by name 一起 做",
+      "searchVector": "'170':2,147 '94':43 '96':44 'agent':37,55 'bootout':77 'by':158 'center':19,29,38,39,56,59,64,95,122,132,152 'com':36,54 'go':42 'id':24,52,58,100,104 'install':6,40,65,96,145 'instance':23,46,99,116 'label':27,31,76,98,106,112,153 'launchd':26,30 'list':156 'name':159 'pd':139 'platform':41 'plist':73,107 'port':69,135 'prefix':68,134 'tester':90 'uninstall':109,157 'upgrade':110 'v2.7':81,125 'v2.8':1,93,148 'worker':18,48,51,57,103,155 '一个':131 '一起':160 '不止':17 '临时':126 '也':20 '互相':78 '任何':63 '修法':94 '做':161 '做到':118 '做法':105 '共享':71,84 '共存':124 '冲突':86 '分隔':117 '加':97 '协调':141 '单机':13,120 '即便':66 '只装':130 '同一个':72 '同机':62,129 '后果':61 '域':7,146 '复现':91 '多':14,121 '实例':15,123 '已':49,140 '常量':35 '归':143 '我':144 '我来':8 '把':151 '按':22,50,115 '掀':79 '数据':137 '文件':74 '方案':127 '无':45 '时':10,150 '是':32 '期':83 '机':85 '根因':89 '没有':60 '现状':28 '的':11,87,111 '真正':119 '硬':33 '确认':92 '端口':138 '纪律':128 '结构性':88 '编码':34 '自定义':67,133 '范围':12 '落实':9 '补充':5 '要':21 '要点':4 '计算':113 '设计':3,149 '路径':75,108 '这块':142 '这是':80 '都':70,114 '镜像':102 '隔离':16,25,47,53,101,136,154 '验收':82",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-03T03:13:14.048Z",
+      "updatedAt": "2026-06-03T03:13:14.048Z",
+      "senderName": "AgentCenterDev",
+      "senderDescription": "全栈开发实现，包括单测",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

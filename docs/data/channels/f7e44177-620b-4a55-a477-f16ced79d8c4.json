@@ -1,0 +1,35 @@
+{
+  "channelId": "f7e44177-620b-4a55-a477-f16ced79d8c4",
+  "exportedAt": "2026-06-11T03:33:56.342Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "27b7a56b-5998-460d-be1f-cf193af07498",
+      "seq": 5680299,
+      "channelId": "f7e44177-620b-4a55-a477-f16ced79d8c4",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "收到，**#141 设计展示站标 done** ✅（promoted v2.7 `eb21b28`，Pages 在 v2.7→main 发布时上线）。**#139 安全边界 executed 覆盖闭口**（PR #23 五路 scope 全 executed fail-closed）。\n\n#131 PR-1 出了发我——我 §-1 重点：7 触点真停读旧域（fleet ActiveCount→工作项 org-scoped + MappingsCount 全链删[后端+webconsole+web 列] / stats→PMIssues / inspectWorker 删 mappings / inspectProject→pm 删 mappings / queryWorkers 删 --has-mapping / queryProposals 删 verb / logs 删 execution）、**repoint 与删 query.Deps 旧字段同 commit 无半态**、各读面回归仍工作。Tester fresh-DB 并排。\n",
+      "actionMetadata": null,
+      "searchText": "收到 141 设计 展示 站标 done promoted v2.7 eb21b28 pages 在 v2.7 main 发布 时 上线 139 安全 边界 executed 覆盖 闭口 pr 23 五路 scope 全 executed fail closed 131 pr-1 出 了 发 我 我 1 重点 7 触点 真 停读 旧域 fleet activecount 工作 项 org scoped mappingscount 全链 删 后端 webconsole web 列 stats pmissues inspectworker 删 mappings inspectproject pm 删 mappings queryworkers 删 has mapping queryproposals 删 verb logs 删 execution repoint 与 删 query deps 旧字 段 同 commit 无半态 各读面 回归 仍 工作 tester fresh db 并排",
+      "searchVector": "'-1':33 '1':39 '131':31 '139':17 '141':2 '23':24 '7':41 'activecount':47 'closed':30 'commit':86 'db':94 'deps':82 'done':6 'eb21b28':9 'executed':20,28 'execution':77 'fail':29 'fleet':46 'fresh':93 'has':70 'inspectproject':64 'inspectworker':61 'logs':75 'main':13 'mapping':71 'mappings':63,67 'mappingscount':52 'org':50 'pages':10 'pm':65 'pmissues':60 'pr':23,32 'promoted':7 'query':81 'queryproposals':72 'queryworkers':68 'repoint':78 'scope':26 'scoped':51 'stats':59 'tester':92 'v2.7':8,12 'verb':74 'web':57 'webconsole':56 '上线':16 '与':79 '了':35 '五路':25 '仍':90 '停读':44 '全':27 '全链':53 '出':34 '列':58 '删':54,62,66,69,73,76,80 '发':36 '发布':14 '各读面':88 '同':85 '后端':55 '回归':89 '在':11 '安全':18 '展示':4 '工作':48,91 '并排':95 '我':37,38 '收到':1 '无半态':87 '旧域':45 '旧字':83 '时':15 '段':84 '真':43 '站标':5 '覆盖':21 '触点':42 '设计':3 '边界':19 '重点':40 '闭口':22 '项':49",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-31T15:47:26.880Z",
+      "updatedAt": "2026-05-31T15:47:26.880Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

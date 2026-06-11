@@ -1,0 +1,45 @@
+{
+  "channelId": "64cdc50a-7611-4b8e-a056-1e2634884ab1",
+  "exportedAt": "2026-06-11T03:23:38.112Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "213b1589-5dee-49e4-b663-8316b8779c31",
+      "seq": 6558440,
+      "channelId": "64cdc50a-7611-4b8e-a056-1e2634884ab1",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "完整验收报告 PDF（最终版、含全部内嵌截图）给你 📄：\n\n- **47 页**，每个功能模块的验收点都**内嵌了真实例截图**（both-mode light+dark）——按你要的新规则（§4.1）做的，不再只是文字引用。\n- 覆盖：D 架构 + 8 改版 + 两侧栏编辑收敛 + Settings 图标 + 频道/agent 列表增强 + 今天两个追加（Issue 侧栏样式对齐 #257 + @头像/提及弹侧栏 #258），共 65 个 PR。\n- 后端验收点也配了证据图（部署 UNIQUE 索引 SQL / 关键测试 PASS / enrich API 响应）。\n- 三面：§1 产品 / §2 后端 / §3 前端，全 GO。\n\n= 报告完成（trunk 6b19b0a）。你看完确认无误，回「批准」我就合 main + 打 v2.8.1 标签（Tester/Tester2 会在真发布 commit 上再核一遍证据在不在）。\n",
+      "actionMetadata": null,
+      "searchText": "完整 验收报告 pdf 最终版 含 全部 内嵌 截图 给 你 47 页 每个 功能模块 的 验收 点 都 内嵌 了 真实 例 截图 both mode light dark 按 你 要 的 新 规则 4.1 做 的 不再 只是 文字 引用 覆盖 d 架构 8 改版 两侧 栏 编辑 收敛 settings 图标 频道 agent 列表 增强 今天 两个 追加 issue 侧栏 样式 对齐 257 头像 提及 弹侧 栏 258 共 65 个 pr 后 端 验收 点 也 配 了 证据 图 部署 unique 索引 sql 关键 测试 pass enrich api 响应 三面 1 产品 2 后 端 3 前端 全 go 报告 完成 trunk 6b19b0a 你 看 完 确认 无误 回 批准 我 就 合 main 打 v2.8 1 标签 tester tester2 会 在 真 发布 commit 上 再 核 一遍 证据 在 不 在",
+      "searchVector": "'1':93,119 '2':95 '257':63 '258':68 '3':98 '4.1':34 '47':11 '65':70 '6b19b0a':105 '8':44 'agent':53 'api':90 'both':24 'commit':127 'd':42 'dark':27 'enrich':89 'go':101 'issue':59 'light':26 'main':116 'mode':25 'pass':88 'pdf':3 'pr':72 'settings':50 'sql':85 'tester':121 'tester2':122 'trunk':104 'unique':83 'v2.8':118 '一遍':131 '三面':92 '上':128 '不':134 '不再':37 '两个':57 '两侧':46 '个':71 '也':77 '了':20,79 '产品':94 '今天':56 '会':123 '你':10,29,106 '例':22 '侧栏':60 '做':35 '全':100 '全部':6 '共':69 '关键':86 '内嵌':7,19 '再':129 '列表':54 '前端':99 '功能模块':14 '发布':126 '只是':38 '合':115 '后':73,96 '含':5 '响应':91 '回':111 '图':81 '图标':51 '在':124,133,135 '增强':55 '头像':64 '完':108 '完成':103 '完整':1 '对齐':62 '就':114 '引用':40 '弹侧':66 '我':113 '截图':8,23 '打':117 '批准':112 '报告':102 '按':28 '提及':65 '收敛':49 '改版':45 '文字':39 '新':32 '无误':110 '最终版':4 '架构':43 '标签':120 '栏':47,67 '样式':61 '核':130 '每个':13 '测试':87 '点':17,76 '的':15,31,36 '看':107 '真':125 '真实':21 '确认':109 '端':74,97 '索引':84 '给':9 '编辑':48 '要':30 '覆盖':41 '规则':33 '证据':80,132 '追加':58 '部署':82 '都':18 '配':78 '页':12 '频道':52 '验收':16,75 '验收报告':2",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-10T07:56:28.296Z",
+      "updatedAt": "2026-06-10T07:56:28.296Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": [
+        {
+          "id": "ed5f1a97-9942-4c03-bf49-1f62af6836f8",
+          "filename": "v2.8.1-acceptance-report.pdf",
+          "mimeType": "application/pdf",
+          "sizeBytes": 3693109,
+          "width": null,
+          "height": null,
+          "thumbnailUrl": null
+        }
+      ]
+    }
+  ]
+}

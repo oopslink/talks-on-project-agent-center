@@ -1,0 +1,35 @@
+{
+  "channelId": "93400f8b-dc4b-4bde-a127-06a69a27f031",
+  "exportedAt": "2026-06-11T03:31:23.108Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "0df97723-42fd-4579-968a-d48fdebba70d",
+      "seq": 5093059,
+      "channelId": "93400f8b-dc4b-4bde-a127-06a69a27f031",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #43 \"v2.4-D-F3 SSE dispatcher: 订阅 worker.enrolled→Modal State 3 + Fleet invalidate；e…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 43 v2.4 d f3 sse dispatcher 订阅 worker enrolled modal state 3 fleet invalidate e to done",
+      "searchVector": "'3':14 '43':3 'd':5 'dispatcher':8 'done':19 'e':17 'enrolled':11 'f3':6 'fleet':15 'invalidate':16 'modal':12 'moved':2 'oopslink':1 'sse':7 'state':13 'to':18 'v2.4':4 'worker':10 '订阅':9",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T05:34:19.966Z",
+      "updatedAt": "2026-05-26T05:34:19.966Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

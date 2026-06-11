@@ -1,0 +1,103 @@
+{
+  "channelId": "675bef45-dd95-4924-8cb4-4f6a931405ff",
+  "exportedAt": "2026-06-11T03:30:10.132Z",
+  "total": 3,
+  "messages": [
+    {
+      "id": "8b192b9f-e907-4c59-9506-8bc4e9e82816",
+      "seq": 4945085,
+      "channelId": "675bef45-dd95-4924-8cb4-4f6a931405ff",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "需要我做啥",
+      "actionMetadata": null,
+      "searchText": "需要 我 做 啥",
+      "searchVector": "'做':3 '啥':4 '我':2 '需要':1",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-25T00:45:33.486Z",
+      "updatedAt": "2026-05-25T00:45:33.486Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    },
+    {
+      "id": "9c96ad6d-5c68-4b95-bb47-00c03e225ed6",
+      "seq": 4945124,
+      "channelId": "675bef45-dd95-4924-8cb4-4f6a931405ff",
+      "senderType": "agent",
+      "senderId": "062d7f64-d891-4737-ac87-e68c81886107",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "你已经在主道说 \"v2.2.0 没问题 发布吧\" → AgentCenterDev 现在打 tag。\n\n跟 P12 ship 同款节奏，剩你的 2 件事：\n\n1. **Push 本地 commit + tag 到 origin**：AgentCenterDev tag 完后通知；你跑（或同 P12 委托 x9527 代跑，跟我说一声）：\n   ```\n   cd /Users/oopslink/works/codes/oopslink/agent-center\n   git push origin main\n   git push origin v2.2.0\n   ```\n\n2. **创 GH release**（identity-binding 必须你身份）：\n   ```\n   gh release create v2.2.0 \\\n       --title \"agent-center v2.2.0\" \\\n       --notes-file docs/release/v2.2-gh-release-body.md\n   ```\n   （release body 文件 AgentCenterDev 会一起 commit）\n\n或者跟 P12 一样你直接说\"Push + release @x9527\"，我代你跑 3 步。\n",
+      "actionMetadata": null,
+      "searchText": "你 已经 在 主道 说 v2.2 0 没 问题 发布 吧 agentcenterdev 现在 打 tag 跟 p12 ship 同款 节奏 剩 你 的 2 件 事 1 push 本地 commit tag 到 origin agentcenterdev tag 完后 通知 你 跑 或同 p12 委托 x9527 代跑 跟 我 说 一声 cd users oopslink works codes oopslink agent center git push origin main git push origin v2.2 0 2 创 gh release identity binding 必须 你 身份 gh release create v2.2 0 title agent center v2.2 0 notes file docs release v2.2 gh release body md release body 文件 agentcenterdev 会 一起 commit 或者 跟 p12 一样 你 直接 说 push release x9527 我代 你 跑 3 步",
+      "searchVector": "'0':7,65,79,84 '1':27 '2':24,66 '3':114 'agent':55,81 'agentcenterdev':12,34,97 'binding':71 'body':92,95 'cd':49 'center':56,82 'codes':53 'commit':30,100 'create':77 'docs':87 'file':86 'gh':68,75,90 'git':57,61 'identity':70 'main':60 'md':93 'notes':85 'oopslink':51,54 'origin':33,59,63 'p12':17,41,103 'push':28,58,62,108 'release':69,76,88,91,94,109 'ship':18 'tag':15,31,35 'title':80 'users':50 'v2.2':6,64,78,83,89 'works':52 'x9527':43,110 '一声':48 '一样':104 '一起':99 '主道':4 '事':26 '代跑':44 '件':25 '会':98 '你':1,22,38,73,105,112 '创':67 '到':32 '剩':21 '发布':10 '同款':19 '吧':11 '在':3 '委托':42 '完后':36 '已经':2 '必须':72 '我':46 '我代':111 '或同':40 '或者':101 '打':14 '文件':96 '本地':29 '步':115 '没':8 '现在':13 '的':23 '直接':106 '节奏':20 '说':5,47,107 '跑':39,113 '跟':16,45,102 '身份':74 '通知':37 '问题':9",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-25T00:46:07.114Z",
+      "updatedAt": "2026-05-25T00:46:07.114Z",
+      "senderName": "x9527",
+      "senderDescription": "9527",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "062d7f64-d891-4737-ac87-e68c81886107",
+          "name": "x9527"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "id": "90f33f3b-d905-45f1-b365-2ebec2c887e0",
+      "seq": 4945173,
+      "channelId": "675bef45-dd95-4924-8cb4-4f6a931405ff",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "Push+release@x9527 ",
+      "actionMetadata": null,
+      "searchText": "push release x9527",
+      "searchVector": "'push':1 'release':2 'x9527':3",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-25T00:46:41.743Z",
+      "updatedAt": "2026-05-25T00:46:41.743Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "062d7f64-d891-4737-ac87-e68c81886107",
+          "name": "x9527"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

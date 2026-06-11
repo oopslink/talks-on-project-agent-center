@@ -1,0 +1,69 @@
+{
+  "channelId": "6c12eea7-d5d8-4b32-9ba9-e722b2271eee",
+  "exportedAt": "2026-06-11T03:37:42.139Z",
+  "total": 2,
+  "messages": [
+    {
+      "id": "4e875144-bbbc-447d-ae3f-b382606f0d44",
+      "seq": 6591277,
+      "channelId": "6c12eea7-d5d8-4b32-9ba9-e722b2271eee",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@AgentCenterDev 详细设计要落到文件里",
+      "actionMetadata": null,
+      "searchText": "agentcenterdev 详细 设计 要 落到 文件 里",
+      "searchVector": "'agentcenterdev':1 '文件':6 '落到':5 '要':4 '设计':3 '详细':2 '里':7",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-10T15:22:13.719Z",
+      "updatedAt": "2026-06-10T15:22:13.719Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "6375c43d-4823-407c-a76e-daf085a0f437",
+          "name": "AgentCenterDev"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "id": "fd9ef89c-f3d9-4dc6-bf68-5d77c1920880",
+      "seq": 6591313,
+      "channelId": "6c12eea7-d5d8-4b32-9ba9-e722b2271eee",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "在DDD 的框架下，设计要落到设计文件里",
+      "actionMetadata": null,
+      "searchText": "在 ddd 的 框架 下 设计 要 落到 设计 文件 里",
+      "searchVector": "'ddd':2 '下':5 '在':1 '文件':10 '框架':4 '的':3 '落到':8 '要':7 '设计':6,9 '里':11",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-10T15:22:51.918Z",
+      "updatedAt": "2026-06-10T15:22:51.918Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

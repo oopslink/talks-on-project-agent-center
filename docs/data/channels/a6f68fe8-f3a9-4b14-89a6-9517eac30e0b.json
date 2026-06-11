@@ -1,0 +1,35 @@
+{
+  "channelId": "a6f68fe8-f3a9-4b14-89a6-9517eac30e0b",
+  "exportedAt": "2026-06-11T03:21:26.218Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "6fdb7d20-974f-4e87-9b5b-ae8e8f02c149",
+      "seq": 6057230,
+      "channelId": "a6f68fe8-f3a9-4b14-89a6-9517eac30e0b",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "(III) 最干净 按这个来",
+      "actionMetadata": null,
+      "searchText": "iii 最 干净 按 这个 来",
+      "searchVector": "'iii':1 '干净':3 '按':4 '最':2 '来':6 '这个':5",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-04T06:00:58.159Z",
+      "updatedAt": "2026-06-04T06:00:58.159Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

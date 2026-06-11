@@ -1,0 +1,69 @@
+{
+  "channelId": "f0e1e406-da16-4b8d-980c-906c2d5b3cae",
+  "exportedAt": "2026-06-11T03:37:33.112Z",
+  "total": 2,
+  "messages": [
+    {
+      "id": "6a022a97-e831-42b8-a075-2ed52597b798",
+      "seq": 6564625,
+      "channelId": "f0e1e406-da16-4b8d-980c-906c2d5b3cae",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "合并到 main",
+      "actionMetadata": null,
+      "searchText": "合并 到 main",
+      "searchVector": "'main':3 '到':2 '合并':1",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-10T08:51:23.560Z",
+      "updatedAt": "2026-06-10T08:51:23.560Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    },
+    {
+      "id": "bc32945b-26f4-4cb7-91a3-0e8a95603915",
+      "seq": 6564727,
+      "channelId": "f0e1e406-da16-4b8d-980c-906c2d5b3cae",
+      "senderType": "agent",
+      "senderId": "9d4663bb-0d18-4e4d-8ff7-777532ce5e14",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@oopslink 已合并 ✅ — main 现在 = **7cc8c1b**（was 08c1e027）\n\n- v2.8.1 (9d1fffa) → main (7cc8c1b) annotated --no-ff\n- 带过去：#259 agent-list canonical fix + 规则 §4.2/§21/§20 + 报告 §1/§6 终稿\n- v2.8.1 tag (f24077e7 → 08c1e027) IMMUTABLE 保持不动（v2.8.1 release point 不动）\n- 不开 v2.8.2 per your direction\n- Tester light verify-in-tree on 7cc8c1b in flight (agent-list fix present + rules in-tree + go build green)\n\nPush both confirmed:\n- refs/heads/main → 7cc8c1b\n- refs/heads/v2.8.1 → 9d1fffa\n",
+      "actionMetadata": null,
+      "searchText": "oopslink 已 合并 main 现在 7cc8c1b was 08c1e027 v2.8 1 9d1fffa main 7cc8c1b annotated no ff 带 过去 259 agent list canonical fix 规则 4.2 21 20 报告 1 6 终稿 v2.8 1 tag f24077e7 08c1e027 immutable 保持 不 动 v2.8 1 release point 不 动 不 开 v2.8 2 per your direction tester light verify in tree on 7cc8c1b in flight agent list fix present rules in tree go build green push both confirmed refs heads main 7cc8c1b refs heads v2.8 1 9d1fffa",
+      "searchVector": "'08c1e027':8,36 '1':10,29,33,42,83 '2':50 '20':27 '21':26 '259':19 '4.2':25 '6':30 '7cc8c1b':6,13,60,79 '9d1fffa':11,84 'agent':20,63 'annotated':14 'both':74 'build':71 'canonical':22 'confirmed':75 'direction':53 'f24077e7':35 'ff':16 'fix':23,65 'flight':62 'go':70 'green':72 'heads':77,81 'immutable':37 'in':57,61,68 'light':55 'list':21,64 'main':4,12,78 'no':15 'on':59 'oopslink':1 'per':51 'point':44 'present':66 'push':73 'refs':76,80 'release':43 'rules':67 'tag':34 'tester':54 'tree':58,69 'v2.8':9,32,41,49,82 'verify':56 'was':7 'your':52 '不':39,45,47 '保持':38 '动':40,46 '合并':3 '已':2 '带':17 '开':48 '报告':28 '现在':5 '终稿':31 '规则':24 '过去':18",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-10T08:52:12.162Z",
+      "updatedAt": "2026-06-10T08:52:12.162Z",
+      "senderName": "AgentCenterIntegrationDev",
+      "senderDescription": "研发，专职集成",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

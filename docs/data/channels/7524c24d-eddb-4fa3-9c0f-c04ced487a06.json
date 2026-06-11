@@ -1,0 +1,41 @@
+{
+  "channelId": "7524c24d-eddb-4fa3-9c0f-c04ced487a06",
+  "exportedAt": "2026-06-11T03:37:05.118Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "cb132022-3ab6-42fb-984c-c04d9b514f79",
+      "seq": 6260351,
+      "channelId": "7524c24d-eddb-4fa3-9c0f-c04ced487a06",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@legendtkl 有印象 — 这件是 v2 kickoff 阶段 (2026-05-22) 的范围决策, 详细 ADR-0031 in `docs/design/decisions/0031-v2-drop-bridge-vendor-integration.md`.\n\n**核心原因 (1 句话)**: v1 设计里 vendor 集成 (飞书 / Bridge BC / ChannelBinding) 污染了 Conversation 业务模型, v2 用户决定先撤掉 vendor, 让 Conversation 模型纯业务地重塑, v3+ 再从 0 重新设计 vendor 接入.\n\n**具体污染点**:\n- `Conversation.primary_channel_hint` / `primary_channel_thread_key` 字段挂 vendor 的 channel id / thread key\n- ChannelBinding 表 vendor-coupled\n- 「channel 是 routing hint」framing 限制了 channel 作为业务一等公民\n- 大量 ADR 逻辑跟「飞书卡片渲染 / inbound 调 API」绑死\n\n**用户决定原话** (2026-05-22):\n> 「我觉得可以先把飞书和 bridge 这两个模块去掉, 等 conversation 模型确立了, 再来讨论如何和飞书对接」\n> 「V2 将 Bridge / 飞书重新对接 的设计和实现都删掉, 在 v3 再从 0 开始讨论」\n\n**v2 撤掉后**:\n- Conversation 模型纯业务重塑 (CV1-CV4, ADR-0032/0033/0034/0035/0036/0039)\n- channel 升为业务一等公民\n- 用户主入口 = Web Console + CLI (loopback)\n\n**v3+ 重新设计 Bridge BC**: 基于 v2 确立的 Conversation 业务模型, vendor 作为 view / projection 接入 (飞书 / DingTalk / Slack / Web chat 等), 业务模型不再被 vendor 污染. 设计起点 = 0 (不复用 v1 Bridge ADR/code), roadmap \"外部 IM / 渠道接入 (重新设计)\" 章节.\n\n= 不是 \"飞书不好用所以删\", 是 \"时机不对, 业务模型先 reset 再做 vendor\".\n\n详 ADR-0031 全文 (有 Alternatives Considered 章节 A/B/C/D 各自论证 + Consequences 章节).\n",
+      "actionMetadata": null,
+      "searchText": "legendtkl 有 印象 这件 是 v2 kickoff 阶段 2026-05 22 的 范围 决策 详细 adr-0031 in docs design decisions 0031 v2 drop bridge vendor integration md 核心 原因 1 句 话 v1 设计 里 vendor 集成 飞 书 bridge bc channelbinding 污染 了 conversation 业务 模型 v2 用户 决定 先 撤掉 vendor 让 conversation 模型 纯 业务 地 重塑 v3 再 从 0 重新 设计 vendor 接入 具体 污染 点 conversation primary channel hint primary channel thread key 字段 挂 vendor 的 channel id thread key channelbinding 表 vendor coupled channel 是 routing hint framing 限制 了 channel 作为 业务 一等 公民 大量 adr 逻辑 跟 飞 书 卡片 渲染 inbound 调 api 绑 死 用户 决定 原话 2026-05 22 我 觉得 可以 先 把 飞书 和 bridge 这 两个 模块 去掉 等 conversation 模型 确立 了 再 来 讨论 如何 和 飞书 对接 v2 将 bridge 飞 书 重新 对接 的 设计 和 实现 都 删掉 在 v3 再 从 0 开始 讨论 v2 撤掉 后 conversation 模型 纯 业务 重塑 cv1 cv4 adr-0032 0033 0034 0035 0036 0039 channel 升 为 业务 一等 公民 用户 主 入口 web console cli loopback v3 重新 设计 bridge bc 基于 v2 确立 的 conversation 业务 模型 vendor 作为 view projection 接入 飞 书 dingtalk slack web chat 等 业务 模型 不再 被 vendor 污染 设计 起点 0 不 复用 v1 bridge adr code roadmap 外部 im 渠道 接入 重新 设计 章节 不是 飞 书 不好 用 所以 删 是 时机 不 对 业务 模型 先 reset 再 做 vendor 详 adr-0031 全文 有 alternatives considered 章节 a b c d 各自 论证 consequences 章节",
+      "searchVector": "'-0031':17,265 '-0032':179 '-05':10,122 '0':65,165,230 '0031':22 '0033':180 '0034':181 '0035':182 '0036':183 '0039':184 '1':31 '2026':9,121 '22':11,123 'a':271 'adr':16,106,178,235,264 'alternatives':268 'api':115 'b':272 'bc':42,202 'bridge':25,41,131,150,201,234 'c':273 'channel':75,78,85,93,100,185 'channelbinding':43,89 'chat':220 'cli':196 'code':236 'consequences':277 'considered':269 'console':195 'conversation':46,56,73,137,171,207 'coupled':92 'cv1':176 'cv4':177 'd':274 'decisions':21 'design':20 'dingtalk':217 'docs':19 'drop':24 'framing':97 'hint':76,96 'id':86 'im':239 'in':18 'inbound':113 'integration':27 'key':80,88 'kickoff':7 'legendtkl':1 'loopback':197 'md':28 'primary':74,77 'projection':213 'reset':259 'roadmap':237 'routing':95 'slack':218 'thread':79,87 'v1':34,233 'v2':6,23,49,148,168,204 'v3':62,162,198 'vendor':26,37,54,68,83,91,210,226,262 'view':212 'web':194,219 '一等':103,189 '不':231,254 '不再':224 '不好':248 '不是':245 '业务':47,59,102,174,188,208,222,256 '两个':133 '为':187 '主':192 '书':40,110,152,216,247 '了':45,99,140 '从':64,164 '作为':101,211 '做':261 '先':52,127,258 '入口':193 '全文':266 '公民':104,190 '具体':70 '再':63,141,163,260 '决定':51,119 '决策':14 '删':251 '删掉':160 '升':186 '卡片':111 '印象':3 '原因':30 '原话':120 '去掉':135 '句':32 '可以':126 '各自':275 '后':170 '和':130,145,157 '在':161 '地':60 '基于':203 '复用':232 '外部':238 '大量':105 '如何':144 '字段':81 '实现':158 '对':255 '对接':147,154 '将':149 '开始':166 '我':124 '所以':250 '把':128 '挂':82 '接入':69,214,241 '撤掉':53,169 '时机':253 '是':5,94,252 '有':2,267 '来':142 '核心':29 '模块':134 '模型':48,57,138,172,209,223,257 '死':117 '污染':44,71,227 '渠道':240 '渲染':112 '点':72 '用':249 '用户':50,118,191 '的':12,84,155,206 '确立':139,205 '章节':244,270,278 '等':136,221 '纯':58,173 '绑':116 '范围':13 '表':90 '被':225 '觉得':125 '讨论':143,167 '让':55 '论证':276 '设计':35,67,156,200,228,243 '话':33 '详':263 '详细':15 '调':114 '起点':229 '跟':108 '这':132 '这件':4 '逻辑':107 '都':159 '里':36 '重塑':61,175 '重新':66,153,199,242 '阶段':8 '限制':98 '集成':38 '飞':39,109,151,215,246 '飞书':129,146",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-06T11:13:01.028Z",
+      "updatedAt": "2026-06-06T11:13:01.028Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "user",
+          "id": "762e680d-ec8c-4512-ab7a-96415021860f",
+          "name": "legendtkl"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}
