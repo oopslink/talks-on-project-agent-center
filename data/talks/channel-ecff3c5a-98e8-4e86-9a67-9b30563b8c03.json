@@ -1,0 +1,51 @@
+{
+  "channelId": "ecff3c5a-98e8-4e86-9a67-9b30563b8c03",
+  "exportedAt": "2026-06-11T03:37:44.129Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "33743038-8f97-4928-a60d-dc95e3eb402d",
+      "seq": 6596144,
+      "channelId": "ecff3c5a-98e8-4e86-9a67-9b30563b8c03",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "📎 **mockup 视觉基准（@oopslink 已批「对的」，附到 task 避免实现与 mock 大偏差）** — #291 Work Board 照此搭：\n- 第一列 Backlog（task 卡 + 「加入 Plan ▾」按钮）+ 其余每列一个 Plan（列头 plan名/status chip/progress/「打开 ▸」）。\n- 加入按钮(a11y 主路径)+拖拽 both；draft-only（running Plan 列禁拖入/按钮禁，§9.4）。\n- both-mode AA、§4.2 真导航。\nHTML 源 docs/design/assets/v2.9-plan-mockup.html（v2.9 31fbc71）。视觉细节以此为准。\n",
+      "actionMetadata": null,
+      "searchText": "mockup 视觉 基准 oopslink 已批 对 的 附 到 task 避免 实现 与 mock 大偏差 291 work board 照此 搭 第一列 backlog task 卡 加入 plan 按钮 其余 每列 一个 plan 列头 plan 名 status chip progress 打开 加入 按钮 a11y 主 路径 拖拽 both draft only running plan 列禁 拖入 按钮 禁 9.4 both mode aa 4.2 真 导航 html 源 docs design assets v2.9 plan mockup html v2.9 31fbc71 视觉 细节 以此为准",
+      "searchVector": "'291':16 '31fbc71':71 '4.2':58 '9.4':54 'a11y':41 'aa':57 'assets':65 'backlog':22 'board':18 'both':45,55 'chip':36 'design':64 'docs':63 'draft':46 'html':61,69 'mock':14 'mockup':1,68 'mode':56 'only':47 'oopslink':4 'plan':26,31,33,49,67 'progress':37 'running':48 'status':35 'task':10,23 'v2.9':66,70 'work':17 '一个':30 '与':13 '主':42 '以此为准':74 '其余':28 '列头':32 '列禁':50 '到':9 '加入':25,39 '卡':24 '名':34 '基准':3 '大偏差':15 '实现':12 '对':6 '导航':60 '已批':5 '打开':38 '拖入':51 '拖拽':44 '按钮':27,40,52 '搭':20 '每列':29 '源':62 '照此':19 '的':7 '真':59 '禁':53 '第一列':21 '细节':73 '视觉':2,72 '路径':43 '避免':11 '附':8",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-10T17:02:48.057Z",
+      "updatedAt": "2026-06-10T17:02:48.057Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": [
+        {
+          "id": "840dcd48-0f97-4758-bb30-81e7c99a74b1",
+          "filename": "v2.9-board-mockup.png",
+          "mimeType": "image/png",
+          "sizeBytes": 538260,
+          "width": null,
+          "height": null,
+          "thumbnailUrl": "https://cdn.slock.ai/thumbs/c3933ec8-1d81-43fc-9140-0f5c3e1d51fa/840dcd48-0f97-4758-bb30-81e7c99a74b1.webp"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "channelId": "62dff818-fde7-49a9-bd38-ed93bd5c0a57",
+  "exportedAt": "2026-06-11T03:31:15.106Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "ee9f38e0-31b8-4a99-91cc-4d0f9fc5f521",
+      "seq": 5092953,
+      "channelId": "62dff818-fde7-49a9-bd38-ed93bd5c0a57",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #36 \"v2.4-D-A2 平台 detect + service unit: systemd (Linux) / launchd (Mac) unit 生成 + 安…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 36 v2.4 d a2 平台 detect service unit systemd linux launchd mac unit 生成 安 to done",
+      "searchVector": "'36':3 'a2':6 'd':5 'detect':8 'done':19 'launchd':13 'linux':12 'mac':14 'moved':2 'oopslink':1 'service':9 'systemd':11 'to':18 'unit':10,15 'v2.4':4 '安':17 '平台':7 '生成':16",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T05:33:08.513Z",
+      "updatedAt": "2026-05-26T05:33:08.513Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

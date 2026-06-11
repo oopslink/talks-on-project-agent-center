@@ -1,0 +1,35 @@
+{
+  "channelId": "8baadf83-6b5f-4281-8a16-ebf5fa863520",
+  "exportedAt": "2026-06-11T03:32:27.303Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "afaf19e9-e70f-4ba3-8972-294b459231fe",
+      "seq": 5375219,
+      "channelId": "8baadf83-6b5f-4281-8a16-ebf5fa863520",
+      "senderType": "agent",
+      "senderId": "6375c43d-4823-407c-a76e-daf085a0f437",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "FE-1 完成，待 PM 验收。\n\n**后端（BE-2 HTTP wiring）：**\n- `POST /api/auth/signup` — 调 SignupService，auto-signin，设 JWT cookie\n- `POST /api/auth/signin` — 调 SigninService，设 `ac_session` cookie（HttpOnly, SameSite=Lax, 7天）\n- `POST /api/auth/signout` — 清 cookie + 发 auth.signed_out 事件\n- `GET /api/auth/me` — 验 JWT，返回 identity_id / display_name / kind\n- JWT auth middleware 包裹所有 `/api/*` 路由（`/api/health` 和 `/api/auth/*` 豁免）\n- `secretmgmt.MasterKey` 新增 `Bytes() []byte` accessor，供 JWT HS256 签名用（ADR-0043 §6）\n- `identity.SignupSvc` / `SigninSvc` / `SignoutSvc` / `AuthSvc` 接入 `HandlerDeps`，并在 `app.go` + `webconsole_wiring.go` 完成 wiring\n\n**前端：**\n- `/signup` — 注册页，全字段 inline validation（display_name / passcode / confirm / org_name / org_slug），slug 自动从 org_name 生成，服务端错误提示（display_name_taken / slug_taken）\n- `/signin` — 登录页，提交后跳转 `/`\n- `/api/auth/` module（`auth.ts`）\n- `client.ts` 加 401 全局拦截 → `window.location = /signin`（`/api/auth/*` 豁免）\n- `App.tsx` 加 `/signup` / `/signin` 路由，渲染于 AppLayout 之外（无侧边栏）\n\n**测试：**\n```\ngo build ./...        ✅\ngo test ./internal/... ./tests/integration/...  ✅ all pass\nnpx vitest run        ✅ 312 tests pass\nnpx tsc --noEmit      ✅ no errors\n```\n\n注意：认证 middleware 在 AuthSvc = nil 时直接 pass-through，所以没有 master_key_file 的环境不会被 lock out，但也不会做 JWT 校验。\n",
+      "actionMetadata": null,
+      "searchText": "fe-1 完成 待 pm 验收 后 端 be-2 http wiring post api auth signup 调 signupservice auto signin 设 jwt cookie post api auth signin 调 signinservice 设 ac session cookie httponly samesite lax 7 天 post api auth signout 清 cookie 发 auth signed out 事件 get api auth me 验 jwt 返回 identity id display name kind jwt auth middleware 包裹 所有 api 路由 api health 和 api auth 豁免 secretmgmt masterkey 新增 bytes byte accessor 供 jwt hs256 签名 用 adr-0043 6 identity signupsvc signinsvc signoutsvc authsvc 接入 handlerdeps 并 在 app go webconsole wiring go 完成 wiring 前端 signup 注册 页 全字段 inline validation display name passcode confirm org name org slug slug 自动 从 org name 生成 服务端 错误 提示 display name taken slug taken signin 登录 页 提交 后 跳转 api auth module auth ts client ts 加 401 全局 拦截 window location signin api auth 豁免 app tsx 加 signup signin 路由 渲染 于 applayout 之外 无 侧边 栏 测试 go build go test internal tests integration all pass npx vitest run 312 tests pass npx tsc noemit no errors 注意 认证 middleware 在 authsvc nil 时 直接 pass through 所以 没有 master key file 的 环境 不会 被 lock out 但 也 不会 做 jwt 校验",
+      "searchVector": "'-0043':87 '-1':2 '-2':10 '312':183 '401':148 '6':88 '7':37 'ac':31 'accessor':80 'adr':86 'all':178 'api':14,25,40,51,67,69,72,140,154 'app':98,157 'applayout':165 'auth':15,26,41,46,52,63,73,141,143,155 'authsvc':93,195 'auto':19 'be':9 'build':172 'byte':79 'bytes':78 'client':145 'confirm':115 'cookie':23,33,44 'display':59,112,129 'errors':190 'fe':1 'file':205 'get':50 'go':99,102,171,173 'handlerdeps':95 'health':70 'hs256':83 'http':11 'httponly':34 'id':58 'identity':57,89 'inline':110 'integration':177 'internal':175 'jwt':22,55,62,82,216 'key':204 'kind':61 'lax':36 'location':152 'lock':210 'master':203 'masterkey':76 'me':53 'middleware':64,193 'module':142 'name':60,113,117,124,130 'nil':196 'no':189 'noemit':188 'npx':180,186 'org':116,118,123 'out':48,211 'pass':179,185,199 'passcode':114 'pm':5 'post':13,24,39 'run':182 'samesite':35 'secretmgmt':75 'session':32 'signed':47 'signin':20,27,134,153,161 'signinservice':29 'signinsvc':91 'signout':42 'signoutsvc':92 'signup':16,106,160 'signupservice':18 'signupsvc':90 'slug':119,120,132 'taken':131,133 'test':174 'tests':176,184 'through':200 'ts':144,146 'tsc':187 'tsx':158 'validation':111 'vitest':181 'webconsole':100 'window':151 'wiring':12,101,104 '不会':208,214 '之外':166 '也':213 '事件':49 '于':164 '从':122 '但':212 '供':81 '侧边':168 '做':215 '全字段':109 '全局':149 '前端':105 '加':147,159 '包裹':65 '发':45 '后':7,138 '和':71 '在':97,194 '天':38 '完成':3,103 '并':96 '待':4 '所以':201 '所有':66 '拦截':150 '接入':94 '提交':137 '提示':128 '新增':77 '无':167 '时':197 '服务端':126 '栏':169 '校验':217 '没有':202 '注册':107 '注意':191 '测试':170 '清':43 '渲染':163 '环境':207 '生成':125 '用':85 '登录':135 '的':206 '直接':198 '端':8 '签名':84 '自动':121 '被':209 '认证':192 '设':21,30 '调':17,28 '豁免':74,156 '路由':68,162 '跳转':139 '返回':56 '错误':127 '页':108,136 '验':54 '验收':6",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-28T10:57:36.589Z",
+      "updatedAt": "2026-05-28T10:57:36.589Z",
+      "senderName": "AgentCenterDev",
+      "senderDescription": "全栈开发实现，包括单测",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

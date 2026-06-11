@@ -1,0 +1,69 @@
+{
+  "channelId": "2b5e5594-e4f5-4817-bfd4-693213d6708a",
+  "exportedAt": "2026-06-11T03:21:08.185Z",
+  "total": 2,
+  "messages": [
+    {
+      "id": "cb0dc271-b353-4168-9d65-3cbc4d9984ac",
+      "seq": 5957913,
+      "channelId": "2b5e5594-e4f5-4817-bfd4-693213d6708a",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": " v2.7 内做",
+      "actionMetadata": null,
+      "searchText": "v2.7 内 做",
+      "searchVector": "'v2.7':1 '做':3 '内':2",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-03T06:18:56.554Z",
+      "updatedAt": "2026-06-03T06:18:56.554Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    },
+    {
+      "id": "a3c56db6-05f9-400e-bb98-347a2060e51d",
+      "seq": 5957925,
+      "channelId": "2b5e5594-e4f5-4817-bfd4-693213d6708a",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@AgentCenterPD  v2.7 内做",
+      "actionMetadata": null,
+      "searchText": "agentcenterpd v2.7 内 做",
+      "searchVector": "'agentcenterpd':1 'v2.7':2 '做':4 '内':3",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-03T06:19:01.012Z",
+      "updatedAt": "2026-06-03T06:19:01.012Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+          "name": "AgentCenterPD"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

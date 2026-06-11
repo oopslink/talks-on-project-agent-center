@@ -1,0 +1,41 @@
+{
+  "channelId": "52c8117c-67a6-4714-9a7f-808a8bd44ac0",
+  "exportedAt": "2026-06-11T03:35:33.135Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "d5d53230-9c43-4803-8af2-594dfa21c595",
+      "seq": 6031534,
+      "channelId": "52c8117c-67a6-4714-9a7f-808a8bd44ac0",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "📌 **版本声明（@oopslink 标准化要求 2026-06-04）**：此 task 应理解为 **[v2.7.1] #206 backend (Phase 1, read-time)**。task title 不可改，仅以此 thread 反向标注。\n",
+      "actionMetadata": null,
+      "searchText": "版本 声明 oopslink 标准化 要求 2026-06 04 此 task 应 理解 为 v2.7 1 206 backend phase 1 read time task title 不可 改 仅 以此 thread 反向 标注",
+      "searchVector": "'-06':7 '04':8 '1':15,19 '2026':6 '206':16 'backend':17 'oopslink':3 'phase':18 'read':20 'task':10,22 'thread':28 'time':21 'title':23 'v2.7':14 '不可':24 '为':13 '仅':26 '以此':27 '反向':29 '声明':2 '应':11 '改':25 '标准化':4 '标注':30 '此':9 '版本':1 '理解':12 '要求':5",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-04T01:52:37.072Z",
+      "updatedAt": "2026-06-04T01:52:37.072Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

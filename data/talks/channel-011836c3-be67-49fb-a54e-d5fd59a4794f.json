@@ -1,0 +1,41 @@
+{
+  "channelId": "011836c3-be67-49fb-a54e-d5fd59a4794f",
+  "exportedAt": "2026-06-11T03:34:40.442Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "11dbb836-a791-44b3-965c-6b69f5f53219",
+      "seq": 5911548,
+      "channelId": "011836c3-be67-49fb-a54e-d5fd59a4794f",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@oopslink 明白了，校准：\n\n**调整后**：\n- ❌ 不是中段每个版本持续 PM dogfood（token 浪费）\n- ✅ 是**正式 release 前一次性走查**：所有开发完成后，我按 `docs/release/acceptance-checklist.md` 端到端走一遍，**生成正式验收报告 + 截图**作为 release artifact\n\n报告结构（草案）：\n- 每条 item：通过/失败 + 截图证据 + 状态码/出口标准的具体观察值\n- 失败项：阻断 release 或可绕过的说明\n- 总结：可否 release 的明确结论\n- 附：使用的 trunk hash + 测试环境配置\n\n等所有 PR（#164-171 + Dev2 大 PR）合入后，我开始走查，出报告给你确认才打 tag。\n\n任务板上 #106 E2 验收就是这个 milestone。\n",
+      "actionMetadata": null,
+      "searchText": "oopslink 明白 了 校准 调整 后 不是 中段 每个 版本 持续 pm dogfood token 浪费 是 正式 release 前 一次性 走查 所有 开发 完成 后 我 按 docs release acceptance checklist md 端到 端 走一遍 生成 正式 验收报告 截图 作为 release artifact 报告 结构 草案 每条 item 通过 失败 截图 证据 状态 码 出口 标准 的 具体 观察 值 失败 项 阻断 release 或 可 绕过 的 说明 总结 可否 release 的 明确 结论 附 使用 的 trunk hash 测试环境 配置 等 所有 pr 164-171 dev2 大 pr 合入 后 我 开始 走查 出 报告 给 你 确认 才 打 tag 任务 板上 106 e2 验收 就是 这个 milestone",
+      "searchVector": "'-171':86 '106':105 '164':85 'acceptance':30 'artifact':42 'checklist':31 'dev2':87 'docs':28 'dogfood':13 'e2':106 'hash':79 'item':47 'md':32 'milestone':110 'oopslink':1 'pm':12 'pr':84,89 'release':18,29,41,63,71 'tag':102 'token':14 'trunk':78 '一次性':20 '不是':7 '中段':8 '了':3 '任务':103 '作为':40 '你':98 '使用':76 '值':59 '具体':57 '出':95 '出口':54 '前':19 '可':65 '可否':70 '合入':90 '后':6,25,91 '大':88 '失败':49,60 '完成':24 '就是':108 '开发':23 '开始':93 '总结':69 '我':26,92 '或':64 '截图':39,50 '所有':22,83 '才':100 '打':101 '报告':43,96 '持续':11 '按':27 '明白':2 '明确':73 '是':16 '板上':104 '标准':55 '校准':4 '正式':17,37 '每个':9 '每条':46 '测试环境':80 '浪费':15 '版本':10 '状态':52 '生成':36 '的':56,67,72,77 '码':53 '确认':99 '端':34 '端到':33 '等':82 '结构':44 '结论':74 '绕过':66 '给':97 '草案':45 '观察':58 '证据':51 '说明':68 '调整':5 '走一遍':35 '走查':21,94 '这个':109 '通过':48 '配置':81 '阻断':62 '附':75 '项':61 '验收':107 '验收报告':38",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-02T16:10:10.320Z",
+      "updatedAt": "2026-06-02T16:10:10.320Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

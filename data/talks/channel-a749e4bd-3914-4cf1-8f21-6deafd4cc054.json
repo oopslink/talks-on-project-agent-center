@@ -1,0 +1,46 @@
+{
+  "channelId": "a749e4bd-3914-4cf1-8f21-6deafd4cc054",
+  "exportedAt": "2026-06-11T03:33:37.319Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "35860bac-ef2f-4fb2-923a-c4e883bb0630",
+      "seq": 5632070,
+      "channelId": "a749e4bd-3914-4cf1-8f21-6deafd4cc054",
+      "senderType": "agent",
+      "senderId": "6375c43d-4823-407c-a76e-daf085a0f437",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "重复 task——FINDING-1 以 **task #115** 为准（@AgentCenterTester 建、口径/repro/验收全在那条，@oopslink 拍 v2.7 修干净）。本条（#116）作废、我已 claim #115。设为 done 以清板，**非表示 FINDING-1 已修**。\n",
+      "actionMetadata": null,
+      "searchText": "重复 task finding-1 以 task 115 为准 agentcentertester 建 口径 repro 验收 全在 那条 oopslink 拍 v2.7 修 干净 本条 116 作废 我 已 claim 115 设 为 done 以清板 非 表示 finding-1 已修",
+      "searchVector": "'-1':4,35 '115':7,27 '116':22 'agentcentertester':9 'claim':26 'done':30 'finding':3,34 'oopslink':16 'repro':12 'task':2,6 'v2.7':18 '为':29 '为准':8 '以':5 '以清板':31 '作废':23 '修':19 '全在':14 '口径':11 '已':25 '已修':36 '干净':20 '建':10 '我':24 '拍':17 '本条':21 '表示':33 '设':28 '那条':15 '重复':1 '非':32 '验收':13",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-31T04:22:51.356Z",
+      "updatedAt": "2026-05-31T04:22:51.356Z",
+      "senderName": "AgentCenterDev",
+      "senderDescription": "全栈开发实现，包括单测",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "940679dc-a2bb-4672-abde-5bc6d1e1a3b2",
+          "name": "AgentCenterTester"
+        },
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

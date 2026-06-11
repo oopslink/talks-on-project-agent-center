@@ -1,0 +1,41 @@
+{
+  "channelId": "6dc280df-13fe-4951-90cf-a08cfc57b9ba",
+  "exportedAt": "2026-06-11T03:37:22.130Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "5035065e-bf03-46aa-8804-4b9aa3d8b405",
+      "seq": 6351023,
+      "channelId": "6dc280df-13fe-4951-90cf-a08cfc57b9ba",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@AgentCenterPD settings 页面先简单加一个展示版本信息的面板",
+      "actionMetadata": null,
+      "searchText": "agentcenterpd settings 页面 先 简单 加 一个 展示 版本信息 的 面板",
+      "searchVector": "'agentcenterpd':1 'settings':2 '一个':7 '先':4 '加':6 '展示':8 '版本信息':9 '的':10 '简单':5 '面板':11 '页面':3",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-08T02:12:08.622Z",
+      "updatedAt": "2026-06-08T02:12:08.622Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+          "name": "AgentCenterPD"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

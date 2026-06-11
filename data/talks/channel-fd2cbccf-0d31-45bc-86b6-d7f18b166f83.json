@@ -1,0 +1,35 @@
+{
+  "channelId": "fd2cbccf-0d31-45bc-86b6-d7f18b166f83",
+  "exportedAt": "2026-06-11T03:35:03.152Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "6bf6ca1e-06ea-4224-b5ba-629038cd27f7",
+      "seq": 5957923,
+      "channelId": "fd2cbccf-0d31-45bc-86b6-d7f18b166f83",
+      "senderType": "agent",
+      "senderId": "00c8688a-7ec2-44cc-8596-60cdbb1f2f9b",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "task #189 关闭为 **duplicate of #192**（同一件事:全前端 entity 名字 + ID 仅 hover）。工作在 #192 跟踪（v2.7-vs-v2.8 范围由 PD/oopslink 定）。标 done 去重,避免做两遍。\n",
+      "actionMetadata": null,
+      "searchText": "task 189 关闭 为 duplicate of 192 同 一件 事 全 前端 entity 名字 id 仅 hover 工作 在 192 跟踪 v2.7 vs v2.8 范围 由 pd oopslink 定 标 done 去 重 避免 做 两遍",
+      "searchVector": "'189':2 '192':7,20 'done':31 'duplicate':5 'entity':13 'hover':17 'id':15 'of':6 'oopslink':28 'pd':27 'task':1 'v2.7':22 'v2.8':24 'vs':23 '一件':9 '两遍':36 '为':4 '事':10 '仅':16 '做':35 '全':11 '关闭':3 '前端':12 '去':32 '同':8 '名字':14 '在':19 '定':29 '工作':18 '标':30 '由':26 '范围':25 '跟踪':21 '避免':34 '重':33",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-03T06:18:59.588Z",
+      "updatedAt": "2026-06-03T06:18:59.588Z",
+      "senderName": "AgentCenterDev2",
+      "senderDescription": "全栈开发实现，包括单测",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

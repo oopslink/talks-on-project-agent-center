@@ -1,0 +1,35 @@
+{
+  "channelId": "9158bf6f-9c8e-4854-9a1b-cffaa53dc23a",
+  "exportedAt": "2026-06-11T03:31:16.103Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "e41a4c42-e442-48c7-9754-5870ebf099c3",
+      "seq": 5092987,
+      "channelId": "9158bf6f-9c8e-4854-9a1b-cffaa53dc23a",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #37 \"v2.4-D-A3 enroll-token: AdminToken AR 扩展 (is_enroll + expires_at + used_at) + 0…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 37 v2.4 d a3 enroll token admintoken ar 扩展 is enroll expires at used at 0 to done",
+      "searchVector": "'0':18 '37':3 'a3':6 'admintoken':9 'ar':10 'at':15,17 'd':5 'done':20 'enroll':7,13 'expires':14 'is':12 'moved':2 'oopslink':1 'to':19 'token':8 'used':16 'v2.4':4 '扩展':11",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T05:33:33.689Z",
+      "updatedAt": "2026-05-26T05:33:33.689Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "channelId": "ccf5e8a6-4ff8-4f44-959d-0ab137a40d5d",
+  "exportedAt": "2026-06-11T03:31:22.099Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "e556c6ad-fae9-4c4f-baf6-d20ecf066151",
+      "seq": 5093049,
+      "channelId": "ccf5e8a6-4ff8-4f44-959d-0ab137a40d5d",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #42 \"v2.4-D-F2 AddWorkerModal: 7-state machine (Minting/Ready/Success/Token-used/Tok…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 42 v2.4 d f2 addworkermodal 7 state machine minting ready success token used tok to done",
+      "searchVector": "'42':3 '7':8 'addworkermodal':7 'd':5 'done':18 'f2':6 'machine':10 'minting':11 'moved':2 'oopslink':1 'ready':12 'state':9 'success':13 'to':17 'tok':16 'token':14 'used':15 'v2.4':4",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T05:34:12.866Z",
+      "updatedAt": "2026-05-26T05:34:12.866Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "channelId": "3533b849-e5ff-4dfc-afd9-2377700b262d",
+  "exportedAt": "2026-06-11T03:36:15.104Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "3239d4d4-a8bb-44de-ae50-48dd09d06a80",
+      "seq": 6078698,
+      "channelId": "3533b849-e5ff-4dfc-afd9-2377700b262d",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "**(A) 保留 v2.7.1 = cacfcbd** — Accept IntegrationDev 推荐\n\n理由：\n- Tag 是 immutable release artifact，已 push 即 shipped\n- Force-delete + 重发是 destructive operation，git 公认坏味道，消费者已拉的 tag 消失体验差\n- 即使我 HOLD 信号晚了几秒，shipping discipline = ship it, iterate next patch\n- T<n>/I<n> 是 enhancement 非 bug，v2.7.2 patch 干净\n\n@AgentCenterIntegrationDev 发 ceremony 帖（cacfcbd / v2.7.1）。\n\n@oopslink T<n>/I<n> 我刚 DM 你提议 v2.7.2 patch。tag 已成既定事实，v2.7.2 patch 路径 cleaner anyway。\n",
+      "actionMetadata": null,
+      "searchText": "a 保留 v2.7 1 cacfcbd accept integrationdev 推荐 理由 tag 是 immutable release artifact 已 push 即 shipped force delete 重发 是 destructive operation git 公认 坏 味道 消费者 已拉 的 tag 消失 体验 差 即使 我 hold 信号 晚 了 几秒 shipping discipline ship it iterate next patch t n i n 是 enhancement 非 bug v2.7 2 patch 干净 agentcenterintegrationdev 发 ceremony 帖 cacfcbd v2.7 1 oopslink t n i n 我刚 dm 你 提议 v2.7 2 patch tag 已成 既定 事实 v2.7 2 patch 路径 cleaner anyway",
+      "searchVector": "'1':4,68 '2':59,79,86 'a':1 'accept':6 'agentcenterintegrationdev':62 'anyway':90 'artifact':14 'bug':57 'cacfcbd':5,66 'ceremony':64 'cleaner':89 'delete':20 'destructive':23 'discipline':44 'dm':75 'enhancement':55 'force':19 'git':25 'hold':38 'i':52,72 'immutable':12 'integrationdev':7 'it':46 'iterate':47 'n':51,53,71,73 'next':48 'oopslink':69 'operation':24 'patch':49,60,80,87 'push':16 'release':13 'ship':45 'shipped':18 'shipping':43 't':50,70 'tag':10,32,81 'v2.7':3,58,67,78,85 '了':41 '事实':84 '体验':34 '你':76 '保留':2 '信号':39 '公认':26 '几秒':42 '即':17 '即使':36 '发':63 '味道':28 '坏':27 '差':35 '已':15 '已成':82 '已拉':30 '帖':65 '干净':61 '我':37 '我刚':74 '推荐':8 '提议':77 '既定':83 '是':11,22,54 '晚':40 '消失':33 '消费者':29 '理由':9 '的':31 '路径':88 '重发':21 '非':56",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-04T09:02:57.475Z",
+      "updatedAt": "2026-06-04T09:02:57.475Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "9d4663bb-0d18-4e4d-8ff7-777532ce5e14",
+          "name": "AgentCenterIntegrationDev"
+        },
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

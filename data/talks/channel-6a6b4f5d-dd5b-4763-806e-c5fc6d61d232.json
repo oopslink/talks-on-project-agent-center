@@ -1,0 +1,74 @@
+{
+  "channelId": "6a6b4f5d-dd5b-4763-806e-c5fc6d61d232",
+  "exportedAt": "2026-06-11T03:31:35.133Z",
+  "total": 2,
+  "messages": [
+    {
+      "id": "9df169fd-1421-46b1-b24a-517841524279",
+      "seq": 5143729,
+      "channelId": "6a6b4f5d-dd5b-4763-806e-c5fc6d61d232",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "这个任务完成了吗",
+      "actionMetadata": null,
+      "searchText": "这个 任务 完成 了 吗",
+      "searchVector": "'了':4 '任务':2 '吗':5 '完成':3 '这个':1",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T11:32:43.465Z",
+      "updatedAt": "2026-05-26T11:32:43.465Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    },
+    {
+      "id": "7ba6b4ee-84da-489f-b78b-57fe4fc5412e",
+      "seq": 5143774,
+      "channelId": "6a6b4f5d-dd5b-4763-806e-c5fc6d61d232",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@oopslink #54 v2.5-F2 状态 **in_review**（dev 完成，待你 close 到 done）。\n\n实施 commit `7202b2d`，已经被 #56 X1 acceptance 端到端验证（Show install command + Re-mint install command 两个 action button 都跑通了 —— 见 [acceptance 报告](#agent-center:3f970c5d)）。\n\nv2.5 剩下 4 个 in_review 待你 close：\n- **#54** v2.5-F2（这个）\n- **#55** v2.5-F3 Remove worker action\n- **#56** v2.5-X1 PM acceptance（我做完的）\n- **#57** v2.5-X2 docs + CHANGELOG\n\n另：v2.5 ship 前还有一笔 30-min 工程在飞 —— @AgentCenterDev 在补 master_key 自动化（解决 X1 发现的 Show install command 默认 503 问题）。完工 + 我 re-smoke OK → 你给 ship 信号 → tag v2.5.0。\n",
+      "actionMetadata": null,
+      "searchText": "oopslink 54 v2.5 f2 状态 in review dev 完成 待 你 close 到 done 实施 commit 7202b2d 已经 被 56 x1 acceptance 端到 端 验证 show install command re mint install command 两个 action button 都 跑 通 了 见 acceptance 报告 v2.5 剩下 4 个 in review 待 你 close 54 v2.5 f2 这个 55 v2.5 f3 remove worker action 56 v2.5 x1 pm acceptance 我 做 完 的 57 v2.5 x2 docs changelog 另 v2.5 ship 前 还有 一笔 30 min 工程 在 飞 agentcenterdev 在 补 master key 自动化 解决 x1 发现 的 show install command 默认 503 问题 完工 我 re smoke ok 你 给 ship 信号 tag v2.5 0",
+      "searchVector": "'0':114 '30':82 '4':45 '503':101 '54':2,52 '55':56 '56':20,62 '57':71 '7202b2d':17 'acceptance':22,41,66 'action':34,61 'agentcenterdev':87 'button':35 'changelog':75 'close':12,51 'command':28,32,99 'commit':16 'dev':8 'docs':74 'done':14 'f2':4,54 'f3':58 'in':6,47 'install':27,31,98 'key':91 'master':90 'min':83 'mint':30 'ok':107 'oopslink':1 'pm':65 're':29,105 'remove':59 'review':7,48 'ship':78,110 'show':26,97 'smoke':106 'tag':112 'v2.5':3,43,53,57,63,72,77,113 'worker':60 'x1':21,64,94 'x2':73 '一笔':81 '两个':33 '个':46 '了':39 '你':11,50,108 '信号':111 '做':68 '到':13 '前':79 '剩下':44 '发现':95 '另':76 '在':85,88 '完':69 '完工':103 '完成':9 '实施':15 '工程':84 '已经':18 '待':10,49 '我':67,104 '报告':42 '状态':5 '的':70,96 '端':24 '端到':23 '给':109 '自动化':92 '补':89 '被':19 '见':40 '解决':93 '跑':37 '还有':80 '这个':55 '通':38 '都':36 '问题':102 '飞':86 '验证':25 '默认':100",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T11:33:02.339Z",
+      "updatedAt": "2026-05-26T11:33:02.339Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "3dc1773d-3d01-4448-b198-9f814c22df70",
+          "name": "AgentCenterDev"
+        },
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

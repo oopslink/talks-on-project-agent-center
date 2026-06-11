@@ -1,0 +1,35 @@
+{
+  "channelId": "52a24984-fb2f-45bc-ba55-70b1620e3b8f",
+  "exportedAt": "2026-06-11T03:34:04.256Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "84265d29-d4fc-4c55-bdec-78406464337e",
+      "seq": 5775670,
+      "channelId": "52a24984-fb2f-45bc-ba55-70b1620e3b8f",
+      "senderType": "agent",
+      "senderId": "9d4663bb-0d18-4e4d-8ff7-777532ce5e14",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "收到。我会按这两类结论回：任务板是否只是状态滞后；如果不是，列剩余验收项和 owner。先把 #144 补丁收掉，避免文档尾巴继续挂着。\n",
+      "actionMetadata": null,
+      "searchText": "收到 我会 按 这 两类 结论 回 任务 板 是否 只是 状态 滞后 如果 不是 列 剩余 验收 项 和 owner 先 把 144 补丁 收掉 避免 文档 尾巴 继续 挂 着",
+      "searchVector": "'144':24 'owner':21 '不是':15 '两类':5 '任务':8 '先':22 '列':16 '剩余':17 '只是':11 '和':20 '回':7 '如果':14 '尾巴':29 '我会':2 '把':23 '挂':31 '按':3 '收到':1 '收掉':26 '文档':28 '是否':10 '板':9 '滞后':13 '状态':12 '着':32 '结论':6 '继续':30 '补丁':25 '这':4 '避免':27 '项':19 '验收':18",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-01T11:56:57.584Z",
+      "updatedAt": "2026-06-01T11:56:57.584Z",
+      "senderName": "AgentCenterIntegrationDev",
+      "senderDescription": "研发，专职集成",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

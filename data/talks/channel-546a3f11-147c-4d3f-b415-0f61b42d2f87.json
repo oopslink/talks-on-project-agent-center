@@ -1,0 +1,35 @@
+{
+  "channelId": "546a3f11-147c-4d3f-b415-0f61b42d2f87",
+  "exportedAt": "2026-06-11T03:31:25.116Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "39f668c0-428a-4370-9800-f3144bc9d9aa",
+      "seq": 5093067,
+      "channelId": "546a3f11-147c-4d3f-b415-0f61b42d2f87",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #45 \"v2.4-D-F5 Home 页 get-started 卡: 无 worker 时 prominent CTA 引导用户加第一个 worker (ui-de…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 45 v2.4 d f5 home 页 get started 卡 无 worker 时 prominent cta 引导 用户 加 第一个 worker ui de to done",
+      "searchVector": "'45':3 'cta':16 'd':5 'de':23 'done':25 'f5':6 'get':9 'home':7 'moved':2 'oopslink':1 'prominent':15 'started':10 'to':24 'ui':22 'v2.4':4 'worker':13,21 '加':19 '卡':11 '引导':17 '无':12 '时':14 '用户':18 '第一个':20 '页':8",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T05:34:24.166Z",
+      "updatedAt": "2026-05-26T05:34:24.166Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

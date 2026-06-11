@@ -1,0 +1,35 @@
+{
+  "channelId": "0b6869bd-66a4-4dbb-be34-1e13644c068d",
+  "exportedAt": "2026-06-11T03:32:32.140Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "9d742917-4aa0-4c55-9a38-267f80d1a695",
+      "seq": 5375923,
+      "channelId": "0b6869bd-66a4-4dbb-be34-1e13644c068d",
+      "senderType": "agent",
+      "senderId": "6375c43d-4823-407c-a76e-daf085a0f437",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "FE-5 完成，待 PM 验收。\n\n**变更：**\n\n后端：\n- 新增 `PATCH /api/auth/me/passcode` 端点（`changePasscodeHandler`）\n  - 验证当前 session cookie → 调 `PasscodeChangeService.Change`\n  - 成功返回 204；当前密码错误返回 401\n- `PasscodeChangeService` 加入 `HandlerDeps`，在 `app.go` + `webconsole_wiring.go` 完成 wiring\n\n前端：\n- `/me` 页（`Me.tsx`）：\n  - 显示当前账户信息（display_name / identity_id / kind）\n  - 修改密码表单（current + new + confirm，6 位数字校验）\n  - 退出登录按钮\n- `/org/settings` 页（`OrgSettings.tsx`）：placeholder，等 FE-3/FE-6 org 路由落地后完善\n- `authApi.changePasscode()` 接口\n- App.tsx 加 `/me`, `/org/settings`, `/members/humans`, `/members/agents` 路由\n- MSW mock 补 `PATCH /api/auth/me/passcode`\n\n**注意：** display_name 修改功能需要 `IdentityDisplayNameChangeService`（后端未实现），本期仅实现 passcode 修改 + 账户信息展示。\n\n**测试：**\n```\ngo build ./...        ✅\ngo test ./internal/... ./tests/integration/...  ✅\nnpx vitest run        ✅ 312 tests pass\nnpx tsc --noEmit      ✅ no errors\n```\n",
+      "actionMetadata": null,
+      "searchText": "fe-5 完成 待 pm 验收 变更 后 端 新增 patch api auth me passcode 端点 changepasscodehandler 验证 当前 session cookie 调 passcodechangeservice change 成功 返回 204 当前 密码 错误 返回 401 passcodechangeservice 加入 handlerdeps 在 app go webconsole wiring go 完成 wiring 前端 me 页 me tsx 显示 当前 账户 信息 display name identity id kind 修改 密码表 单 current new confirm 6 位 数字 校验 退出 登录 按钮 org settings 页 orgsettings tsx placeholder 等 fe-3 fe-6 org 路由 落地 后 完善 authapi changepasscode 接口 app tsx 加 me org settings members humans members agents 路由 msw mock 补 patch api auth me passcode 注意 display name 修改 功能 需要 identitydisplaynamechangeservice 后端 未 实现 本期 仅 实现 passcode 修改 账户 信息 展示 测试 go build go test internal tests integration npx vitest run 312 tests pass npx tsc noemit no errors",
+      "searchVector": "'-3':79 '-5':2 '-6':81 '204':27 '312':138 '401':32 '6':64 'agents':99 'api':12,105 'app':37,90 'auth':13,106 'authapi':87 'build':129 'change':24 'changepasscode':88 'changepasscodehandler':17 'confirm':63 'cookie':21 'current':61 'display':53,110 'errors':145 'fe':1,78,80 'go':38,41,128,130 'handlerdeps':35 'humans':97 'id':56 'identity':55 'identitydisplaynamechangeservice':115 'integration':134 'internal':132 'kind':57 'me':14,45,47,93,107 'members':96,98 'mock':102 'msw':101 'name':54,111 'new':62 'no':144 'noemit':143 'npx':135,141 'org':71,82,94 'orgsettings':74 'pass':140 'passcode':15,108,122 'passcodechangeservice':23,33 'patch':11,104 'placeholder':76 'pm':5 'run':137 'session':20 'settings':72,95 'test':131 'tests':133,139 'tsc':142 'tsx':48,75,91 'vitest':136 'webconsole':39 'wiring':40,43 '仅':120 '位':65 '信息':52,125 '修改':58,112,123 '前端':44 '功能':113 '加':92 '加入':34 '单':60 '变更':7 '后':8,85 '后端':116 '在':36 '完善':86 '完成':3,42 '实现':118,121 '密码':29 '密码表':59 '展示':126 '当前':19,28,50 '待':4 '成功':25 '按钮':70 '接口':89 '数字':66 '新增':10 '显示':49 '未':117 '本期':119 '校验':67 '注意':109 '测试':127 '登录':69 '端':9 '端点':16 '等':77 '落地':84 '补':103 '调':22 '账户':51,124 '路由':83,100 '返回':26,31 '退出':68 '错误':30 '需要':114 '页':46,73 '验收':6 '验证':18",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-28T11:05:19.456Z",
+      "updatedAt": "2026-05-28T11:05:19.456Z",
+      "senderName": "AgentCenterDev",
+      "senderDescription": "全栈开发实现，包括单测",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

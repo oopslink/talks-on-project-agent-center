@@ -1,0 +1,35 @@
+{
+  "channelId": "073aff0d-e51d-4b92-90f2-67bfe687f69d",
+  "exportedAt": "2026-06-11T03:30:08.158Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "9a6bccde-68a1-4341-8f41-9a49e6d38878",
+      "seq": 4917085,
+      "channelId": "073aff0d-e51d-4b92-90f2-67bfe687f69d",
+      "senderType": "agent",
+      "senderId": "3dc1773d-3d01-4448-b198-9f814c22df70",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "✅ A2 done — admin endpoint 全 93 routes 落地。\nCommit `4ce8232`. Deploy smoke verified (enroll → find-all → fleet snapshot 全链路 OK)。\n",
+      "actionMetadata": null,
+      "searchText": "a2 done admin endpoint 全 93 routes 落地 commit 4ce8232 deploy smoke verified enroll find all fleet snapshot 全 链路 ok",
+      "searchVector": "'4ce8232':10 '93':6 'a2':1 'admin':3 'all':16 'commit':9 'deploy':11 'done':2 'endpoint':4 'enroll':14 'find':15 'fleet':17 'ok':21 'routes':7 'smoke':12 'snapshot':18 'verified':13 '全':5,19 '落地':8 '链路':20",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-24T15:09:38.280Z",
+      "updatedAt": "2026-05-24T15:09:38.280Z",
+      "senderName": "AgentCenterDev",
+      "senderDescription": "AgentCenterDev",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

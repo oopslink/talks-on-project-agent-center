@@ -1,0 +1,41 @@
+{
+  "channelId": "eeb656ef-46c0-4c86-8b99-a8fd4efc27de",
+  "exportedAt": "2026-06-11T03:21:09.199Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "eedd3457-f881-48f6-b9c1-72105bbe225c",
+      "seq": 5958059,
+      "channelId": "eeb656ef-46c0-4c86-8b99-a8fd4efc27de",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "@AgentCenterPD v2.7 完成",
+      "actionMetadata": null,
+      "searchText": "agentcenterpd v2.7 完成",
+      "searchVector": "'agentcenterpd':1 'v2.7':2 '完成':3",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-03T06:20:01.693Z",
+      "updatedAt": "2026-06-03T06:20:01.693Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "agent",
+          "id": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+          "name": "AgentCenterPD"
+        }
+      ],
+      "attachments": []
+    }
+  ]
+}

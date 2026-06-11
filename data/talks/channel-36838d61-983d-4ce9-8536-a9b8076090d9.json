@@ -1,0 +1,73 @@
+{
+  "channelId": "36838d61-983d-4ce9-8536-a9b8076090d9",
+  "exportedAt": "2026-06-11T03:23:08.969Z",
+  "total": 2,
+  "messages": [
+    {
+      "id": "9de9240b-7636-4de7-8b8a-5790bdb5150e",
+      "seq": 6410687,
+      "channelId": "36838d61-983d-4ce9-8536-a9b8076090d9",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "Environment mockup",
+      "actionMetadata": null,
+      "searchText": "environment mockup",
+      "searchVector": "'environment':1 'mockup':2",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-08T13:12:32.422Z",
+      "updatedAt": "2026-06-08T13:12:32.422Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": [
+        {
+          "id": "f0e2db44-133b-46e6-b4ad-e08f3986b737",
+          "filename": "image.png",
+          "mimeType": "image/png",
+          "sizeBytes": 195868,
+          "width": null,
+          "height": null,
+          "thumbnailUrl": "https://cdn.slock.ai/thumbs/c3933ec8-1d81-43fc-9140-0f5c3e1d51fa/f0e2db44-133b-46e6-b4ad-e08f3986b737.webp"
+        }
+      ]
+    },
+    {
+      "id": "7c97c220-682a-4f89-ab00-05229b746e5e",
+      "seq": 6410747,
+      "channelId": "36838d61-983d-4ce9-8536-a9b8076090d9",
+      "senderType": "agent",
+      "senderId": "d4e6b33e-cb7a-409e-92ee-f6c2be09d171",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "✅ 9th Environment mockup received + forwarded to channel for Dev/Tester/Tester2.\n\n= Mockup details captured (header subtitle + 4-stat cell + Worker card structure + CLI sub-section + Agents sub-section + 4-tab Activity).\n\n= Dev grounding Activity tabs scope (aggregate new endpoint vs FE compose). \n\n= Per我 just立 process: mockup forwarded immediately to channel default for visual surface tasks.\n\nContinue.\n",
+      "actionMetadata": null,
+      "searchText": "9th environment mockup received forwarded to channel for dev tester tester2 mockup details captured header subtitle 4 stat cell worker card structure cli sub section agents sub section 4 tab activity dev grounding activity tabs scope aggregate new endpoint vs fe compose per 我 just 立 process mockup forwarded immediately to channel default for visual surface tasks continue",
+      "searchVector": "'4':17,29 '9th':1 'activity':31,34 'agents':26 'aggregate':37 'captured':14 'card':21 'cell':19 'channel':7,52 'cli':23 'compose':42 'continue':58 'default':53 'details':13 'dev':9,32 'endpoint':39 'environment':2 'fe':41 'for':8,54 'forwarded':5,49 'grounding':33 'header':15 'immediately':50 'just':45 'mockup':3,12,48 'new':38 'per':43 'process':47 'received':4 'scope':36 'section':25,28 'stat':18 'structure':22 'sub':24,27 'subtitle':16 'surface':56 'tab':30 'tabs':35 'tasks':57 'tester':10 'tester2':11 'to':6,51 'visual':55 'vs':40 'worker':20 '我':44 '立':46",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-08T13:13:23.634Z",
+      "updatedAt": "2026-06-08T13:13:23.634Z",
+      "senderName": "AgentCenterPD",
+      "senderDescription": "产品经理",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "channelId": "67e1a460-24e0-487e-ab7b-3ae90fa48913",
+  "exportedAt": "2026-06-11T03:22:35.718Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "97d14095-9f4b-4c2a-b8d2-bf8e42f2105d",
+      "seq": 6300023,
+      "channelId": "67e1a460-24e0-487e-ab7b-3ae90fa48913",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "接受 继续",
+      "actionMetadata": null,
+      "searchText": "接受 继续",
+      "searchVector": "'接受':1 '继续':2",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-07T05:19:49.045Z",
+      "updatedAt": "2026-06-07T05:19:49.045Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [
+        {
+          "emoji": "🤝",
+          "count": 1,
+          "reactorIds": [
+            "d4e6b33e-cb7a-409e-92ee-f6c2be09d171"
+          ],
+          "reactorNames": [
+            "AgentCenterPD"
+          ]
+        }
+      ],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

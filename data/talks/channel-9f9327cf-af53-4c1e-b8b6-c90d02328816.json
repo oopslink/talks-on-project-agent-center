@@ -1,0 +1,35 @@
+{
+  "channelId": "9f9327cf-af53-4c1e-b8b6-c90d02328816",
+  "exportedAt": "2026-06-11T03:31:17.119Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "83492cb4-887f-477d-901a-89b143965cf1",
+      "seq": 5093003,
+      "channelId": "9f9327cf-af53-4c1e-b8b6-c90d02328816",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #38 \"v2.4-D-A4 新 SSE 事件: worker.enrolled / worker.enroll_attempt_failed / admintoken…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 38 v2.4 d a4 新 sse 事件 worker enrolled worker enroll attempt failed admintoken to done",
+      "searchVector": "'38':3 'a4':6 'admintoken':16 'attempt':14 'd':5 'done':18 'enroll':13 'enrolled':11 'failed':15 'moved':2 'oopslink':1 'sse':8 'to':17 'v2.4':4 'worker':10,12 '事件':9 '新':7",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-26T05:33:46.531Z",
+      "updatedAt": "2026-05-26T05:33:46.531Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "channelId": "381af01b-1917-462b-854c-cd9f86ae6a0a",
+  "exportedAt": "2026-06-11T03:32:09.105Z",
+  "total": 2,
+  "messages": [
+    {
+      "id": "f59e7378-447c-44ee-92ad-bfdfab4dd63d",
+      "seq": 5188060,
+      "channelId": "381af01b-1917-462b-854c-cd9f86ae6a0a",
+      "senderType": "agent",
+      "senderId": "6375c43d-4823-407c-a76e-daf085a0f437",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "**#69 ship v2.5.16** — commit `28e8d93`\n\n**Diagnosis**：TaskDetail 本身 MessageList + composer 早已 wire（v2.3-5b 起），但 Task 的 `conversation_id` 为空时 `useMessages(convId)` 被 `enabled:!!convId` short-circuit，且没有 explicit empty state。Root cause：SPA `TaskCreateModal` 没传 `with_conversation: true`，CLI / 老 task 也可能没绑 conv。\n\n**Fix**（两路兜底）：\n1. **新 task 默认有 conv** — TaskCreateModal 永远 send `with_conversation: true`\n2. **老 task 显式 affordance** — TaskDetail 在 `convId` 为空时 render empty-state (\"No discussion thread yet\" + `[Start discussion]` CTA)，点击调用新 endpoint `POST /api/tasks/{id}/bind-conversation`（wrap `TaskService.BindConversation` auto mode：建 Conversation + 绑定一事务），成功后 projection invalidate 自动 re-render 出 MessageList + composer\n\n**验证**：\n- backend：3 新 API test (Happy / AlreadyBound 拒绝 / NotWired 501)\n- frontend：1 新 spec \"offers Start discussion CTA when the task has no conversation\"，stateful MSW handler 模拟 bind round-trip + 断 composer 在 bind 后出现\n- 全套：Go 全 pass、312 specs 全绿、`make lint` clean\n\n**v2.5.x 5 个 bug 全收口**：\n- ✅ #71 v2.5.13 — SSE cycling\n- ✅ #67 v2.5.14 — Sidebar Projects expand\n- ✅ #68 + #70 v2.5.15 — ALL filter（双修同 root cause）\n- ✅ #69 v2.5.16 — TaskDetail 消息聊天框\n\n等 @oopslink 验收。\n",
+      "actionMetadata": null,
+      "searchText": "69 ship v2.5 16 commit 28e8d93 diagnosis taskdetail 本身 messagelist composer 早已 wire v2.3 5b 起 但 task 的 conversation id 为 空时 usemessages convid 被 enabled convid short circuit 且 没有 explicit empty state root cause spa taskcreatemodal 没 传 with conversation true cli 老 task 也 可能 没绑 conv fix 两路 兜底 1 新 task 默认 有 conv taskcreatemodal 永远 send with conversation true 2 老 task 显式 affordance taskdetail 在 convid 为 空时 render empty state no discussion thread yet start discussion cta 点击 调用 新 endpoint post api tasks id bind conversation wrap taskservice bindconversation auto mode 建 conversation 绑定 一 事务 成功 后 projection invalidate 自动 re render 出 messagelist composer 验证 backend 3 新 api test happy alreadybound 拒绝 notwired 501 frontend 1 新 spec offers start discussion cta when the task has no conversation stateful msw handler 模拟 bind round trip 断 composer 在 bind 后 出现 全套 go 全 pass 312 specs 全绿 make lint clean v2.5 x 5 个 bug 全 收口 71 v2.5 13 sse cycling 67 v2.5 14 sidebar projects expand 68 70 v2.5 15 all filter 双修同 root cause 69 v2.5 16 taskdetail 消息 聊天 框 等 oopslink 验收",
+      "searchVector": "'1':56,130 '13':175 '14':180 '15':187 '16':4,195 '2':68 '28e8':6 '3':120 '312':160 '5':168 '501':128 '5b':16 '67':178 '68':184 '69':1,193 '70':185 '71':173 'affordance':72 'all':188 'alreadybound':125 'api':93,122 'auto':101 'backend':119 'bind':96,147,153 'bindconversation':100 'bug':170 'cause':38,192 'circuit':31 'clean':165 'cli':46 'commit':5 'composer':12,117,151 'conv':52,61 'conversation':21,44,66,97,104,142 'convid':26,29,75 'cta':87,136 'cycling':177 'd93':7 'diagnosis':8 'discussion':82,86,135 'empty':35,79 'enabled':28 'endpoint':91 'expand':183 'explicit':34 'filter':189 'fix':53 'frontend':129 'go':157 'handler':145 'happy':124 'has':140 'id':22,95 'invalidate':111 'lint':164 'make':163 'messagelist':11,116 'mode':102 'msw':144 'no':81,141 'notwired':127 'offers':133 'oopslink':201 'pass':159 'post':92 'projection':110 'projects':182 're':113 'render':78,114 'root':37,191 'round':148 'send':64 'ship':2 'short':30 'sidebar':181 'spa':39 'spec':132 'specs':161 'sse':176 'start':85,134 'state':36,80 'stateful':143 'task':19,48,58,70,139 'taskcreatemodal':40,62 'taskdetail':9,73,196 'tasks':94 'taskservice':99 'test':123 'the':138 'thread':83 'trip':149 'true':45,67 'usemessages':25 'v2.3':15 'v2.5':3,166,174,179,186,194 'when':137 'wire':14 'with':43,65 'wrap':98 'x':167 'yet':84 '一':106 '且':32 '两路':54 '个':169 '为':23,76 '也':49 '事务':107 '传':42 '但':18 '兜底':55 '全':158,171 '全套':156 '全绿':162 '出':115 '出现':155 '双修同':190 '可能':50 '后':109,154 '在':74,152 '建':103 '成功':108 '拒绝':126 '收口':172 '断':150 '新':57,90,121,131 '早已':13 '显式':71 '有':60 '本身':10 '框':199 '模拟':146 '永远':63 '没':41 '没有':33 '没绑':51 '消息':197 '点击':88 '的':20 '空时':24,77 '等':200 '绑定':105 '老':47,69 '聊天':198 '自动':112 '被':27 '调用':89 '起':17 '验收':202 '验证':118 '默认':59",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-27T00:23:20.984Z",
+      "updatedAt": "2026-05-27T00:23:20.984Z",
+      "senderName": "AgentCenterDev",
+      "senderDescription": "全栈开发实现，包括单测",
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [
+        {
+          "type": "user",
+          "id": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+          "name": "oopslink"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "id": "835b1f3b-18b6-47f0-aea4-7b4acfcdccc3",
+      "seq": 5188725,
+      "channelId": "381af01b-1917-462b-854c-cd9f86ae6a0a",
+      "senderType": "user",
+      "senderId": "system",
+      "agentSendKey": null,
+      "messageType": "system",
+      "content": "✅ OopsLinK moved #69 \"v2.5.x #B3 TaskDetail 缺消息聊天框 — Task 有 linked Conversation（per Conversation BC）但…\" to Done",
+      "actionMetadata": null,
+      "searchText": "oopslink moved 69 v2.5 x b3 taskdetail 缺 消息 聊天 框 task 有 linked conversation per conversation bc 但 to done",
+      "searchVector": "'69':3 'b3':6 'bc':18 'conversation':15,17 'done':21 'linked':14 'moved':2 'oopslink':1 'per':16 'task':12 'taskdetail':7 'to':20 'v2.5':4 'x':5 '但':19 '有':13 '框':11 '消息':9 '缺':8 '聊天':10",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-05-27T00:32:38.624Z",
+      "updatedAt": "2026-05-27T00:32:38.624Z",
+      "senderName": "System",
+      "senderDescription": null,
+      "senderMembershipStatus": null,
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "channelId": "e918156f-d049-443a-93d9-b969de00d004",
+  "exportedAt": "2026-06-11T03:22:47.089Z",
+  "total": 1,
+  "messages": [
+    {
+      "id": "efc8c12f-d2f7-4ca8-8afa-5f02639ea58f",
+      "seq": 6350885,
+      "channelId": "e918156f-d049-443a-93d9-b969de00d004",
+      "senderType": "user",
+      "senderId": "60bb9c59-be14-4f95-a71c-996c19607bdc",
+      "agentSendKey": null,
+      "messageType": "chat",
+      "content": "ok， 继续",
+      "actionMetadata": null,
+      "searchText": "ok 继续",
+      "searchVector": "'ok':1 '继续':2",
+      "threadId": null,
+      "taskStatus": null,
+      "taskNumber": null,
+      "taskAssigneeType": null,
+      "taskAssigneeId": null,
+      "taskClaimedAt": null,
+      "taskCompletedAt": null,
+      "createdAt": "2026-06-08T02:10:17.227Z",
+      "updatedAt": "2026-06-08T02:10:17.227Z",
+      "senderName": "OopsLinK",
+      "senderDescription": null,
+      "senderMembershipStatus": "active",
+      "reactions": [],
+      "mentions": [],
+      "attachments": []
+    }
+  ]
+}
