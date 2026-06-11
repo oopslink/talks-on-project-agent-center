@@ -259,10 +259,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 .thread-group.collapsed { display: none; }
 .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
 .reader { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #f4f5f7; }
-.reader-toolbar { padding: 9px 16px; background: #fff; border-bottom: 1px solid #e4e6ea;
-  display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
-.reader-toolbar .ch-title { font-size: 14px; font-weight: 600; color: #172b4d; }
-.filter-btn { padding: 4px 10px; border: 1px solid #dde0e6; border-radius: 6px; background: #fff; font-size: 11px; cursor: pointer; color: #445; }
+.reader-toolbar { padding: 8px 16px; background: #fff; border-bottom: 1px solid #e4e6ea;
+  display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.reader-toolbar-top { display: flex; align-items: center; gap: 8px; }
+.reader-toolbar .ch-title { font-size: 14px; font-weight: 600; color: #172b4d; flex: 1; word-break: break-word; }
+.reader-toolbar-filters { display: flex; align-items: center; gap: 6px; }
+.filter-btn { padding: 3px 10px; border: 1px solid #dde0e6; border-radius: 6px; background: #fff; font-size: 11px; cursor: pointer; color: #445; transition: all .1s; }
+.filter-btn:hover { border-color: #aab; background: #f5f6f8; }
 .filter-btn.on { background: #e8f3ff; border-color: var(--accent); color: #005fb8; }
 .search-input-r { margin-left: auto; padding: 5px 10px; border: 1px solid #dde0e6; border-radius: 6px; font-size: 12px; width: 190px; outline: none; }
 .messages-area { display: flex; flex: 1; overflow: hidden; }
@@ -512,12 +515,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   <div class="resize-handle" id="sidebar-handle"></div>
   <div class="reader">
     <div class="reader-toolbar">
-      <span class="ch-title" id="reader-ch-title"># —</span>
-      <button class="filter-btn on">全部</button>
-      <button class="filter-btn">User</button>
-      <button class="filter-btn">Agent</button>
-      <button class="filter-btn">Tasks</button>
-      <input class="search-input-r" placeholder="搜索消息...">
+      <div class="reader-toolbar-top">
+        <span class="ch-title" id="reader-ch-title"># —</span>
+      </div>
+      <div class="reader-toolbar-filters">
+        <button class="filter-btn on" onclick="setMsgFilter('all',this)">全部</button>
+        <button class="filter-btn" onclick="setMsgFilter('user',this)">User</button>
+        <button class="filter-btn" onclick="setMsgFilter('agent',this)">Agent</button>
+        <button class="filter-btn" onclick="setMsgFilter('tasks',this)">Tasks</button>
+        <input class="search-input-r" placeholder="搜索消息..." oninput="searchMessages(this.value)">
+      </div>
     </div>
     <div class="messages-area">
       <div class="message-list" id="message-list">
@@ -1250,6 +1257,38 @@ function toggleThreadGroup(e, gid) {
   if (toggle) toggle.style.transform = collapsed ? 'rotate(-90deg)' : '';
 }
 
+let msgFilter = 'all', msgSearchQ = '';
+function setMsgFilter(type, btn) {
+  msgFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  applyMsgFilter();
+}
+function searchMessages(q) {
+  msgSearchQ = q.trim().toLowerCase();
+  applyMsgFilter();
+}
+function applyMsgFilter() {
+  document.querySelectorAll('#message-list .msg').forEach(el => {
+    const isUser = el.classList.contains('msg-user');
+    const hasTask = el.querySelector('.tag.task-done,.tag.task-review,.tag.task-progress');
+    const content = (el.querySelector('.msg-content')?.textContent || '').toLowerCase();
+    const sender = (el.querySelector('.sender')?.textContent || '').toLowerCase();
+    let show = true;
+    if (msgFilter === 'user'  && !isUser) show = false;
+    if (msgFilter === 'agent' && isUser)  show = false;
+    if (msgFilter === 'tasks' && !hasTask) show = false;
+    if (msgSearchQ && !content.includes(msgSearchQ) && !sender.includes(msgSearchQ)) show = false;
+    el.style.display = show ? '' : 'none';
+    // also hide/show associated inline thread div if any
+    const tid = el.dataset.thread;
+    if (tid) {
+      const inlineEl = document.getElementById('ti-' + tid);
+      if (inlineEl) inlineEl.style.display = show && inlineEl.dataset.loaded ? 'block' : 'none';
+    }
+  });
+}
+
 function filterSidebar(q) {
   const lq = q.trim().toLowerCase();
   document.querySelectorAll('#sidebar-channels .channel-item').forEach(el => {
@@ -1268,6 +1307,9 @@ async function selectChannel(id) {
   });
   const ch = APP_DATA ? APP_DATA.channels.find(c => c.channelId === id) : null;
   document.getElementById('reader-ch-title').textContent = `# ${ch ? ch.label : id.slice(0, 8)}`;
+  msgFilter = 'all'; msgSearchQ = '';
+  document.querySelectorAll('.filter-btn').forEach((b,i) => b.classList.toggle('on', i===0));
+  const si = document.querySelector('.search-input-r'); if (si) si.value = '';
   const msgEl = document.getElementById('message-list');
   msgEl.innerHTML = '<div style="padding:30px;text-align:center;color:var(--muted)">加载中...</div>';
   closeThread();
