@@ -4,21 +4,27 @@
 <meta charset="UTF-8">
 <title>AgentCenter Talks</title>
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
 <style>
 :root {
-  --bg:       #0F1117;
-  --surface:  #171B26;
-  --surface2: #1E2333;
-  --border:   rgba(45,52,72,0.9);
-  --accent:   #1ABFBF;
+  --bg:       #0B1120;
+  --surface:  #1A2535;
+  --surface2: #161F2E;
+  --nav-bg:   #1F2938;
+  --badge-bg: #27313F;
+  --border:   #2A3A50;
+  --accent:   #22D3EE;
   --accent2:  #38BDF8;
   --red:      #EF4444;
-  --purple:   #3B82F6;
+  --purple:   #A78BFA;
   --green:    #4ADE80;
-  --orange:   #F97316;
-  --text:     #E2E8F0;
+  --orange:   #F59E0B;
+  --blue:     #0584C5;
+  --text:     #F1F5F9;
+  --body:     #CBD5E1;
   --muted:    #94A3B8;
   --dim:      #64748B;
+  --weak:     #475569;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -29,32 +35,33 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 .header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   height: 50px; display: flex; align-items: center; padding: 0 20px; gap: 12px;
-  background: rgba(17,21,32,0.7); backdrop-filter: blur(14px);
+  background: rgba(31,41,56,0.88); backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
-.header.solid { background: #141826; }
+.header.solid { background: var(--nav-bg); }
 .header-logo { display: flex; align-items: center; gap: 9px; }
-.header-logo .dot { width: 26px; height: 26px; border-radius: 7px;
-  background: linear-gradient(135deg, var(--accent), #0D8888);
-  display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.header-logo .dot { width: 24px; height: 24px; border-radius: 6px;
+  background: rgba(34,211,238,0.15); border: 1px solid rgba(34,211,238,0.35);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .header-logo h1 { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -.01em; }
 .header-logo h1 span { color: var(--accent); }
 .header-badge { font-size: 11px; background: rgba(0,170,255,0.08); color: var(--muted);
   padding: 2px 8px; border-radius: 8px; border: 1px solid rgba(0,170,255,0.14); }
-.header-search { flex: 1; display: flex; justify-content: center; }
+.header-search { flex: 1; display: flex; justify-content: center; min-width: 0; }
 .header-search-btn { display: flex; align-items: center; gap: 8px;
   background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-  border-radius: 8px; padding: 5px 14px; cursor: pointer; min-width: 220px;
-  transition: border-color .15s; }
-.header-search-btn:hover { border-color: rgba(0,170,255,0.3); }
-.header-search-btn span { font-size: 12px; color: var(--muted); flex: 1; }
-.header-search-btn .kbd-hint { font-size: 10px; color: var(--dim);
+  border-radius: 8px; padding: 5px 14px; cursor: pointer; width: 260px; max-width: 100%;
+  white-space: nowrap; overflow: hidden; transition: border-color .15s; }
+.header-search-btn:hover { border-color: rgba(34,211,238,0.35); }
+.header-search-btn span { font-size: 12px; color: var(--muted); flex: 1;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.header-search-btn .kbd-hint { font-size: 10px; color: var(--dim); flex-shrink: 0;
   background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; }
 .header-nav { display: flex; align-items: center; gap: 4px; }
 .nav-btn { padding: 5px 14px; border-radius: 7px; cursor: pointer; font-size: 12px;
   color: var(--muted); border: 1px solid transparent; transition: all .15s; user-select: none; }
 .nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.05); }
-.nav-btn.active { background: rgba(26,191,191,0.12); border-color: rgba(26,191,191,0.3); color: var(--accent); }
+.nav-btn.active { background: rgba(34,211,238,0.12); border-color: rgba(34,211,238,0.3); color: var(--accent); }
 
 /* ── Graph view ── */
 #graph-view { position: fixed; inset: 0; z-index: 1; background: var(--bg); }
@@ -85,12 +92,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   z-index: 20; display: flex; gap: 6px;
 }
 .ds-stat {
-  background: rgba(15,17,23,0.82); backdrop-filter: blur(18px);
+  background: rgba(31,41,55,0.90); backdrop-filter: blur(18px);
   border: 1px solid var(--border); border-radius: 10px;
   padding: 7px 14px; min-width: 96px; text-align: center; cursor: default;
   transition: border-color .2s, background .2s;
 }
-.ds-stat:hover { border-color: rgba(26,191,191,0.3); background: rgba(23,27,38,0.92); }
+.ds-stat:hover { border-color: rgba(26,191,191,0.3); background: rgba(31,41,55,0.98); }
 .ds-stat .ds-val { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.2;
   font-variant-numeric: tabular-nums; }
 .ds-stat .ds-val.blue   { color: var(--accent); }
@@ -106,22 +113,22 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 .dash-bottom > * { pointer-events: all; }
 .dash-panel {
-  background: rgba(17,21,32,0.88); backdrop-filter: blur(18px);
+  background: rgba(31,41,55,0.92); backdrop-filter: blur(18px);
   border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px;
 }
-.dash-panel-left  { flex: 1.05; }
-.dash-panel-mid   { flex: 1.5; }
-.dash-panel-right { flex: 1.05; }
+.dash-panel-left  { flex: 1.0; }
+.dash-panel-mid   { flex: 0.9; }
+.dash-panel-right { flex: 1.4; }
 .dp-title { font-size: 10px; font-weight: 700; text-transform: uppercase;
   letter-spacing: .07em; color: var(--dim); margin-bottom: 9px; }
 
 /* Mini bar chart */
-.mini-bars { display: flex; align-items: flex-end; gap: 2px; height: 46px; }
-.mb-wrap { display: flex; flex-direction: column; align-items: center; flex: 1; gap: 2px; }
-.mb-bar { width: 100%; background: rgba(0,170,255,0.5); border-radius: 2px 2px 0 0;
-  min-height: 3px; transition: background .15s; }
+.mini-bars { display: flex; align-items: flex-end; gap: 2px; height: 44px; overflow: hidden; }
+.mb-wrap { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; gap: 1px; }
+.mb-bar { width: 100%; background: rgba(34,211,238,0.45); border-radius: 2px 2px 0 0;
+  min-height: 2px; transition: background .15s; }
 .mb-wrap:hover .mb-bar { background: var(--accent); }
-.mb-lbl { font-size: 7px; color: var(--dim); }
+.mb-lbl { font-size: 7px; color: var(--weak); line-height: 1; }
 
 /* Task mini */
 .task-mini { margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--border);
@@ -137,24 +144,24 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 .tm-n { font-size: 9px; color: var(--dim); width: 22px; text-align: right; }
 
 /* Heatmap */
-.hm-hours { display: flex; gap: 2px; padding-left: 26px; margin-bottom: 3px; }
-.hm-hours span { font-size: 8px; color: var(--dim); width: 12px; text-align: center; }
-.hm-row { display: flex; align-items: center; gap: 2px; margin-bottom: 2px; }
-.hm-lbl  { font-size: 9px; color: var(--muted); width: 24px; text-align: right; }
-.hm-cell { width: 12px; height: 12px; border-radius: 2px; background: rgba(255,255,255,0.03); }
-.hm-cell.l1 { background: rgba(0,170,255,0.18); }
-.hm-cell.l2 { background: rgba(0,170,255,0.42); }
-.hm-cell.l3 { background: rgba(0,170,255,0.68); }
-.hm-cell.l4 { background: rgba(0,170,255,0.92); }
+.hm-hours { display: flex; padding-left: 28px; margin-bottom: 3px; }
+.hm-hours span { flex: 1; font-size: 8px; color: var(--dim); text-align: center; min-width: 0; }
+.hm-row { display: flex; align-items: center; margin-bottom: 2px; }
+.hm-lbl  { font-size: 9px; color: var(--muted); width: 26px; flex-shrink: 0; text-align: right; padding-right: 3px; }
+.hm-cell { flex: 1; height: 12px; border-radius: 2px; background: rgba(255,255,255,0.03); min-width: 0; }
+.hm-cell.l1 { background: rgba(34,211,238,0.18); }
+.hm-cell.l2 { background: rgba(34,211,238,0.42); }
+.hm-cell.l3 { background: rgba(34,211,238,0.68); }
+.hm-cell.l4 { background: rgba(34,211,238,0.92); }
 
 /* Donut + senders */
-.ds-donut-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
-.ds-donut { width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0;
-  background: conic-gradient(var(--accent) 0% 62%, var(--purple) 62% 100%); }
+.ds-composition { display: flex; gap: 12px; align-items: flex-start; }
+.ds-donut-side { display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; }
+.ds-donut { width: 80px; height: 80px; border-radius: 50%; }
 .ds-legend { display: flex; flex-direction: column; gap: 4px; }
-.ds-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
-.ds-legend-dot { width: 7px; height: 7px; border-radius: 50%; }
-.sender-list { padding-top: 8px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 5px; }
+.ds-legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--muted); }
+.ds-legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.sender-list { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
 .sr-row { display: flex; align-items: center; gap: 6px; }
 .sr-name { font-size: 10px; color: var(--muted); width: 94px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sr-badge { font-size: 9px; padding: 1px 4px; border-radius: 3px; }
@@ -226,8 +233,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 .page-view.show { display: flex; }
 .resize-handle { width: 4px; background: transparent; cursor: col-resize; flex-shrink: 0; z-index: 10; transition: background .15s; }
 .resize-handle:hover, .resize-handle.dragging { background: var(--accent); }
-.sidebar { width: 220px; min-width: 100px; max-width: 75vw; background: #141826;
+.sidebar { width: 220px; min-width: 100px; max-width: 75vw; background: #1F2937;
   color: #8a94a8; display: flex; flex-direction: column; flex-shrink: 0; padding: 10px 0; overflow-y: auto; }
+.sidebar-filter { padding: 7px 10px 6px; flex-shrink: 0; }
+.sidebar-filter input { width: 100%; padding: 5px 9px; background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: 11px;
+  outline: none; transition: border-color .15s; }
+.sidebar-filter input::placeholder { color: var(--dim); }
+.sidebar-filter input:focus { border-color: rgba(34,211,238,0.4); }
 .sidebar-section { padding: 5px 14px 4px; font-size: 10px; font-weight: 700;
   text-transform: uppercase; letter-spacing: .06em; color: var(--dim); }
 .channel-item { padding: 6px 14px; cursor: pointer; display: flex; align-items: center;
@@ -237,6 +250,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 .channel-item .ch-name { font-size: 12px; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .channel-item .ch-count { font-size: 10px; background: rgba(255,255,255,0.06);
   padding: 1px 6px; border-radius: 7px; color: var(--dim); }
+.ch-thread { padding-left: 18px; align-items: flex-start; padding-top: 5px; padding-bottom: 5px; }
+.ch-thread-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ch-thread-meta { font-size: 9px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.root-row { position: relative; }
+.collapse-toggle { font-size: 10px; color: var(--dim); padding: 2px 3px; flex-shrink: 0;
+  transition: transform .2s; user-select: none; }
+.thread-group.collapsed { display: none; }
 .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
 .reader { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #f4f5f7; }
 .reader-toolbar { padding: 9px 16px; background: #fff; border-bottom: 1px solid #e4e6ea;
@@ -248,9 +268,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 .messages-area { display: flex; flex: 1; overflow: hidden; }
 .message-list { flex: 1; overflow-y: auto; padding: 10px 14px; display: flex; flex-direction: column; gap: 1px; background: #fff; }
 .msg { display: flex; gap: 9px; padding: 6px 7px; border-radius: 6px; cursor: pointer; transition: background .1s; }
-.msg:hover { background: #f4f5f7; }
-.msg.selected { background: #e8f3ff; }
+.msg:hover { background: #f0f2f5; }
+.msg.selected { background: #dbeafe; }
 .msg.has-thread { border-left: 2px solid var(--accent); padding-left: 6px; }
+.msg.msg-user { background: #eff6ff; border: 1px solid #dbeafe; }
+.msg.msg-user:hover { background: #dbeafe; }
 .avatar { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center;
   justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 .avatar.user  { background: #dbeafe; color: #1d4ed8; }
@@ -262,7 +284,24 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 .sender-type.agent { background: #ede9fe; color: #6b21a8; }
 .sender-type.user  { background: #dbeafe; color: #1d4ed8; }
 .msg-meta .time { font-size: 10px; color: #9aa3b2; margin-left: auto; }
-.msg-content { font-size: 12px; color: #374151; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.msg-content { font-size: 12px; color: #374151; line-height: 1.6; word-break: break-word; }
+.msg-content p { margin: 0 0 4px; }
+.msg-content p:last-child { margin-bottom: 0; }
+.msg-content strong { font-weight: 700; color: #172b4d; }
+.msg-content em { font-style: italic; }
+.msg-content code { font-family: 'SF Mono','Fira Code',monospace; font-size: 11px; background: rgba(0,0,0,0.06); padding: 1px 4px; border-radius: 3px; word-break: break-all; }
+.msg-content pre { background: #f0f2f5; border-radius: 6px; padding: 8px 10px; overflow-x: auto; margin: 5px 0; }
+.msg-content pre code { background: none; padding: 0; font-size: 11px; word-break: normal; }
+.msg-content table { border-collapse: collapse; font-size: 11px; margin: 5px 0; max-width: 100%; }
+.msg-content th, .msg-content td { border: 1px solid #dde0e6; padding: 3px 7px; text-align: left; }
+.msg-content th { background: #f0f2f5; font-weight: 600; }
+.msg-content ul, .msg-content ol { padding-left: 18px; margin: 4px 0; }
+.msg-content li { margin: 2px 0; line-height: 1.55; }
+.msg-content h1, .msg-content h2, .msg-content h3, .msg-content h4 { font-weight: 700; color: #172b4d; margin: 8px 0 3px; line-height: 1.3; }
+.msg-content h1 { font-size: 14px; } .msg-content h2 { font-size: 13px; } .msg-content h3, .msg-content h4 { font-size: 12px; }
+.msg-content blockquote { border-left: 3px solid #dde0e6; padding-left: 8px; color: #6b7280; margin: 4px 0; }
+.msg-content a { color: #0584C5; text-decoration: underline; }
+.msg-content hr { border: none; border-top: 1px solid #dde0e6; margin: 6px 0; }
 .msg-footer { display: flex; gap: 5px; margin-top: 3px; flex-wrap: wrap; }
 .tag { font-size: 10px; padding: 1px 6px; border-radius: 4px; }
 .tag.thread   { background: #e8f3ff; color: #005fb8; }
@@ -282,6 +321,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 .thread-msg .tsender { font-size: 11px; font-weight: 600; color: #172b4d; }
 .thread-msg .tcontent { font-size: 11px; color: #374151; line-height: 1.5; }
 .thread-msg .ttime { font-size: 9px; color: #9aa3b2; margin-left: auto; }
+
+/* ── Inline thread expansion ── */
+.thread-inline { margin-left: 39px; border-left: 2px solid rgba(34,211,238,0.22);
+  margin-bottom: 2px; background: rgba(255,255,255,0.01); border-radius: 0 6px 6px 0; }
+.thread-inline-msg { display: flex; gap: 7px; padding: 4px 8px; border-radius: 4px; transition: background .1s; }
+.thread-inline-msg:hover { background: rgba(255,255,255,0.025); }
 
 /* ── Global search modal ── */
 .search-backdrop { position: fixed; inset: 0; z-index: 500;
@@ -359,7 +404,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 <!-- ── Header ── -->
 <div class="header" id="header">
   <div class="header-logo" style="cursor:pointer" onclick="toggleProjectInfo(event)">
-    <div class="dot">💬</div>
+    <div class="dot">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="color:var(--accent)">
+        <circle cx="6" cy="2" r="1.5" fill="currentColor" opacity="0.9"/>
+        <circle cx="2" cy="9" r="1.5" fill="currentColor" opacity="0.9"/>
+        <circle cx="10" cy="9" r="1.5" fill="currentColor" opacity="0.9"/>
+        <line x1="6" y1="2" x2="2" y2="9" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        <line x1="6" y1="2" x2="10" y2="9" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        <line x1="2" y1="9" x2="10" y2="9" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      </svg>
+    </div>
     <h1>AgentCenter <span>Talks</span></h1>
   </div>
   <div class="header-search">
@@ -409,12 +463,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       <div id="hm-container"></div>
     </div>
 
-    <!-- Right: donut + senders -->
+    <!-- Right: donut + senders side-by-side -->
     <div class="dash-panel dash-panel-right">
       <div class="dp-title">消息构成</div>
-      <div id="donut-container" class="ds-donut-row"></div>
-      <div class="dp-title">发送者排行</div>
-      <div class="sender-list" id="sender-list-container"></div>
+      <div class="ds-composition">
+        <div class="ds-donut-side" id="donut-container"></div>
+        <div class="sender-list" id="sender-list-container"></div>
+      </div>
     </div>
   </div>
 
@@ -449,6 +504,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 <!-- ── Reader ── -->
 <div class="page-view" id="reader-view">
   <div class="sidebar" id="sidebar">
+    <div class="sidebar-filter">
+      <input id="sidebar-filter-input" placeholder="过滤 thread..." oninput="filterSidebar(this.value)">
+    </div>
     <div id="sidebar-channels"></div>
   </div>
   <div class="resize-handle" id="sidebar-handle"></div>
@@ -497,6 +555,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 </div>
 
 <script>
+// ── Markdown rendering ─────────────────────────────────
+if (window.marked) {
+  marked.setOptions({ breaks: true, gfm: true });
+}
+function renderMd(text) {
+  if (!text) return '';
+  if (window.marked) return marked.parse(text);
+  return text.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 // ── Resize handles ─────────────────────────────────────
 function makeResizable(handle, target, direction) {
   handle.addEventListener('mousedown', e => {
@@ -617,7 +685,7 @@ function buildGraphDataFromIndex(channels) {
     const rootCh = rootChannels[ri];
     (rootCh.threadIds || []).forEach(tid => {
       const tc = threadMap[tid];
-      if (!tc) return;
+      if (!tc || tc.total === 0) return;
       nodes.push({
         id: tid,
         label: tc.label || tid.slice(0, 8),
@@ -1043,10 +1111,11 @@ function renderBarChart(daily) {
   if (!daily.length) { el.innerHTML = ''; return; }
   const show = daily.slice(-14);
   const max = Math.max(...show.map(d => d.count), 1);
+  const maxPx = 38;
   el.innerHTML = show.map(d => {
-    const pct = Math.max(4, Math.round(d.count / max * 100));
+    const h = Math.max(2, Math.round(d.count / max * maxPx));
     const lbl = d.date.slice(5).replace('-', '/');
-    return `<div class="mb-wrap"><div class="mb-bar" style="height:${pct}%" title="${d.date}: ${d.count}"></div><div class="mb-lbl">${lbl}</div></div>`;
+    return `<div class="mb-wrap"><div class="mb-bar" style="height:${h}px" title="${d.date}: ${d.count}"></div><div class="mb-lbl">${lbl}</div></div>`;
   }).join('');
 }
 
@@ -1104,7 +1173,7 @@ function renderSenders(senders) {
     `<div class="ds-legend-item"><div class="ds-legend-dot" style="background:var(--purple)"></div>Agent ${agentPct}%</div>` +
     `</div>`;
 
-  const top = senders.slice(0, 6);
+  const top = senders.slice(0, 7);
   const maxCount = top[0]?.count || 1;
   listEl.innerHTML = top.map(s => {
     const pct = Math.round(s.count / maxCount * 100);
@@ -1119,28 +1188,77 @@ function renderSenders(senders) {
 // ── Reader ─────────────────────────────────────────────
 function renderSidebar(channels) {
   const el = document.getElementById('sidebar-channels');
-  const roots   = channels.filter(c => c.type === 'root');
-  const threads = channels.filter(c => c.type === 'thread');
+  const roots = channels.filter(c => c.type === 'root');
 
   let html = '<div class="sidebar-section">主频道</div>';
-  roots.forEach(c => {
-    html += `<div class="channel-item" data-id="${c.channelId}" onclick="selectChannel('${c.channelId}')">` +
+  roots.forEach(r => {
+    const threads = (r.threadIds || [])
+      .map(tid => channels.find(c => c.channelId === tid))
+      .filter(t => t && t.total > 0)
+      .sort((a, b) => {
+        const ta = a.createdAt || '', tb = b.createdAt || '';
+        if (!ta && !tb) return 0;
+        if (!ta) return 1;
+        if (!tb) return -1;
+        return ta < tb ? -1 : 1;
+      });
+
+    const gid = 'tg-' + r.channelId.slice(0, 8);
+    html += `<div class="channel-item root-row" data-id="${r.channelId}" onclick="selectChannel('${r.channelId}')">` +
       `<span style="color:var(--accent)">#</span>` +
-      `<span class="ch-name">${c.label}</span>` +
-      `<span class="ch-count">${c.total.toLocaleString()}</span></div>`;
+      `<span class="ch-name">${r.label}</span>` +
+      `<span class="ch-count">${r.total.toLocaleString()}</span>` +
+      `<span class="collapse-toggle" id="ct-${gid}" onclick="toggleThreadGroup(event,'${gid}')">▾</span></div>`;
+
+    const LIMIT = 15;
+    html += `<div class="thread-group" id="${gid}">`;
+    threads.forEach((t, idx) => {
+      const date = t.createdAt ? t.createdAt.slice(0,10).slice(5) : '';
+      const hidden = idx >= LIMIT ? ' style="display:none"' : '';
+      html += `<div class="channel-item ch-thread" data-id="${t.channelId}" onclick="selectChannel('${t.channelId}')"${hidden}>` +
+        `<span style="font-size:10px;color:var(--dim);flex-shrink:0;margin-top:2px">↳</span>` +
+        `<div class="ch-thread-body">` +
+        `<span class="ch-name">${t.label}</span>` +
+        `<span class="ch-thread-meta">${date}${date && t.total ? ' · ' : ''}${t.total} msgs</span>` +
+        `</div></div>`;
+    });
+    if (threads.length > LIMIT) {
+      html += `<div class="channel-item ch-showmore" id="sm-${gid}" onclick="showMoreThreads('${gid}',this)">` +
+        `<span style="font-size:10px;color:var(--dim)">···</span>` +
+        `<span style="font-size:11px;color:var(--accent)">显示更多 (${threads.length - LIMIT})</span>` +
+        `</div>`;
+    }
+    html += `</div><div class="sidebar-divider"></div>`;
   });
-  html += `<div class="sidebar-divider"></div>`;
-  html += `<div class="sidebar-section">Threads (${threads.length})</div>`;
-  threads.slice(0, 200).forEach(c => {
-    html += `<div class="channel-item" data-id="${c.channelId}" onclick="selectChannel('${c.channelId}')">` +
-      `<span style="font-size:10px;color:var(--dim)">↳</span>` +
-      `<span class="ch-name">${c.label}</span>` +
-      `<span class="ch-count">${c.total}</span></div>`;
-  });
-  if (threads.length > 200) {
-    html += `<div class="channel-item" style="color:var(--dim);font-size:11px;padding:6px 14px">+ ${threads.length - 200} more...</div>`;
-  }
+
   el.innerHTML = html;
+}
+
+function showMoreThreads(gid, btn) {
+  const group = document.getElementById(gid);
+  if (!group) return;
+  group.querySelectorAll('.ch-thread').forEach(el => el.style.display = '');
+  btn.style.display = 'none';
+}
+
+function toggleThreadGroup(e, gid) {
+  e.stopPropagation();
+  const group = document.getElementById(gid);
+  const toggle = document.getElementById('ct-' + gid);
+  if (!group) return;
+  const collapsed = group.classList.toggle('collapsed');
+  if (toggle) toggle.style.transform = collapsed ? 'rotate(-90deg)' : '';
+}
+
+function filterSidebar(q) {
+  const lq = q.trim().toLowerCase();
+  document.querySelectorAll('#sidebar-channels .channel-item').forEach(el => {
+    if (!el.classList.contains('ch-thread')) { el.style.display = ''; return; }
+    if (el.classList.contains('ch-showmore')) { el.style.display = lq ? 'none' : ''; return; }
+    const name = (el.querySelector('.ch-name')?.textContent || '').toLowerCase();
+    el.style.display = (!lq || name.includes(lq)) ? '' : 'none';
+  });
+  document.querySelectorAll('#sidebar-channels .sidebar-divider').forEach(el => el.style.display = '');
 }
 
 async function selectChannel(id) {
@@ -1167,26 +1285,31 @@ function renderMessages(messages) {
     el.innerHTML = '<div style="padding:30px;text-align:center;color:var(--muted)">暂无消息</div>';
     return;
   }
+  const sorted = [...messages].sort((a, b) => (a.createdAt || '') < (b.createdAt || '') ? -1 : 1);
   const taskBadge = s => {
     if (!s) return '';
     const map    = { done:'task-done', in_review:'task-review', in_progress:'task-progress', closed:'task-progress' };
-    const labels = { done:'✓ done', in_review:'👁 in_review', in_progress:'⏳ in_progress', closed:'✗ closed' };
+    const labels = { done:'✓ done', in_review:'in_review', in_progress:'in_progress', closed:'closed' };
     return `<span class="tag ${map[s]||''}">${labels[s]||s}</span>`;
   };
-  el.innerHTML = messages.map(m => {
+  el.innerHTML = sorted.map(m => {
     const type = m.senderType || 'user';
     const av = (m.senderName || '?')[0].toUpperCase();
     const time = m.createdAt ? m.createdAt.slice(5, 16).replace('T', ' ') : '';
-    const content = (m.content || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const content = renderMd(m.content || '');
     const hasThread = !!m.threadId;
-    return `<div class="msg${hasThread ? ' has-thread' : ''}" data-thread="${m.threadId || ''}">` +
+    const ch = hasThread && APP_DATA ? APP_DATA.channels.find(c => c.channelId === m.threadId) : null;
+    const replyCount = ch ? ch.total : '';
+    const replyLabel = replyCount ? `↳ ${replyCount} replies` : '↳ replies';
+    const isUser = type === 'user';
+    return `<div class="msg${hasThread ? ' has-thread' : ''}${isUser ? ' msg-user' : ''}" data-thread="${m.threadId || ''}">` +
       `<div class="avatar ${type}">${av}</div>` +
       `<div class="msg-body">` +
       `<div class="msg-meta"><span class="sender">${m.senderName || '—'}</span>` +
       `<span class="sender-type ${type}">${type}</span><span class="time">${time}</span></div>` +
       `<div class="msg-content">${content}</div>` +
       `<div class="msg-footer">` +
-      (hasThread ? `<span class="tag thread" style="cursor:pointer" onclick="openThread('${m.threadId}')">↳ replies</span>` : '') +
+      (hasThread ? `<span class="tag thread" style="cursor:pointer" onclick="openThread('${m.threadId}')">${replyLabel}</span>` : '') +
       taskBadge(m.taskStatus) +
       (m.reactions||[]).map(r=>`<span class="tag reaction">${r.emoji} ${r.count}</span>`).join('') +
       (m.attachments||[]).map(a=>`<span class="tag attach">📎 ${a.filename||'file'}</span>`).join('') +
@@ -1204,22 +1327,25 @@ async function openThread(threadId) {
   const ch = APP_DATA ? APP_DATA.channels.find(c => c.channelId === threadId) : null;
   document.getElementById('thread-title').textContent = ch ? ch.label : threadId.slice(0, 12);
   const msgEl = document.getElementById('thread-messages');
-  msgEl.innerHTML = '<div style="padding:20px;color:var(--muted)">加载中...</div>';
+  msgEl.innerHTML = '<div style="padding:20px;color:#9aa3b2">加载中...</div>';
   try {
     const data = await loadChannel(threadId);
-    msgEl.innerHTML = data.messages.map(m => {
+    const msgs = [...data.messages].sort((a, b) => (a.createdAt || '') < (b.createdAt || '') ? -1 : 1);
+    msgEl.innerHTML = msgs.map(m => {
       const type = m.senderType || 'user';
       const av = (m.senderName || '?')[0].toUpperCase();
-      const time = m.createdAt ? m.createdAt.slice(11, 16) : '';
-      const content = (m.content || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const time = m.createdAt ? m.createdAt.slice(5, 16).replace('T', ' ') : '';
+      const content = renderMd(m.content || '');
       return `<div class="thread-msg">` +
         `<div class="tmeta">` +
         `<div class="avatar ${type}" style="width:22px;height:22px;font-size:9px;border-radius:4px;">${av}</div>` +
-        `<span class="tsender">${m.senderName || '—'}</span><span class="ttime">${time}</span></div>` +
-        `<div class="tcontent">${content}</div></div>`;
+        `<span class="tsender">${m.senderName || '—'}</span>` +
+        `<span class="sender-type ${type}" style="font-size:9px">${type}</span>` +
+        `<span class="ttime">${time}</span></div>` +
+        `<div class="tcontent msg-content">${content}</div></div>`;
     }).join('');
   } catch(e) {
-    msgEl.innerHTML = `<div style="color:var(--red)">加载失败</div>`;
+    msgEl.innerHTML = `<div style="color:#ef4444;padding:20px">加载失败</div>`;
   }
 }
 
