@@ -54,7 +54,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 .nav-btn { padding: 5px 14px; border-radius: 7px; cursor: pointer; font-size: 12px;
   color: var(--muted); border: 1px solid transparent; transition: all .15s; user-select: none; }
 .nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.05); }
-.nav-btn.active { background: rgba(0,170,255,0.12); border-color: rgba(0,170,255,0.25); color: var(--accent); }
+.nav-btn.active { background: rgba(26,191,191,0.12); border-color: rgba(26,191,191,0.3); color: var(--accent); }
 
 /* ── Graph view ── */
 #graph-view { position: fixed; inset: 0; z-index: 1; background: var(--bg); }
@@ -77,21 +77,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 7px; padding: 3px; }
 .layout-opt { padding: 3px 11px; border-radius: 5px; font-size: 11px; color: var(--muted);
   cursor: pointer; transition: all .15s; user-select: none; }
-.layout-opt.active { background: rgba(0,170,255,0.18); color: var(--accent); }
+.layout-opt.active { background: rgba(26,191,191,0.18); color: var(--accent); }
 
 /* ── Dashboard overlay: stat cards ── */
 .stat-cards-row {
   position: fixed; top: 60px; left: 50%; transform: translateX(-50%);
-  z-index: 20; display: flex; gap: 8px;
+  z-index: 20; display: flex; gap: 6px;
 }
 .ds-stat {
-  background: rgba(17,21,32,0.85); backdrop-filter: blur(16px);
+  background: rgba(15,17,23,0.82); backdrop-filter: blur(18px);
   border: 1px solid var(--border); border-radius: 10px;
-  padding: 9px 16px; min-width: 108px; text-align: center; cursor: default;
-  transition: border-color .2s;
+  padding: 7px 14px; min-width: 96px; text-align: center; cursor: default;
+  transition: border-color .2s, background .2s;
 }
-.ds-stat:hover { border-color: rgba(0,170,255,0.25); }
-.ds-stat .ds-val { font-size: 20px; font-weight: 800; color: var(--text); line-height: 1.2;
+.ds-stat:hover { border-color: rgba(26,191,191,0.3); background: rgba(23,27,38,0.92); }
+.ds-stat .ds-val { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.2;
   font-variant-numeric: tabular-nums; }
 .ds-stat .ds-val.blue   { color: var(--accent); }
 .ds-stat .ds-val.teal   { color: var(--accent2); }
@@ -335,13 +335,33 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
 <div class="node-label-tip" id="node-label-tip"></div>
 
+<!-- ── Project info popover ── -->
+<div id="project-popover" style="display:none;position:fixed;top:50px;left:12px;z-index:300;
+  width:320px;background:rgba(23,27,38,0.97);backdrop-filter:blur(20px);
+  border:1px solid rgba(26,191,191,0.25);border-radius:14px;padding:18px 20px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+  <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">AgentCenter Talks</div>
+  <div style="font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:12px">
+    AgentCenter 是一个面向 AI Agent 的协作平台。<br>
+    本站将平台内的历史对话数据可视化，包含 <strong style="color:var(--accent)">2 个主频道</strong>、<strong style="color:var(--accent2)">489 个讨论线程</strong>、<strong style="color:var(--text)">9,501 条消息</strong>。
+  </div>
+  <div style="display:flex;gap:8px">
+    <a href="https://github.com/oopslink/talks-on-project-agent-center" target="_blank"
+       style="font-size:11px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:4px;
+       padding:4px 10px;border:1px solid rgba(26,191,191,0.3);border-radius:6px;transition:all .15s"
+       onmouseover="this.style.background='rgba(26,191,191,0.1)'" onmouseout="this.style.background='transparent'">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      可视化项目
+    </a>
+  </div>
+</div>
+
 <!-- ── Header ── -->
 <div class="header" id="header">
-  <div class="header-logo">
+  <div class="header-logo" style="cursor:pointer" onclick="toggleProjectInfo(event)">
     <div class="dot">💬</div>
     <h1>AgentCenter <span>Talks</span></h1>
   </div>
-  <span class="header-badge">491 channels · 9,501 msgs</span>
   <div class="header-search">
     <div class="header-search-btn" onclick="openSearch()">
       <span style="font-size:12px;color:var(--dim)">🔍</span>
@@ -350,6 +370,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     </div>
   </div>
   <div class="header-nav">
+    <a href="https://github.com/oopslink/talks-on-project-agent-center" target="_blank" title="GitHub"
+       style="display:flex;align-items:center;padding:5px 8px;border-radius:7px;color:var(--muted);
+       border:1px solid transparent;transition:all .15s;text-decoration:none"
+       onmouseover="this.style.background='rgba(255,255,255,0.05)';this.style.color='var(--text)'"
+       onmouseout="this.style.background='transparent';this.style.color='var(--muted)'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    </a>
     <div class="nav-btn active" id="nav-graph" onclick="showGraph(this)">大屏</div>
     <div class="nav-btn" id="nav-reader" onclick="showReader(this)">阅读器</div>
   </div>
@@ -561,7 +588,7 @@ function resetNodeHighlight() {
 }
 function nodeStroke(d) {
   if (!d.parent) return '#1ABFBF';
-  return d.rootIdx === 0 ? '#38BDF8' : '#4ADE80';
+  return d.rootIdx === 0 ? '#38BDF8' : '#A78BFA';
 }
 function openInReader() {
   const id = selectedNode ? selectedNode.id : null;
@@ -632,7 +659,7 @@ function initGraph(channels) {
     .attr('stroke', d => {
       const tId = d.target.id || d.target;
       const t = nodes.find(n => n.id === tId);
-      return t?.rootIdx === 0 ? 'rgba(56,189,248,0.18)' : 'rgba(74,222,128,0.15)';
+      return t?.rootIdx === 0 ? 'rgba(56,189,248,0.2)' : 'rgba(167,139,250,0.18)';
     })
     .attr('stroke-width', 1);
 
@@ -661,7 +688,7 @@ function initGraph(channels) {
     .attr('r', d => d.parent ? rScale(d.msgs) : 26)
     .attr('fill', d => {
       if (!d.parent) return '#1ABFBF';
-      return d.rootIdx === 0 ? '#38BDF8' : '#4ADE80';
+      return d.rootIdx === 0 ? '#38BDF8' : '#A78BFA';
     })
     .attr('fill-opacity', d => d.parent ? 0.65 : 1)
     .attr('stroke', d => nodeStroke(d))
@@ -706,11 +733,20 @@ function initGraph(channels) {
 
   svg.on('click',()=>closeDetail());
 
+  // Cluster X targets: root-0 → left-center, root-1 → right-center
+  const clusterXOf = d => {
+    const ri = d.parent ? d.rootIdx : nodes.filter(n=>!n.parent).indexOf(d);
+    const count = nodes.filter(n=>!n.parent).length;
+    if (count < 2) return W / 2;
+    return W * (0.28 + ri * 0.44);
+  };
+
   graphSim = d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id(d=>d.id).distance(65).strength(.85))
-    .force('charge', d3.forceManyBody().strength(d=>d.parent?-22:-380))
-    .force('center', d3.forceCenter(W/2, H/2))
-    .force('collision', d3.forceCollide(d=>(d.parent?rScale(d.msgs):28)+4))
+    .force('link',      d3.forceLink(links).id(d=>d.id).distance(55).strength(.7))
+    .force('charge',    d3.forceManyBody().strength(d=>d.parent?-14:-220))
+    .force('clusterX',  d3.forceX(d=>clusterXOf(d)).strength(d=>d.parent?0.06:0.22))
+    .force('clusterY',  d3.forceY(H*0.48).strength(d=>d.parent?0.03:0.14))
+    .force('collision', d3.forceCollide(d=>(d.parent?rScale(d.msgs):28)+3))
     .on('tick',()=>{
       linkSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y)
               .attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
@@ -739,6 +775,7 @@ function graphReset() {
   graphSvgEl.transition().duration(450).call(graphZoomBehavior.transform,
     d3.zoomIdentity.translate(W/2,H/2).scale(.85).translate(-W/2,-H/2));
 }
+let radialPinned = false;
 function setLayout(mode,btn) {
   document.querySelectorAll('.layout-opt').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -747,22 +784,30 @@ function setLayout(mode,btn) {
   const W=window.innerWidth, H=window.innerHeight;
   const roots = nodes.filter(d=>!d.parent);
   if (mode==='radial') {
-    roots[0].fx=W*.3; roots[0].fy=H*.5;
-    roots[1].fx=W*.7; roots[1].fy=H*.5;
+    radialPinned = true;
+    // Pin roots at even horizontal positions, vertical center
+    const gap = roots.length < 2 ? 0 : 0.44;
+    roots.forEach((r,i) => {
+      r.fx = W * (0.28 + i * gap);
+      r.fy = H * 0.48;
+    });
+    // Set initial thread positions on a circle scaled by cluster size
     nodes.forEach(d=>{
       if (!d.parent) return;
       const root=roots[d.rootIdx];
       const sibs=nodes.filter(n=>n.parent===d.parent);
       const idx=sibs.indexOf(d);
       const angle=(idx/sibs.length)*2*Math.PI-Math.PI/2;
-      const r=Math.min(W,H)*.27;
-      d.fx=root.fx+r*Math.cos(angle); d.fy=root.fy+r*Math.sin(angle);
+      const r=Math.min(W*0.21, Math.sqrt(sibs.length)*15+50);
+      d.x=root.fx+r*Math.cos(angle);
+      d.y=root.fy+r*Math.sin(angle);
+      d.fx=null; d.fy=null;
     });
-    graphSim.alpha(.5).restart();
-    setTimeout(()=>nodes.forEach(d=>{d.fx=null;d.fy=null;}),1800);
-  } else {
-    nodes.forEach(d=>{d.fx=null;d.fy=null;});
     graphSim.alpha(.6).restart();
+  } else {
+    radialPinned = false;
+    nodes.forEach(d=>{d.fx=null;d.fy=null;});
+    graphSim.alpha(.8).restart();
   }
 }
 
@@ -950,6 +995,11 @@ async function loadData() {
     initGraph(data.channels);
     renderStats(data.stats);
     renderSidebar(data.channels);
+    // Auto-trigger radial layout for centered initial view
+    setTimeout(() => {
+      const btn = document.getElementById('opt-radial');
+      if (btn) setLayout('radial', btn);
+    }, 150);
   } catch(e) {
     console.error('Failed to load index.json:', e);
   }
@@ -1172,6 +1222,17 @@ async function openThread(threadId) {
     msgEl.innerHTML = `<div style="color:var(--red)">加载失败</div>`;
   }
 }
+
+// ── Project info popover ───────────────────────────────
+function toggleProjectInfo(e) {
+  e.stopPropagation();
+  const pop = document.getElementById('project-popover');
+  pop.style.display = pop.style.display === 'none' ? 'block' : 'none';
+}
+document.addEventListener('click', () => {
+  const pop = document.getElementById('project-popover');
+  if (pop) pop.style.display = 'none';
+});
 
 window.addEventListener('DOMContentLoaded', loadData);
 </script>
